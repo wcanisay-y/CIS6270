@@ -33,6 +33,10 @@ training split only, giving 0.670 (EDM) and 0.628 (GCDM); see `figures/fig2_nove
   `results/bootstrap.json` and `results/bootstrap_summary.csv`.
 - `make_figures.py` draws `figures/` from `results/` (PNG and PDF; `figure_data.csv` is the table twin).
 - `results/unified_all.json` point estimates for QM9 data, EDM and GCDM.
+- `results/samples_EDM.tar.gz`, `results/samples_GCDM.tar.gz` the 10,000 generated molecules per model
+  (xyz files, 3.7 MB each). `results/permol_EDM.csv`, `results/permol_GCDM.csv` per-molecule
+  atom counts, stability and canonical SMILES. `results/qm9_train_split_smiles.txt.gz` the
+  97,627 training-split SMILES the native evaluators measure novelty against.
 - `setup.sh`, `run.sh` one-command reproduction (see below); `environment-record.txt` exact package versions.
 
 ## Reproduction
@@ -48,7 +52,12 @@ downloads next to it (the `.gitignore` here keeps them out of the repository):
                        # both at once), then shared scoring, bootstrap and figures
 
 `run.sh` skips any stage whose output already exists, so it can be re-run after an
-interruption. `N_SAMPLES=1000 bash run.sh` gives a quick smoke test. `unified_eval.py` finds
+interruption. Because the generated molecules are committed, the scoring, bootstrap and figure
+stages can also be re-run without a GPU: `SKIP_CKPT=1 bash setup.sh` (clones and environment
+only) followed by `bash run.sh` unpacks the archives into `samples/` and re-scores them in about
+ten minutes (plus about ten minutes on the first run to build the reference SMILES cache from the
+parquet), reproducing `results/` exactly; only the test NLL is carried over, since it needs
+the models. `N_SAMPLES=1000 bash run.sh` gives a quick smoke test. `unified_eval.py` finds
 the parquet under `data/qm9/` or at `$QM9_PARQUET`.
 
 What the scripts encode, for reference:
@@ -84,5 +93,5 @@ followed by, from this directory:
     python bootstrap_eval.py
     python make_figures.py
 
-The generated xyz files, run logs and the per-molecule tables were left out of the repository
-for size.
+The run logs and the model repositories with their checkpoints are not in the repository;
+the generated molecules are, as the two archives above.

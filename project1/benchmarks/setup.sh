@@ -4,6 +4,7 @@
 # creates the conda environment, and downloads the QM9 parquet and the GCDM checkpoints.
 # Usage: bash setup.sh            (everything lands next to this script)
 #        ENV_NAME=myenv bash setup.sh
+#        SKIP_CKPT=1 bash setup.sh   (no GCDM checkpoint download: enough to re-score the committed samples)
 set -euo pipefail
 BENCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENV_NAME="${ENV_NAME:-qm9bench}"
@@ -46,7 +47,7 @@ ls data/qm9/data/*.parquet >/dev/null 2>&1 || \
   run python -c "from huggingface_hub import snapshot_download; snapshot_download('structure-epflai/qm9', repo_type='dataset', local_dir='data/qm9')"
 
 echo "== 4/5 GCDM checkpoints (2.4 GB from Zenodo, resumable)"
-if [ ! -f gcdm/checkpoints/QM9/Unconditional/model_1_epoch_979-EMA.ckpt ]; then
+if [ "${SKIP_CKPT:-0}" != "1" ] && [ ! -f gcdm/checkpoints/QM9/Unconditional/model_1_epoch_979-EMA.ckpt ]; then
   for attempt in $(seq 1 30); do
     wget -c -q --tries=5 --timeout=60 -O gcdm/GCDM_Checkpoints.tar.gz "$CKPT_URL" || true
     [ "$(md5sum gcdm/GCDM_Checkpoints.tar.gz | cut -d' ' -f1)" = "$CKPT_MD5" ] && break

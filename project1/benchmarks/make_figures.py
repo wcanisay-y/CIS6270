@@ -62,16 +62,21 @@ def save(fig, name):
 unified = json.load(open(os.path.join(RES, "unified_all.json")))
 boot_path = os.path.join(RES, "bootstrap.json")
 boot = json.load(open(boot_path)) if os.path.exists(boot_path) else None
-edm_native = read_native("edm_eval.log", {
-    "novelty": r"Novelty over \d+ unique valid molecules: ([\d.]+)%",
-    "test_nll": r"Final test nll (-?[\d.]+)",
-})
-gcdm_native = read_native("gcdm_eval.log", {
-    "novelty": r"Novelty over \d+ unique valid molecules: ([\d.]+)%",
-    "test_nll": r"Test negative log-likelihood \(NLL\): (-?[\d.]+)",
-})
-native_novelty = {"EDM": edm_native["novelty"] / 100, "GCDM": gcdm_native["novelty"] / 100}
-test_nll = {"EDM": edm_native["test_nll"], "GCDM": gcdm_native["test_nll"]}
+if boot:
+    # the bootstrap file carries the native novelty (identical to the run logs) and the test NLL
+    native_novelty = {m: boot[m]["novelty_native"]["value"] for m in ("EDM", "GCDM")}
+    test_nll = {m: boot["nll"][m]["mean"] for m in ("EDM", "GCDM")}
+else:
+    edm_native = read_native("edm_eval.log", {
+        "novelty": r"Novelty over \d+ unique valid molecules: ([\d.]+)%",
+        "test_nll": r"Final test nll (-?[\d.]+)",
+    })
+    gcdm_native = read_native("gcdm_eval.log", {
+        "novelty": r"Novelty over \d+ unique valid molecules: ([\d.]+)%",
+        "test_nll": r"Test negative log-likelihood \(NLL\): (-?[\d.]+)",
+    })
+    native_novelty = {"EDM": edm_native["novelty"] / 100, "GCDM": gcdm_native["novelty"] / 100}
+    test_nll = {"EDM": edm_native["test_nll"], "GCDM": gcdm_native["test_nll"]}
 n_ref = len(json.load(open(os.path.join(RES, "qm9_parquet_smiles.json"))))
 
 METRICS = [

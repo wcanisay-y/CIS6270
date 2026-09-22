@@ -2,12 +2,20 @@
 # per-molecule quantities are computed once with the shared evaluator's functions;
 # resampling then works on those indicators only (never on the molecules themselves), so
 # resampling with replacement cannot create spurious duplicate smiles.
+#
+# inputs are looked up in this order, so the script runs both after a full run.sh and from
+# the committed artifacts alone:
+#   samples          <model repo output dir>            else samples/<MODEL> (unpacked archive)
+#   native reference <model repo training-split pickle> else results/qm9_train_split_smiles.txt.gz
+#   test NLL         run logs                            else the nll block of results/bootstrap.json
 
 import csv
 import glob
+import gzip
 import json
 import os
 import pickle
+import re
 import sys
 
 import numpy as np
@@ -23,6 +31,41 @@ SAMPLES = {
     "EDM": ("edm/outputs/edm_qm9/eval/analyzed_molecules", "edm/qm9/temp/qm9_smiles.pickle"),
     "GCDM": ("gcdm/output/QM9/Unconditional/gcdm_model_1", "gcdm/data/EDM/QM9/QM9_smiles.pickle"),
 }
+
+
+def find_samples(name, repo_dir):
+    for d in (os.path.join(BENCH, repo_dir), os.path.join(BENCH, "samples", name)):
+        if os.path.isdir(d) and os.listdir(d):
+            return d
+    raise FileNotFoundError(f"no samples for {name}: run run.sh, or unpack results/samples_{name}.tar.gz into samples/")
+
+
+def native_reference(pickle_path):
+    p = os.path.join(BENCH, pickle_path)
+    if os.path.exists(p):
+        with open(p, "rb") as f:
+            return set(pickle.load(f))
+    with gzip.open(os.path.join(RES, "qm9_train_split_smiles.txt.gz"), "rt") as f:
+        return {line.strip() for line in f if line.strip()}
+
+
+def nll_from_logs():
+    csvs = sorted(glob.glob(os.path.join(BENCH, "gcdm/logs/mol_gen_eval/runs/*/csv/version_0/metrics.csv")))
+    edm_log = os.path.join(RES, "edm_eval.log")
+    if not csvs or not os.path.exists(edm_log):
+        return None
+    passes = []
+    with open(csvs[-1]) as f:
+        for r in csv.DictReader(f):
+            if r.get("test/loss"):
+                passes.append(float(r["test/loss"]))
+    found = re.findall(r"Final test nll (-?[\d.]+)", open(edm_log, errors="ignore").read())
+    if not passes or not found:
+        return None
+    edm = float(found[-1])
+    return {"GCDM": {"passes": passes, "mean": float(np.mean(passes)), "min": min(passes),
+                     "max": max(passes), "std": float(np.std(passes, ddof=1))},
+            "EDM": {"passes": [edm], "mean": edm, "min": edm, "max": edm, "std": None}}
 
 
 def per_molecule(mols):
@@ -90,10 +133,11 @@ def main():
     shared_ref = reference_smiles(os.path.join(RES, "qm9_parquet_smiles.json"))
     out = {"n_boot": N_BOOT, "seed": SEED, "ci_percentiles": CI, "n_reference_shared": len(shared_ref)}
 
-    for name, (sample_dir, pickle_path) in SAMPLES.items():
-        with open(os.path.join(BENCH, pickle_path), "rb") as f:
-            native_ref = set(pickle.load(f))
-        rows = per_molecule(load_generated(os.path.join(BENCH, sample_dir)))
+    for name, (repo_dir, pickle_path) in SAMPLES.items():
+        native_ref = native_reference(pickle_path)
+        sample_dir = find_samples(name, repo_dir)
+        print(f"{name}: scoring {sample_dir}", flush=True)
+        rows = per_molecule(load_generated(sample_dir))
         with open(os.path.join(RES, f"permol_{name}.csv"), "w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["n_atoms", "stable_atoms", "mol_stable", "smiles"])
@@ -112,19 +156,16 @@ def main():
     print("QM9 data", {k: (round(v["value"], 4), round(v["lo"], 4), round(v["hi"], 4))
                        for k, v in out["QM9 data"].items() if isinstance(v, dict)}, flush=True)
 
-    # likelihood: gcdm logged five test passes; edm logged one
-    passes = []
-    metrics_csv = sorted(glob.glob(os.path.join(BENCH, "gcdm/logs/mol_gen_eval/runs/*/csv/version_0/metrics.csv")))[-1]
-    with open(metrics_csv) as f:
-        for r in csv.DictReader(f):
-            if r.get("test/loss"):
-                passes.append(float(r["test/loss"]))
-    out["nll"] = {"GCDM": {"passes": passes, "mean": float(np.mean(passes)), "min": min(passes),
-                           "max": max(passes), "std": float(np.std(passes, ddof=1))}}
-    import re
-    edm_log = open(os.path.join(RES, "edm_eval.log"), errors="ignore").read()
-    edm_nll = float(re.findall(r"Final test nll (-?[\d.]+)", edm_log)[-1])
-    out["nll"]["EDM"] = {"passes": [edm_nll], "mean": edm_nll, "min": edm_nll, "max": edm_nll, "std": None}
+    # likelihood: gcdm logged five test passes, edm one. these cannot be recomputed from the
+    # samples, so without the run logs the previously committed values are carried over.
+    out["nll"] = nll_from_logs()
+    if out["nll"] is None:
+        prev = os.path.join(RES, "bootstrap.json")
+        if not os.path.exists(prev):
+            raise FileNotFoundError("no run logs and no previous results/bootstrap.json to take the test NLL from")
+        out["nll"] = json.load(open(prev))["nll"]
+        out["nll_source"] = "carried over from previous bootstrap.json (run logs absent)"
+        print("test NLL carried over from previous bootstrap.json", flush=True)
 
     with open(os.path.join(RES, "bootstrap.json"), "w") as f:
         json.dump(out, f, indent=2)
