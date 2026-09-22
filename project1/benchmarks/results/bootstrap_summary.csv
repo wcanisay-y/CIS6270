@@ -1,0 +1,20 @@
+model,metric,value,ci_lo,ci_hi,bootstrap_se
+EDM,atom_stability,0.9831,0.9822,0.9838,0.0004
+EDM,molecule_stability,0.8103,0.8027,0.8177,0.0039
+EDM,validity,0.9193,0.9138,0.9245,0.0028
+EDM,uniqueness,0.9852,0.9828,0.9877,0.0013
+EDM,valid_and_unique,0.9057,0.8999,0.9115,0.0030
+EDM,novelty,0.5588,0.5478,0.5692,0.0055
+EDM,novelty_native,0.6698,0.6594,0.6791,0.0051
+GCDM,atom_stability,0.9874,0.9868,0.9881,0.0004
+GCDM,molecule_stability,0.8642,0.8578,0.8706,0.0032
+GCDM,validity,0.9489,0.9445,0.9531,0.0022
+GCDM,uniqueness,0.9848,0.9825,0.9873,0.0013
+GCDM,valid_and_unique,0.9345,0.9295,0.9395,0.0025
+GCDM,novelty,0.5125,0.5026,0.5223,0.0051
+GCDM,novelty_native,0.6278,0.6182,0.6376,0.0050
+QM9 data,atom_stability,0.9937,0.9931,0.9943,0.0003
+QM9 data,molecule_stability,0.9528,0.9489,0.9568,0.0021
+QM9 data,validity,0.9749,0.9719,0.9779,0.0015
+QM9 data,uniqueness,1.0000,1.0000,1.0000,0.0000
+QM9 data,valid_and_unique,0.9749,0.9719,0.9779,0.0015
