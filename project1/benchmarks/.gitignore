@@ -1,0 +1,8 @@
+edm/
+gcdm/
+data/
+__pycache__/
+results/*.log
+results/qm9_parquet_smiles.json
+results/permol_*.csv
+results/gcdm_pip_requirements.txt

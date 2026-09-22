@@ -24,7 +24,13 @@ from configs.datasets_config import get_dataset_info  # noqa: E402
 from qm9.analyze import check_stability  # noqa: E402
 from qm9.rdkit_functions import build_molecule, mol2smiles  # noqa: E402
 
-QM9_PARQUET = "/mnt/isilon/tan_lab/pany3/data/qm9/data/train-00000-of-00001-baa918c342229731.parquet"
+# local copy of the structure-epflai/qm9 parquet: $QM9_PARQUET, else data/qm9/data/ next to this
+# script (where setup.sh puts it), else the original absolute path used for the reported results
+QM9_PARQUET = (
+    os.environ.get("QM9_PARQUET")
+    or next(iter(sorted(glob.glob(os.path.join(BENCH_DIR, "data", "qm9", "data", "*.parquet")))), None)
+    or "/mnt/isilon/tan_lab/pany3/data/qm9/data/train-00000-of-00001-baa918c342229731.parquet"
+)
 DATASET_INFO = get_dataset_info("qm9", remove_h=False)
 ATOM_ENCODER = DATASET_INFO["atom_encoder"]
 

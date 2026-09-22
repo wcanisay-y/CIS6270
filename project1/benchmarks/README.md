@@ -33,29 +33,43 @@ training split only, giving 0.670 (EDM) and 0.628 (GCDM); see `figures/fig2_nove
   `results/bootstrap.json` and `results/bootstrap_summary.csv`.
 - `make_figures.py` draws `figures/` from `results/` (PNG and PDF; `figure_data.csv` is the table twin).
 - `results/unified_all.json` point estimates for QM9 data, EDM and GCDM.
+- `setup.sh`, `run.sh` one-command reproduction (see below); `environment-record.txt` exact package versions.
 
 ## Reproduction
 
-The scripts were run from a working directory laid out as
+Two scripts reproduce everything from scratch; both run from this directory and put all
+downloads next to it (the `.gitignore` here keeps them out of the repository):
 
-    benchmarks/
-      edm/        clone of e3_diffusion_for_molecules
-      gcdm/       clone of Bio-Diffusion, with the Zenodo checkpoints unpacked
-      results/    outputs
-      *.py        the three scripts in this folder
+    bash setup.sh      # clones EDM and GCDM at the commits used, patches their QM9 download
+                       # URLs, creates the conda env "qm9bench", downloads the QM9 parquet
+                       # and the 2.4 GB GCDM checkpoint archive (resumable, md5-verified)
+    bash run.sh        # samples 10,000 molecules per model with native evaluation
+                       # (about 2 h for EDM and 4.5 h for GCDM on one GPU; PARALLEL=1 runs
+                       # both at once), then shared scoring, bootstrap and figures
 
-in a conda environment (`qm9bench`, Python 3.9, torch 1.12.1) with each repo's requirements,
-`pyarrow==14.0.2` and `matplotlib==3.6.2` (GCDM imports a module removed in matplotlib 3.7).
-The QM9 download URLs in both repos had to be changed from
-`springernature.figshare.com/ndownloader` to `ndownloader.figshare.com`.
+`run.sh` skips any stage whose output already exists, so it can be re-run after an
+interruption. `N_SAMPLES=1000 bash run.sh` gives a quick smoke test. `unified_eval.py` finds
+the parquet under `data/qm9/` or at `$QM9_PARQUET`.
 
-Sampling and native evaluation:
+What the scripts encode, for reference:
 
-    # EDM, from benchmarks/edm
+- environment: Python 3.9, PyTorch 1.12.1 with CUDA 11.6, PyG 2.2.0 and the scatter, cluster
+  and sparse extensions from conda; GCDM's pip requirements from its `environment.yaml`;
+  `pip==23.3` and `setuptools<70` because newer versions cannot build some of those pins;
+  `pyarrow==14.0.2`; `matplotlib==3.6.2` because GCDM imports a module removed in 3.7.
+  `environment-record.txt` lists the exact versions of the environment that produced the
+  reported results.
+- both repositories download QM9 from `springernature.figshare.com/ndownloader`, which no
+  longer resolves; `setup.sh` rewrites those URLs to `ndownloader.figshare.com`.
+- commits used: EDM `fce07d7`, GCDM `a328950`; GCDM checkpoints from Zenodo record 13375913.
+
+The commands `run.sh` executes for sampling and native evaluation:
+
+    # EDM, from edm/
     python eval_analyze.py --model_path outputs/edm_qm9 --n_samples 10000 \
         --batch_size_gen 100 --save_to_xyz True
 
-    # GCDM, from benchmarks/gcdm
+    # GCDM, from gcdm/
     PROJECT_ROOT=$PWD python src/mol_gen_eval.py datamodule=edm_qm9 model=qm9_mol_gen_ddpm \
         logger=csv trainer.accelerator=gpu "trainer.devices=[0]" \
         ckpt_path=checkpoints/QM9/Unconditional/model_1_epoch_979-EMA.ckpt \
@@ -63,12 +77,12 @@ Sampling and native evaluation:
         num_samples=10000 sampling_batch_size=500 num_test_passes=5 save_molecules=True \
         output_dir=output/QM9/Unconditional/gcdm_model_1/
 
-Shared scoring, bootstrap and figures, from `benchmarks/`:
+followed by, from this directory:
 
     python unified_eval.py --samples EDM=edm/outputs/edm_qm9/eval/analyzed_molecules \
         GCDM=gcdm/output/QM9/Unconditional/gcdm_model_1 --out results/unified_all.json
     python bootstrap_eval.py
     python make_figures.py
 
-Both sampling runs took about two hours each on one GPU. The generated xyz files, run logs and
-the per-molecule tables were left out of the repository for size.
+The generated xyz files, run logs and the per-molecule tables were left out of the repository
+for size.

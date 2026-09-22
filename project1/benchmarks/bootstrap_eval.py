@@ -4,6 +4,7 @@
 # resampling with replacement cannot create spurious duplicate smiles.
 
 import csv
+import glob
 import json
 import os
 import pickle
@@ -113,7 +114,8 @@ def main():
 
     # likelihood: gcdm logged five test passes; edm logged one
     passes = []
-    with open(os.path.join(BENCH, "gcdm/logs/mol_gen_eval/runs/2026-09-21_19-14-49/csv/version_0/metrics.csv")) as f:
+    metrics_csv = sorted(glob.glob(os.path.join(BENCH, "gcdm/logs/mol_gen_eval/runs/*/csv/version_0/metrics.csv")))[-1]
+    with open(metrics_csv) as f:
         for r in csv.DictReader(f):
             if r.get("test/loss"):
                 passes.append(float(r["test/loss"]))
