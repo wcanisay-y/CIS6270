@@ -1,0 +1,93 @@
+{
+  "metrics": {
+    "n_molecules": 1000,
+    "atom_stability": 0.8112963898714277,
+    "molecule_stability": 0.031,
+    "validity": 0.3,
+    "uniqueness": 1.0,
+    "novelty": 1.0
+  },
+  "config": {
+    "epochs": "12",
+    "batch_size": "64",
+    "lr": "0.0002",
+    "denoiser": "egnn",
+    "augment": "False",
+    "canonical": "False",
+    "hidden": "128",
+    "layers": "4",
+    "timesteps": "500",
+    "ema": "0.999",
+    "samples": "1000",
+    "limit": "None",
+    "uncharacterized": "/vast/projects/nzh/wharton/project/yjiang/projects/project1_dm/data/raw/uncharacterized.txt",
+    "workers": "2",
+    "resume": "True",
+    "seed": "0",
+    "smoke": "False",
+    "output": "/vast/projects/nzh/wharton/project/yjiang/projects/project1_dm/results/ddpm_egnn"
+  },
+  "parameters": 464393,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 2.1003611824198964,
+      "valid_loss": 1.8434029753615218
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.733170837947717,
+      "valid_loss": 1.6525998656342669
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.5815538060774497,
+      "valid_loss": 1.552150981019183
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.5181729781153734,
+      "valid_loss": 1.4981965187119275
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.4819502120353396,
+      "valid_loss": 1.4896328774894156
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.454413698718453,
+      "valid_loss": 1.454826575953786
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.441785217425145,
+      "valid_loss": 1.409838589807836
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.4231101612067734,
+      "valid_loss": 1.4124823046893609
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.414151496624728,
+      "valid_loss": 1.4037594376540765
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.4012543433303133,
+      "valid_loss": 1.3990642506901811
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1.38485647509222,
+      "valid_loss": 1.3803336091157867
+    },
+    {
+      "epoch": 12,
+      "train_loss": 1.3832985600929377,
+      "valid_loss": 1.375568773106831
+    }
+  ]
+}
