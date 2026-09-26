@@ -71,6 +71,6 @@ run python unified_eval.py --samples "EDM=$EDM_SAMPLES" "GCDM=$GCDM_SAMPLES" --o
   2>&1 | grep -v "Ignoring invalid" | tee results/unified_all.log
 echo "== bootstrap intervals (results/bootstrap.json)"
 run python bootstrap_eval.py 2>&1 | grep -v "Ignoring invalid" | tee results/bootstrap.log
-echo "== figures (results/figures/)"
+echo "== figures (figures/)"
 run python make_figures.py
 echo "== done"

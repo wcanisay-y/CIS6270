@@ -14,7 +14,7 @@ from matplotlib.patches import Patch
 
 BENCH = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(BENCH, "results")
-OUT = os.path.join(RES, "figures")
+OUT = os.path.join(BENCH, "figures")
 os.makedirs(OUT, exist_ok=True)
 
 # palette (validated): edm = slot 1 blue, gcdm = slot 2 orange, reference = gray
