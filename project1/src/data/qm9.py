@@ -10,9 +10,12 @@ from torch.utils.data import DataLoader
 
 ATOM_VOCAB: Dict[str, int] = {"H": 0, "C": 1, "N": 2, "O": 3, "F": 4}
 
+# local copy of structure-epflai/qm9 (identical to yairschiff/qm9)
+QM9_PARQUET = "/mnt/isilon/tan_lab/pany3/data/qm9/data/*.parquet"
+
 
 def load_qm9_raw(split: str = "train") -> Dataset:
-    return load_dataset("yairschiff/qm9", split=split)
+    return load_dataset("parquet", data_files={"train": QM9_PARQUET}, split=split)
 
 
 def make_splits(
