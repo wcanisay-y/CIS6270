@@ -15,7 +15,10 @@ torch>=2.1
 # install is enough here: QM9 needs no torch-scatter / torch-sparse wheels.
 torch_geometric>=2.4
 datasets>=2.14
-numpy>=1.24
+# numpy must stay below 2: torch 2.2.x wheels are built against the 1.x C ABI, and with
+# numpy 2.x installed every tensor -> array conversion dies with "Numpy is not available".
+# Training survives it; plotting and RDKit scoring do not. Lift this only alongside torch.
+numpy>=1.24,<2
 
 # Bond perception, sanitization and canonical SMILES for validity,
 # uniqueness and novelty in metrics.py.
@@ -24,3 +27,6 @@ rdkit>=2023.9.1
 # Progress bars and the config files the run scripts read.
 tqdm>=4.66
 pyyaml>=6.0
+
+# The generation-trajectory figure in trajectory.py.
+matplotlib>=3.7

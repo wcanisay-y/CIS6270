@@ -1,5 +1,23 @@
+# Environments
 .venv/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Large regenerable binaries: checkpoints (ckpt/*.pt), the QM9 cache
+# (project1/molecules/data/qm9.pt, 137 MB) and generated samples (results/*.pt).
+# The metric JSONs and the figures produced FROM them are tracked, because the paper
+# cites them. Force a specific file in with `git add -f` if one has to ship.
 *.pt
 *.sdf
-project1/molecules/data/
+
+# The raw QM9 download, and the novelty reference set that metrics.py builds from the
+# training split on first use (97,626 SMILES, ~6 MB, rebuilt automatically in ~15 min).
+# Note that data/qm9.py -- the loader that builds the cache -- is deliberately NOT
+# ignored: a clean clone has to be able to rebuild the dataset.
 project1/molecules/data/qm9_raw/
+project1/molecules/data/train_smiles.json
