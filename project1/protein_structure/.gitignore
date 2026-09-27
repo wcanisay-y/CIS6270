@@ -1,0 +1,10 @@
+# The structure cache and the packed input tensors live outside the repo
+# (/mnt/isilon/tan_lab/pany3/protein_diffusion/cache). Nothing large belongs here.
+# results/ IS tracked, but only its small files: the checkpoint and the sample
+# archives are excluded by extension below.
+cache/
+runs/
+__pycache__/
+*.pt
+*.npz
+logs/*.out

@@ -1,0 +1,77 @@
+figure,series,key,value
+fig1_training,run,best_epoch,190
+fig1_training,run,train_final,0.165493
+fig1_training,run,dev_raw_final,0.16982
+fig1_training,run,dev_ema_final,0.160441
+fig1_training,run,dev_ema_best,0.1596
+fig1_training,run,train_hours,2.13273
+fig2_sample_quality,AlphaFold test,n,4615
+fig2_sample_quality,generated,n,10000
+fig2_sample_quality,AlphaFold test,validity,0.9657638136511376
+fig2_sample_quality,generated,validity,0.4839
+fig2_sample_quality,AlphaFold test,bond_mean,3.8402954291677425
+fig2_sample_quality,generated,bond_mean,3.795295520591736
+fig2_sample_quality,AlphaFold test,bond_sd,0.03007352720090427
+fig2_sample_quality,generated,bond_sd,0.12583322015553713
+fig2_sample_quality,AlphaFold test,bond_ok,0.9996015876324548
+fig2_sample_quality,generated,bond_ok,0.9975323708503055
+fig2_sample_quality,AlphaFold test,clash_free,1.0
+fig2_sample_quality,generated,clash_free,0.5888
+fig2_sample_quality,AlphaFold test,clashes_per_structure,0.0
+fig2_sample_quality,generated,clashes_per_structure,0.7921
+fig2_sample_quality,AlphaFold test,radius_mean,17.63679305807095
+fig2_sample_quality,generated,radius_mean,15.79170954656601
+fig2_sample_quality,AlphaFold test,right_handed,0.6202619723684314
+fig2_sample_quality,generated,right_handed,0.5627578410466647
+fig2_sample_quality,AlphaFold test,helix_fraction,0.37395124074374436
+fig2_sample_quality,generated,helix_fraction,0.13227380128564767
+fig4_length_stratified,AlphaFold test 16-40,n,214
+fig4_length_stratified,AlphaFold test 16-40,validity,0.9813
+fig4_length_stratified,AlphaFold test 16-40,clash_free,1.0000
+fig4_length_stratified,AlphaFold test 16-40,clashes,0.0000
+fig4_length_stratified,AlphaFold test 16-40,radius,12.2213
+fig4_length_stratified,AlphaFold test 41-60,n,343
+fig4_length_stratified,AlphaFold test 41-60,validity,0.9942
+fig4_length_stratified,AlphaFold test 41-60,clash_free,1.0000
+fig4_length_stratified,AlphaFold test 41-60,clashes,0.0000
+fig4_length_stratified,AlphaFold test 41-60,radius,15.4122
+fig4_length_stratified,AlphaFold test 61-80,n,876
+fig4_length_stratified,AlphaFold test 61-80,validity,0.9749
+fig4_length_stratified,AlphaFold test 61-80,clash_free,1.0000
+fig4_length_stratified,AlphaFold test 61-80,clashes,0.0000
+fig4_length_stratified,AlphaFold test 61-80,radius,17.3383
+fig4_length_stratified,AlphaFold test 81-100,n,1339
+fig4_length_stratified,AlphaFold test 81-100,validity,0.9813
+fig4_length_stratified,AlphaFold test 81-100,clash_free,1.0000
+fig4_length_stratified,AlphaFold test 81-100,clashes,0.0000
+fig4_length_stratified,AlphaFold test 81-100,radius,17.5874
+fig4_length_stratified,AlphaFold test 101-128,n,1843
+fig4_length_stratified,AlphaFold test 101-128,validity,0.9430
+fig4_length_stratified,AlphaFold test 101-128,clash_free,1.0000
+fig4_length_stratified,AlphaFold test 101-128,clashes,0.0000
+fig4_length_stratified,AlphaFold test 101-128,radius,18.8574
+fig4_length_stratified,generated 16-40,n,462
+fig4_length_stratified,generated 16-40,validity,0.8506
+fig4_length_stratified,generated 16-40,clash_free,0.9264
+fig4_length_stratified,generated 16-40,clashes,0.0974
+fig4_length_stratified,generated 16-40,radius,12.6053
+fig4_length_stratified,generated 41-60,n,825
+fig4_length_stratified,generated 41-60,validity,0.7176
+fig4_length_stratified,generated 41-60,clash_free,0.8606
+fig4_length_stratified,generated 41-60,clashes,0.2133
+fig4_length_stratified,generated 41-60,radius,15.0501
+fig4_length_stratified,generated 61-80,n,1903
+fig4_length_stratified,generated 61-80,validity,0.6138
+fig4_length_stratified,generated 61-80,clash_free,0.7288
+fig4_length_stratified,generated 61-80,clashes,0.4451
+fig4_length_stratified,generated 61-80,radius,15.5944
+fig4_length_stratified,generated 81-100,n,2802
+fig4_length_stratified,generated 81-100,validity,0.4736
+fig4_length_stratified,generated 81-100,clash_free,0.5810
+fig4_length_stratified,generated 81-100,clashes,0.7413
+fig4_length_stratified,generated 81-100,radius,16.0133
+fig4_length_stratified,generated 101-128,n,4008
+fig4_length_stratified,generated 101-128,validity,0.3391
+fig4_length_stratified,generated 101-128,clash_free,0.4329
+fig4_length_stratified,generated 101-128,clashes,1.1916
+fig4_length_stratified,generated 101-128,radius,16.2504
