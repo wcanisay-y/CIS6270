@@ -1,0 +1,5 @@
+.venv/
+*.pt
+*.sdf
+project1/molecules/data/
+project1/molecules/data/qm9_raw/

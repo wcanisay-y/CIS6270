@@ -1,1 +1,0 @@
-# architecture for flow matching model

@@ -1,0 +1,26 @@
+# Python 3.10+
+#
+# Install torch first, matched to your CUDA version, then the rest:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements.txt
+#
+# Plain `pip install torch` pulls the default CUDA build (~2.5 GB). For a
+# CPU-only machine use --index-url https://download.pytorch.org/whl/cpu.
+
+torch>=2.1
+
+# QM9 loading. torch_geometric downloads and reads QM9 in data/qm9.py
+# (build_cache); datasets pulls the HuggingFace copy (yairschiff/qm9);
+# numpy is used for the property statistics. torch_geometric's pure-Python
+# install is enough here: QM9 needs no torch-scatter / torch-sparse wheels.
+torch_geometric>=2.4
+datasets>=2.14
+numpy>=1.24
+
+# Bond perception, sanitization and canonical SMILES for validity,
+# uniqueness and novelty in metrics.py.
+rdkit>=2023.9.1
+
+# Progress bars and the config files the run scripts read.
+tqdm>=4.66
+pyyaml>=6.0
