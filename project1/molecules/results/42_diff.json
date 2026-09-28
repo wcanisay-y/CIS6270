@@ -1,0 +1,24 @@
+{
+  "n_samples": 2000,
+  "atom_stability": 0.8510667681694031,
+  "mol_stability": 0.1055000051856041,
+  "validity": 0.377,
+  "uniqueness": 1.0,
+  "nfe": 1000,
+  "mean_gate": 1.0,
+  "novelty": 0.9310344827586207,
+  "config": {
+    "ckpt": "ckpt/diff_s0.pt",
+    "out": "results/42_diff.pt",
+    "n": 2000,
+    "batch_size": 250,
+    "steps": 200,
+    "w": 0.0,
+    "gate": "none",
+    "beta": 1.0,
+    "rho": 0.0,
+    "one_sided": false,
+    "target": null,
+    "seed": 0
+  }
+}

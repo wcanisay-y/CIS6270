@@ -1,0 +1,26 @@
+{
+  "n_samples": 10000,
+  "atom_stability": 0.8413137197494507,
+  "mol_stability": 0.0738999992609024,
+  "validity": 0.3892,
+  "uniqueness": 0.9969167523124358,
+  "nfe": 400,
+  "mean_gate": 1.0,
+  "novelty": 0.9626288659793815,
+  "prop_mae_standardized": 0.3199281692504883,
+  "prop_mae": 2.6145942418170307,
+  "config": {
+    "ckpt": "ckpt/flow_s0.pt",
+    "out": "results/45_base.pt",
+    "n": 10000,
+    "batch_size": 250,
+    "steps": 200,
+    "w": 2.0,
+    "gate": "none",
+    "beta": 1.0,
+    "rho": 0.0,
+    "one_sided": false,
+    "target": 75.0,
+    "seed": 0
+  }
+}
