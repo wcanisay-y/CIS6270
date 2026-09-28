@@ -1,0 +1,94 @@
+figure,run,metric,value,ci_lo,ci_hi
+fig_training,flow,saved_epoch,98,,
+fig_training,flow,saved_validation_loss,0.5707,,
+fig_training,flow,final_train_loss,0.5891,,
+fig_training,flow,final_validation_loss,0.5847,,
+fig_training,classifier,saved_epoch,20,,
+fig_training,classifier,saved_validation_loss,0.0078,,
+fig_training,classifier,final_train_loss,0.0008,,
+fig_training,classifier,final_validation_loss,0.0127,,
+fig46_guidance,abl_none,requested_PF00238_predicted_PF00238,0.4299,,
+fig46_guidance,abl_none,requested_PF00238_predicted_PF00164,0.4030,,
+fig46_guidance,abl_none,requested_PF00238_predicted_PF00253,0.1672,,
+fig46_guidance,abl_none,requested_PF00164_predicted_PF00238,0.4986,,
+fig46_guidance,abl_none,requested_PF00164_predicted_PF00164,0.3652,,
+fig46_guidance,abl_none,requested_PF00164_predicted_PF00253,0.1362,,
+fig46_guidance,abl_none,requested_PF00253_predicted_PF00238,0.4656,,
+fig46_guidance,abl_none,requested_PF00253_predicted_PF00164,0.3750,,
+fig46_guidance,abl_none,requested_PF00253_predicted_PF00253,0.1594,,
+fig46_guidance,abl_cfg,requested_PF00238_predicted_PF00238,1.0000,,
+fig46_guidance,abl_cfg,requested_PF00238_predicted_PF00164,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00238_predicted_PF00253,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00164_predicted_PF00238,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00164_predicted_PF00164,1.0000,,
+fig46_guidance,abl_cfg,requested_PF00164_predicted_PF00253,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00253_predicted_PF00238,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00253_predicted_PF00164,0.0000,,
+fig46_guidance,abl_cfg,requested_PF00253_predicted_PF00253,1.0000,,
+fig46_guidance,real_test,nearest_mean,0.7864,,
+fig46_guidance,real_test,decoding_mean,0.6793,,
+fig46_guidance,abl_none,nearest_mean,0.2204,,
+fig46_guidance,abl_none,decoding_mean,0.3922,,
+fig46_guidance,abl_cfg,nearest_mean,0.2258,,
+fig46_guidance,abl_cfg,decoding_mean,0.4064,,
+fig46_ablation,abl_cfg,family_prob,0.9999,0.9999,1.0000
+fig46_ablation,abl_cfg,diversity,0.8721,0.8708,0.8736
+fig46_ablation,abl_cfg,decoding,0.4064,0.4030,0.4099
+fig46_ablation,abl_cfg,nearest,0.2258,0.2238,0.2279
+fig46_ablation,abl_global,family_prob,0.9978,0.9970,0.9984
+fig46_ablation,abl_global,diversity,0.8760,0.8749,0.8773
+fig46_ablation,abl_global,decoding,0.3956,0.3929,0.3982
+fig46_ablation,abl_global,nearest,0.2225,0.2205,0.2245
+fig46_ablation,abl_shuffled,family_prob,0.9981,0.9975,0.9986
+fig46_ablation,abl_shuffled,diversity,0.8765,0.8754,0.8776
+fig46_ablation,abl_shuffled,decoding,0.3932,0.3908,0.3958
+fig46_ablation,abl_shuffled,nearest,0.2225,0.2207,0.2245
+fig46_ablation,abl_gated,family_prob,0.9978,0.9970,0.9984
+fig46_ablation,abl_gated,diversity,0.8762,0.8751,0.8773
+fig46_ablation,abl_gated,decoding,0.3962,0.3935,0.3988
+fig46_ablation,abl_gated,nearest,0.2222,0.2201,0.2242
+fig46_ablation,abl_global - abl_cfg,family_prob,-0.0022,-0.0029,-0.0016
+fig46_ablation,abl_global - abl_cfg,diversity,0.0039,0.0031,0.0047
+fig46_ablation,abl_global - abl_cfg,decoding,-0.0108,-0.0120,-0.0095
+fig46_ablation,abl_global - abl_cfg,nearest,-0.0033,-0.0046,-0.0021
+fig46_ablation,abl_shuffled - abl_cfg,family_prob,-0.0019,-0.0024,-0.0014
+fig46_ablation,abl_shuffled - abl_cfg,diversity,0.0044,0.0026,0.0059
+fig46_ablation,abl_shuffled - abl_cfg,decoding,-0.0132,-0.0173,-0.0091
+fig46_ablation,abl_shuffled - abl_cfg,nearest,-0.0033,-0.0061,-0.0004
+fig46_ablation,abl_gated - abl_cfg,family_prob,-0.0022,-0.0030,-0.0016
+fig46_ablation,abl_gated - abl_cfg,diversity,0.0041,0.0033,0.0049
+fig46_ablation,abl_gated - abl_cfg,decoding,-0.0102,-0.0114,-0.0089
+fig46_ablation,abl_gated - abl_cfg,nearest,-0.0037,-0.0050,-0.0024
+fig46_ablation,abl_gated - abl_global,family_prob,-0.0000,-0.0000,-0.0000
+fig46_ablation,abl_gated - abl_global,diversity,0.0002,-0.0001,0.0004
+fig46_ablation,abl_gated - abl_global,decoding,0.0006,0.0005,0.0007
+fig46_ablation,abl_gated - abl_global,nearest,-0.0004,-0.0010,0.0002
+fig46_ablation,abl_gated - abl_shuffled,family_prob,-0.0003,-0.0011,0.0004
+fig46_ablation,abl_gated - abl_shuffled,diversity,-0.0003,-0.0018,0.0013
+fig46_ablation,abl_gated - abl_shuffled,decoding,0.0030,-0.0006,0.0063
+fig46_ablation,abl_gated - abl_shuffled,nearest,-0.0004,-0.0033,0.0023
+fig46_ablation,real_test,family_prob,0.9900,,
+fig46_ablation,real_test,diversity,0.8413,,
+fig46_ablation,real_test,decoding,0.6793,,
+fig46_ablation,real_test,nearest,0.7864,,
+fig46_gate,per_residue,gate_t0.00,0.5162,0.4614,0.7029
+fig46_gate,per_residue,gate_t0.10,0.5315,0.4643,0.7672
+fig46_gate,per_residue,gate_t0.20,0.5543,0.4681,0.8327
+fig46_gate,per_residue,gate_t0.30,0.5819,0.4722,0.8810
+fig46_gate,per_residue,gate_t0.40,0.6076,0.4756,0.9089
+fig46_gate,per_residue,gate_t0.50,0.6255,0.4770,0.9236
+fig46_gate,per_residue,gate_t0.60,0.6348,0.4773,0.9309
+fig46_gate,per_residue,gate_t0.70,0.6415,0.4780,0.9344
+fig46_gate,per_residue,gate_t0.80,0.6478,0.4791,0.9360
+fig46_gate,per_residue,gate_t0.90,0.6494,0.4798,0.9356
+fig46_gate,global,gate_t0.00,0.5532,0.5330,0.5766
+fig46_gate,global,gate_t0.10,0.5739,0.5471,0.6077
+fig46_gate,global,gate_t0.20,0.5999,0.5662,0.6435
+fig46_gate,global,gate_t0.30,0.6261,0.5879,0.6776
+fig46_gate,global,gate_t0.40,0.6486,0.6078,0.6995
+fig46_gate,global,gate_t0.50,0.6628,0.6227,0.7119
+fig46_gate,global,gate_t0.60,0.6704,0.6301,0.7162
+fig46_gate,global,gate_t0.70,0.6750,0.6349,0.7199
+fig46_gate,global,gate_t0.80,0.6793,0.6389,0.7231
+fig46_gate,global,gate_t0.90,0.6803,0.6408,0.7227
+fig46_gate,real_test,gate_mean,0.8863,,

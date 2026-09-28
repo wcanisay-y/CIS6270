@@ -1,0 +1,24 @@
+{
+  "n_samples": 1000,
+  "n_valid": 1000,
+  "valid_rate": 1.0,
+  "uniqueness": 1.0,
+  "novelty": 1.0,
+  "diversity": 0.877628125,
+  "mean_pairwise_identity": 0.122371875,
+  "family_accuracy": 0.32100000977516174,
+  "nfe": 100,
+  "mean_gate": 1.0,
+  "config": {
+    "ckpt": "ckpt/flow.pt",
+    "out": "out/abl_none.pt",
+    "n": 1000,
+    "batch_size": 64,
+    "steps": 100,
+    "w": 0.0,
+    "gate": "none",
+    "beta": 1.0,
+    "target_family": null,
+    "seed": 0
+  }
+}

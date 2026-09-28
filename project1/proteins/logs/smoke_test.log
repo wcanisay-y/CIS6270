@@ -1,0 +1,137 @@
+
+============================================================
+STEP: Build dataset cache (500 sequences)
+CMD: python "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py" --out "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt" --limit 500 --device cpu
+============================================================
+
+Loading DanielHesslow/SwissProt-Pfam...
+Dataset columns: ['seq', 'labels', 'labels_str', 'id']
+Sample labels: [4358]
+Sample labels_str: ['Pfam:PF00118']
+Extracted: ['PF00118']
+Sequence length distribution (top 10): [(156, 1751), (379, 1404), (122, 1367), (130, 1271), (142, 1215), (201, 1204), (101, 1198), (185, 1184), (152, 1167), (206, 1146)]
+Sequences in length range [32, 150]: 77730
+Unique families in range: 3236
+Top 3 families (in length range): ['PF00238', 'PF00164', 'PF00253']
+Counts: [856, 839, 837]
+Filtered to 2532 sequences in top families
+After deduplication: 1701 sequences
+Clustering 500 sequences...
+Found 270 clusters
+Splitting by clusters...
+Split: train=426, val=30, test=44
+Encoding with ESM-2...
+Loading ESM-2 model (facebook/esm2_t6_8M_UR50D)...
+Some weights of EsmModel were not initialized from the model checkpoint at facebook/esm2_t6_8M_UR50D and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+  Encoded 32/500
+  Encoded 352/500
+Latent stats: mean=-0.0102, std=0.3692
+Saved cache to /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt
+
+SUCCESS: Build dataset cache (500 sequences)
+
+
+============================================================
+STEP: Train flow model (2 epochs)
+CMD: python "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/train.py" --model flow --data "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt" --out "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/flow_smoke.pt" --epochs 2 --batch-size 16 --layers 2 --n-heads 2
+============================================================
+
+/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(cache_path)
+flow: 2.92M parameters on cuda
+epoch    1  train 1.6419  val 1.4268 *
+epoch    2  train 1.3668  val 1.3612 *
+best val 1.3612, 1s, saved to /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/flow_smoke.pt
+
+SUCCESS: Train flow model (2 epochs)
+
+
+============================================================
+STEP: Train classifier (2 epochs)
+CMD: python "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/train.py" --model classifier --data "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt" --out "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/classifier_smoke.pt" --epochs 2 --batch-size 16 --clean-only
+============================================================
+
+/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(cache_path)
+classifier: 0.15M parameters on cuda
+epoch    1  train 1.0624  val 1.0333 *
+epoch    2  train 0.9547  val 0.9287 *
+best val 0.9287, 0s, saved to /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/classifier_smoke.pt
+
+SUCCESS: Train classifier (2 epochs)
+
+
+============================================================
+STEP: Generate 50 samples with per-residue gating
+CMD: python "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/sample.py" --ckpt "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/flow_smoke.pt" --out "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/samples_smoke.pt" --n 50 --batch-size 16 --steps 20 --w 1.0 --gate per_residue
+============================================================
+
+  16/50
+  32/50
+  48/50
+  50/50
+saved 50 samples to /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/samples_smoke.pt (NFE 40, mean gate 0.572)
+
+SUCCESS: Generate 50 samples with per-residue gating
+
+
+============================================================
+STEP: Evaluate samples
+CMD: python "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/metrics.py" --samples "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/samples_smoke.pt" --data "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt" --classifier-ckpt "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/classifier_smoke.pt" --out "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/metrics_smoke.json"
+============================================================
+
+/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(cache_path)
+Loaded 400 training sequences for novelty check
+Loaded classifier from /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/classifier_smoke.pt
+Decoding sequences...
+Computing diversity...
+Computing family accuracy...
+
+==================================================
+Results:
+{
+  "n_samples": 50,
+  "n_valid": 50,
+  "valid_rate": 1.0,
+  "uniqueness": 1.0,
+  "novelty": 1.0,
+  "diversity": 0.9295535714285714,
+  "mean_pairwise_identity": 0.07044642857142858,
+  "family_accuracy": 0.3199999928474426,
+  "nfe": 40,
+  "mean_gate": 0.5724146112799644,
+  "config": {
+    "ckpt": "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/flow_smoke.pt",
+    "out": "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/samples_smoke.pt",
+    "n": 50,
+    "batch_size": 16,
+    "steps": 20,
+    "w": 1.0,
+    "gate": "per_residue",
+    "beta": 1.0,
+    "target_family": null,
+    "seed": 0
+  }
+}
+
+Saved to /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/metrics_smoke.json
+
+SUCCESS: Evaluate samples
+
+
+============================================================
+SMOKE TEST COMPLETED SUCCESSFULLY!
+============================================================
+
+Outputs:
+  Cache:      /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam_esm2.pt
+  Flow model: /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/flow_smoke.pt
+  Classifier: /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/ckpt/classifier_smoke.pt
+  Samples:    /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/samples_smoke.pt
+  Metrics:    /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/out/metrics_smoke.json
+
+real	0m40.804s
+user	0m35.307s
+sys	0m7.909s

@@ -1,0 +1,19 @@
+families: ['PF00238', 'PF00164', 'PF00253'] | training share: [0.319, 0.351, 0.33]
+REAL train             n= 1431  family_accuracy=0.999  diversity=0.8503  X fraction=0.004  uniqueness=0.865
+REAL test              n=  134  family_accuracy=1.000  diversity=0.8413  X fraction=0.010  uniqueness=0.955
+decoder round trip on real test latents: identity to the stored sequence 0.9783
+abl_none               n= 1000  family_accuracy=0.321  diversity=0.8776  X fraction=0.000  uniqueness=1.000
+abl_cfg                n= 1000  family_accuracy=1.000  diversity=0.8718  X fraction=0.001  uniqueness=1.000
+abl_global             n= 1000  family_accuracy=1.000  diversity=0.8760  X fraction=0.000  uniqueness=1.000
+abl_shuffled           n= 1000  family_accuracy=1.000  diversity=0.8771  X fraction=0.000  uniqueness=1.000
+abl_gated              n= 1000  family_accuracy=1.000  diversity=0.8765  X fraction=0.000  uniqueness=1.000
+nearest training sequence: REAL test      identity 0.801
+nearest training sequence: abl_none       identity 0.241 (max 0.328)   composition distance to real train 0.160
+nearest training sequence: abl_cfg        identity 0.246 (max 0.344)   composition distance to real train 0.182
+nearest training sequence: abl_global     identity 0.242 (max 0.359)   composition distance to real train 0.169
+nearest training sequence: abl_shuffled   identity 0.238 (max 0.344)   composition distance to real train 0.168
+nearest training sequence: abl_gated      identity 0.242 (max 0.344)   composition distance to real train 0.168
+example REAL test : MRYHGVRRRQPCLGLGDVATVSVKKGTPDMRRKLEKAVVIRQKKEIRRPNGIRLSFEDNAMVLI
+example abl_none  : MRGGKVKDGAAKTGLPPAVNRAVAVVDLALISIRRAGGGVGVRRVRYIIDTGKVLVLDGLVLVP
+example abl_cfg   : MRGGPVRTGLVKTGLPPRVRRAVRVVTLTLVTVHRTGGGVGVRRVRLIIDTGGVLVLLGLVLVP
+example abl_gated : MRGGKVRTGAVKTGLPPRVRRAVRVVDLTLVSIRRAGGGVGVRRVRLIIDTGGVLVLLGLVLVP

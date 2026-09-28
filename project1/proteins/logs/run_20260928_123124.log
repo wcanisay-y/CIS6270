@@ -1,0 +1,540 @@
+2026-09-28 12:31:25 
+2026-09-28 12:31:25 == stages=data,train,sample,metrics  commit=62929a6
+2026-09-28 12:31:27 torch 2.5.1+cu121 | cuda True | transformers 4.57.6
+2026-09-28 12:31:27 
+2026-09-28 12:31:27 == Step 1  build dataset -> data/pfam_esm2.pt
+2026-09-28 12:31:29 Loading DanielHesslow/SwissProt-Pfam...
+2026-09-28 12:31:30 Dataset columns: ['seq', 'labels', 'labels_str', 'id']
+2026-09-28 12:31:30 Sample labels: [4358]
+2026-09-28 12:31:30 Sample labels_str: ['Pfam:PF00118']
+2026-09-28 12:31:30 Extracted: ['PF00118']
+2026-09-28 12:31:39 Sequence length distribution (top 10): [(156, 1751), (379, 1404), (122, 1367), (130, 1271), (142, 1215), (201, 1204), (101, 1198), (185, 1184), (152, 1167), (206, 1146)]
+2026-09-28 12:31:39 Sequences in length range [32, 150]: 77730
+2026-09-28 12:31:39 Unique families in range: 3236
+2026-09-28 12:31:39 Top 3 families (in length range): ['PF00238', 'PF00164', 'PF00253']
+2026-09-28 12:31:39 Counts: [856, 839, 837]
+2026-09-28 12:31:39 Filtered to 2532 sequences in top families
+2026-09-28 12:31:39 After deduplication: 1701 sequences
+2026-09-28 12:31:39 Clustering 1701 sequences...
+2026-09-28 12:31:42 Found 683 clusters
+2026-09-28 12:31:42 Splitting by clusters...
+2026-09-28 12:31:42 Split: train=1431, val=136, test=134
+2026-09-28 12:31:42 Encoding with ESM-2...
+2026-09-28 12:31:43 Loading ESM-2 model (facebook/esm2_t6_8M_UR50D)...
+2026-09-28 12:31:45 Some weights of EsmModel were not initialized from the model checkpoint at facebook/esm2_t6_8M_UR50D and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+2026-09-28 12:31:45 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+2026-09-28 12:31:45   Encoded 32/1701
+2026-09-28 12:31:45   Encoded 352/1701
+2026-09-28 12:31:46   Encoded 672/1701
+2026-09-28 12:31:46   Encoded 992/1701
+2026-09-28 12:31:46   Encoded 1312/1701
+2026-09-28 12:31:46   Encoded 1632/1701
+2026-09-28 12:31:46 Latent stats: mean=-0.0102, std=0.3691
+2026-09-28 12:31:47 Saved cache to data/pfam_esm2.pt
+2026-09-28 12:31:48 
+2026-09-28 12:31:48 == Step 2a  flow model -> ckpt/flow.pt
+2026-09-28 12:31:49 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:31:49   d = torch.load(cache_path)
+2026-09-28 12:31:51 flow: 5.38M parameters on cuda
+2026-09-28 12:31:51 epoch    1  train 1.6012  val 1.4294 *
+2026-09-28 12:31:52 epoch    2  train 1.3686  val 1.3705 *
+2026-09-28 12:31:52 epoch    3  train 1.3290  val 1.3439 *
+2026-09-28 12:31:53 epoch    4  train 1.3093  val 1.3292 *
+2026-09-28 12:31:53 epoch    5  train 1.2930  val 1.3086 *
+2026-09-28 12:31:54 epoch    6  train 1.2749  val 1.2899 *
+2026-09-28 12:31:54 epoch    7  train 1.2454  val 1.2508 *
+2026-09-28 12:31:55 epoch    8  train 1.2078  val 1.2051 *
+2026-09-28 12:31:55 epoch    9  train 1.1713  val 1.1825 *
+2026-09-28 12:31:56 epoch   10  train 1.1425  val 1.1317 *
+2026-09-28 12:31:56 epoch   11  train 1.1134  val 1.1259 *
+2026-09-28 12:31:57 epoch   12  train 1.0893  val 1.0906 *
+2026-09-28 12:31:57 epoch   13  train 1.0670  val 1.0920
+2026-09-28 12:31:57 epoch   14  train 1.0496  val 1.0540 *
+2026-09-28 12:31:58 epoch   15  train 1.0317  val 1.0291 *
+2026-09-28 12:31:58 epoch   16  train 1.0131  val 1.0194 *
+2026-09-28 12:31:59 epoch   17  train 1.0017  val 1.0358
+2026-09-28 12:31:59 epoch   18  train 0.9913  val 1.0079 *
+2026-09-28 12:32:00 epoch   19  train 0.9736  val 0.9924 *
+2026-09-28 12:32:00 epoch   20  train 0.9618  val 0.9605 *
+2026-09-28 12:32:01 epoch   21  train 0.9578  val 0.9521 *
+2026-09-28 12:32:01 epoch   22  train 0.9406  val 0.9479 *
+2026-09-28 12:32:01 epoch   23  train 0.9292  val 0.9414 *
+2026-09-28 12:32:02 epoch   24  train 0.9219  val 0.9327 *
+2026-09-28 12:32:02 epoch   25  train 0.9070  val 0.9060 *
+2026-09-28 12:32:03 epoch   26  train 0.8960  val 0.8956 *
+2026-09-28 12:32:03 epoch   27  train 0.8883  val 0.9140
+2026-09-28 12:32:04 epoch   28  train 0.8753  val 0.8624 *
+2026-09-28 12:32:04 epoch   29  train 0.8754  val 0.8623 *
+2026-09-28 12:32:05 epoch   30  train 0.8641  val 0.8784
+2026-09-28 12:32:05 epoch   31  train 0.8515  val 0.8788
+2026-09-28 12:32:05 epoch   32  train 0.8449  val 0.8299 *
+2026-09-28 12:32:06 epoch   33  train 0.8418  val 0.8308
+2026-09-28 12:32:06 epoch   34  train 0.8300  val 0.8309
+2026-09-28 12:32:06 epoch   35  train 0.8288  val 0.8299 *
+2026-09-28 12:32:07 epoch   36  train 0.8248  val 0.8183 *
+2026-09-28 12:32:07 epoch   37  train 0.8108  val 0.8254
+2026-09-28 12:32:08 epoch   38  train 0.8093  val 0.7935 *
+2026-09-28 12:32:08 epoch   39  train 0.8065  val 0.8110
+2026-09-28 12:32:08 epoch   40  train 0.7942  val 0.8376
+2026-09-28 12:32:09 epoch   41  train 0.7859  val 0.8162
+2026-09-28 12:32:09 epoch   42  train 0.7794  val 0.8227
+2026-09-28 12:32:09 epoch   43  train 0.7695  val 0.8226
+2026-09-28 12:32:10 epoch   44  train 0.7762  val 0.7832 *
+2026-09-28 12:32:10 epoch   45  train 0.7654  val 0.7931
+2026-09-28 12:32:11 epoch   46  train 0.7584  val 0.7378 *
+2026-09-28 12:32:11 epoch   47  train 0.7538  val 0.8008
+2026-09-28 12:32:11 epoch   48  train 0.7517  val 0.7677
+2026-09-28 12:32:12 epoch   49  train 0.7467  val 0.7598
+2026-09-28 12:32:12 epoch   50  train 0.7329  val 0.7367 *
+2026-09-28 12:32:13 epoch   51  train 0.7282  val 0.7120 *
+2026-09-28 12:32:13 epoch   52  train 0.7289  val 0.7711
+2026-09-28 12:32:13 epoch   53  train 0.7344  val 0.7011 *
+2026-09-28 12:32:14 epoch   54  train 0.7265  val 0.7283
+2026-09-28 12:32:14 epoch   55  train 0.7118  val 0.8043
+2026-09-28 12:32:14 epoch   56  train 0.7100  val 0.7603
+2026-09-28 12:32:15 epoch   57  train 0.7078  val 0.7002 *
+2026-09-28 12:32:15 epoch   58  train 0.7069  val 0.6714 *
+2026-09-28 12:32:16 epoch   59  train 0.7090  val 0.7075
+2026-09-28 12:32:16 epoch   60  train 0.6898  val 0.7182
+2026-09-28 12:32:16 epoch   61  train 0.6846  val 0.6962
+2026-09-28 12:32:17 epoch   62  train 0.6919  val 0.6767
+2026-09-28 12:32:17 epoch   63  train 0.6826  val 0.7439
+2026-09-28 12:32:17 epoch   64  train 0.6812  val 0.7527
+2026-09-28 12:32:18 epoch   65  train 0.6691  val 0.6480 *
+2026-09-28 12:32:18 epoch   66  train 0.6720  val 0.6918
+2026-09-28 12:32:19 epoch   67  train 0.6652  val 0.7134
+2026-09-28 12:32:19 epoch   68  train 0.6693  val 0.6614
+2026-09-28 12:32:19 epoch   69  train 0.6686  val 0.6801
+2026-09-28 12:32:20 epoch   70  train 0.6608  val 0.6631
+2026-09-28 12:32:20 epoch   71  train 0.6488  val 0.6994
+2026-09-28 12:32:20 epoch   72  train 0.6545  val 0.6334 *
+2026-09-28 12:32:21 epoch   73  train 0.6529  val 0.6561
+2026-09-28 12:32:21 epoch   74  train 0.6478  val 0.6654
+2026-09-28 12:32:22 epoch   75  train 0.6544  val 0.6119 *
+2026-09-28 12:32:22 epoch   76  train 0.6491  val 0.6401
+2026-09-28 12:32:22 epoch   77  train 0.6462  val 0.7414
+2026-09-28 12:32:22 epoch   78  train 0.6356  val 0.6579
+2026-09-28 12:32:23 epoch   79  train 0.6357  val 0.7107
+2026-09-28 12:32:23 epoch   80  train 0.6290  val 0.6285
+2026-09-28 12:32:23 epoch   81  train 0.6280  val 0.6314
+2026-09-28 12:32:24 epoch   82  train 0.6234  val 0.6623
+2026-09-28 12:32:24 epoch   83  train 0.6287  val 0.6842
+2026-09-28 12:32:24 epoch   84  train 0.6145  val 0.6335
+2026-09-28 12:32:25 epoch   85  train 0.6192  val 0.6875
+2026-09-28 12:32:25 epoch   86  train 0.6180  val 0.6556
+2026-09-28 12:32:26 epoch   87  train 0.6132  val 0.5936 *
+2026-09-28 12:32:26 epoch   88  train 0.6101  val 0.6049
+2026-09-28 12:32:26 epoch   89  train 0.6078  val 0.6291
+2026-09-28 12:32:27 epoch   90  train 0.6117  val 0.6457
+2026-09-28 12:32:27 epoch   91  train 0.6054  val 0.6344
+2026-09-28 12:32:27 epoch   92  train 0.5974  val 0.6317
+2026-09-28 12:32:28 epoch   93  train 0.5956  val 0.5941
+2026-09-28 12:32:28 epoch   94  train 0.5975  val 0.6173
+2026-09-28 12:32:28 epoch   95  train 0.5925  val 0.6212
+2026-09-28 12:32:29 epoch   96  train 0.5945  val 0.5849 *
+2026-09-28 12:32:29 epoch   97  train 0.5946  val 0.6049
+2026-09-28 12:32:30 epoch   98  train 0.5892  val 0.5707 *
+2026-09-28 12:32:30 epoch   99  train 0.5935  val 0.6000
+2026-09-28 12:32:30 epoch  100  train 0.5891  val 0.5847
+2026-09-28 12:32:30 best val 0.5707, 40s, saved to ckpt/flow.pt
+2026-09-28 12:32:31 
+2026-09-28 12:32:31 == Step 2b  classifier -> ckpt/classifier.pt
+2026-09-28 12:32:32 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:32:32   d = torch.load(cache_path)
+2026-09-28 12:32:33 classifier: 0.15M parameters on cuda
+2026-09-28 12:32:34 epoch    1  train 1.0166  val 0.8874 *
+2026-09-28 12:32:34 epoch    2  train 0.6533  val 0.3614 *
+2026-09-28 12:32:34 epoch    3  train 0.2437  val 0.1563 *
+2026-09-28 12:32:34 epoch    4  train 0.1121  val 0.1046 *
+2026-09-28 12:32:34 epoch    5  train 0.0785  val 0.0764 *
+2026-09-28 12:32:34 epoch    6  train 0.0561  val 0.0537 *
+2026-09-28 12:32:34 epoch    7  train 0.0430  val 0.0395 *
+2026-09-28 12:32:34 epoch    8  train 0.0342  val 0.0368 *
+2026-09-28 12:32:34 epoch    9  train 0.0271  val 0.0220 *
+2026-09-28 12:32:34 epoch   10  train 0.0235  val 0.0173 *
+2026-09-28 12:32:34 epoch   11  train 0.0190  val 0.0150 *
+2026-09-28 12:32:35 epoch   12  train 0.0161  val 0.0121 *
+2026-09-28 12:32:35 epoch   13  train 0.0146  val 0.0130
+2026-09-28 12:32:35 epoch   14  train 0.0134  val 0.0166
+2026-09-28 12:32:35 epoch   15  train 0.0107  val 0.0101 *
+2026-09-28 12:32:35 epoch   16  train 0.0098  val 0.0094 *
+2026-09-28 12:32:35 epoch   17  train 0.0099  val 0.0091 *
+2026-09-28 12:32:35 epoch   18  train 0.0094  val 0.0109
+2026-09-28 12:32:35 epoch   19  train 0.0069  val 0.0087 *
+2026-09-28 12:32:35 epoch   20  train 0.0060  val 0.0078 *
+2026-09-28 12:32:35 epoch   21  train 0.0058  val 0.0081
+2026-09-28 12:32:35 epoch   22  train 0.0053  val 0.0093
+2026-09-28 12:32:35 epoch   23  train 0.0047  val 0.0079
+2026-09-28 12:32:36 epoch   24  train 0.0041  val 0.0101
+2026-09-28 12:32:36 epoch   25  train 0.0044  val 0.0083
+2026-09-28 12:32:36 epoch   26  train 0.0035  val 0.0097
+2026-09-28 12:32:36 epoch   27  train 0.0036  val 0.0091
+2026-09-28 12:32:36 epoch   28  train 0.0034  val 0.0087
+2026-09-28 12:32:36 epoch   29  train 0.0027  val 0.0094
+2026-09-28 12:32:36 epoch   30  train 0.0025  val 0.0104
+2026-09-28 12:32:36 epoch   31  train 0.0023  val 0.0108
+2026-09-28 12:32:36 epoch   32  train 0.0020  val 0.0129
+2026-09-28 12:32:36 epoch   33  train 0.0020  val 0.0122
+2026-09-28 12:32:36 epoch   34  train 0.0016  val 0.0141
+2026-09-28 12:32:36 epoch   35  train 0.0017  val 0.0107
+2026-09-28 12:32:36 epoch   36  train 0.0015  val 0.0098
+2026-09-28 12:32:37 epoch   37  train 0.0014  val 0.0131
+2026-09-28 12:32:37 epoch   38  train 0.0013  val 0.0121
+2026-09-28 12:32:37 epoch   39  train 0.0013  val 0.0110
+2026-09-28 12:32:37 epoch   40  train 0.0013  val 0.0118
+2026-09-28 12:32:37 epoch   41  train 0.0009  val 0.0124
+2026-09-28 12:32:37 epoch   42  train 0.0010  val 0.0120
+2026-09-28 12:32:37 epoch   43  train 0.0010  val 0.0130
+2026-09-28 12:32:37 epoch   44  train 0.0010  val 0.0123
+2026-09-28 12:32:37 epoch   45  train 0.0008  val 0.0119
+2026-09-28 12:32:37 epoch   46  train 0.0008  val 0.0126
+2026-09-28 12:32:37 epoch   47  train 0.0008  val 0.0141
+2026-09-28 12:32:37 epoch   48  train 0.0006  val 0.0119
+2026-09-28 12:32:38 epoch   49  train 0.0007  val 0.0126
+2026-09-28 12:32:38 epoch   50  train 0.0008  val 0.0127
+2026-09-28 12:32:38 best val 0.0078, 4s, saved to ckpt/classifier.pt
+2026-09-28 12:32:38 
+2026-09-28 12:32:38 == Step 3  samples, per-residue gate -> out/samples.pt
+2026-09-28 12:32:44   64/1000
+2026-09-28 12:32:45   128/1000
+2026-09-28 12:32:46   192/1000
+2026-09-28 12:32:47   256/1000
+2026-09-28 12:32:48   320/1000
+2026-09-28 12:32:49   384/1000
+2026-09-28 12:32:49   448/1000
+2026-09-28 12:32:50   512/1000
+2026-09-28 12:32:51   576/1000
+2026-09-28 12:32:52   640/1000
+2026-09-28 12:32:53   704/1000
+2026-09-28 12:32:53   768/1000
+2026-09-28 12:32:54   832/1000
+2026-09-28 12:32:55   896/1000
+2026-09-28 12:32:56   960/1000
+2026-09-28 12:32:56   1000/1000
+2026-09-28 12:32:57 saved 1000 samples to out/samples.pt (NFE 200, mean gate 0.645)
+2026-09-28 12:32:58 
+2026-09-28 12:32:58 == Ablation  no guidance -> out/abl_none.pt
+2026-09-28 12:33:00   64/1000
+2026-09-28 12:33:00   128/1000
+2026-09-28 12:33:01   192/1000
+2026-09-28 12:33:01   256/1000
+2026-09-28 12:33:02   320/1000
+2026-09-28 12:33:02   384/1000
+2026-09-28 12:33:02   448/1000
+2026-09-28 12:33:03   512/1000
+2026-09-28 12:33:03   576/1000
+2026-09-28 12:33:04   640/1000
+2026-09-28 12:33:04   704/1000
+2026-09-28 12:33:04   768/1000
+2026-09-28 12:33:05   832/1000
+2026-09-28 12:33:05   896/1000
+2026-09-28 12:33:06   960/1000
+2026-09-28 12:33:06   1000/1000
+2026-09-28 12:33:06 saved 1000 samples to out/abl_none.pt (NFE 100, mean gate 1.000)
+2026-09-28 12:33:07 
+2026-09-28 12:33:07 == Ablation  CFG only -> out/abl_cfg.pt
+2026-09-28 12:33:09   64/1000
+2026-09-28 12:33:10   128/1000
+2026-09-28 12:33:11   192/1000
+2026-09-28 12:33:12   256/1000
+2026-09-28 12:33:13   320/1000
+2026-09-28 12:33:13   384/1000
+2026-09-28 12:33:14   448/1000
+2026-09-28 12:33:15   512/1000
+2026-09-28 12:33:16   576/1000
+2026-09-28 12:33:17   640/1000
+2026-09-28 12:33:17   704/1000
+2026-09-28 12:33:18   768/1000
+2026-09-28 12:33:19   832/1000
+2026-09-28 12:33:20   896/1000
+2026-09-28 12:33:21   960/1000
+2026-09-28 12:33:21   1000/1000
+2026-09-28 12:33:22 saved 1000 samples to out/abl_cfg.pt (NFE 200, mean gate 1.000)
+2026-09-28 12:33:22 
+2026-09-28 12:33:22 == Ablation  per-residue gate -> out/abl_gated.pt
+2026-09-28 12:33:27   64/1000
+2026-09-28 12:33:28   128/1000
+2026-09-28 12:33:29   192/1000
+2026-09-28 12:33:30   256/1000
+2026-09-28 12:33:31   320/1000
+2026-09-28 12:33:31   384/1000
+2026-09-28 12:33:32   448/1000
+2026-09-28 12:33:33   512/1000
+2026-09-28 12:33:34   576/1000
+2026-09-28 12:33:35   640/1000
+2026-09-28 12:33:35   704/1000
+2026-09-28 12:33:36   768/1000
+2026-09-28 12:33:37   832/1000
+2026-09-28 12:33:38   896/1000
+2026-09-28 12:33:39   960/1000
+2026-09-28 12:33:39   1000/1000
+2026-09-28 12:33:40 saved 1000 samples to out/abl_gated.pt (NFE 200, mean gate 0.645)
+2026-09-28 12:33:40 
+2026-09-28 12:33:40 == EXTRA  global gate -> out/abl_global.pt
+2026-09-28 12:33:46   64/1000
+2026-09-28 12:33:47   128/1000
+2026-09-28 12:33:48   192/1000
+2026-09-28 12:33:49   256/1000
+2026-09-28 12:33:50   320/1000
+2026-09-28 12:33:50   384/1000
+2026-09-28 12:33:51   448/1000
+2026-09-28 12:33:52   512/1000
+2026-09-28 12:33:53   576/1000
+2026-09-28 12:33:54   640/1000
+2026-09-28 12:33:55   704/1000
+2026-09-28 12:33:55   768/1000
+2026-09-28 12:33:56   832/1000
+2026-09-28 12:33:57   896/1000
+2026-09-28 12:33:58   960/1000
+2026-09-28 12:33:58   1000/1000
+2026-09-28 12:33:59 saved 1000 samples to out/abl_global.pt (NFE 200, mean gate 0.645)
+2026-09-28 12:34:00 
+2026-09-28 12:34:00 == EXTRA  shuffled gate -> out/abl_shuffled.pt
+2026-09-28 12:34:05   64/1000
+2026-09-28 12:34:06   128/1000
+2026-09-28 12:34:07   192/1000
+2026-09-28 12:34:08   256/1000
+2026-09-28 12:34:08   320/1000
+2026-09-28 12:34:09   384/1000
+2026-09-28 12:34:10   448/1000
+2026-09-28 12:34:11   512/1000
+2026-09-28 12:34:12   576/1000
+2026-09-28 12:34:12   640/1000
+2026-09-28 12:34:13   704/1000
+2026-09-28 12:34:14   768/1000
+2026-09-28 12:34:15   832/1000
+2026-09-28 12:34:16   896/1000
+2026-09-28 12:34:17   960/1000
+2026-09-28 12:34:17   1000/1000
+2026-09-28 12:34:18 saved 1000 samples to out/abl_shuffled.pt (NFE 200, mean gate 0.644)
+2026-09-28 12:34:18 
+2026-09-28 12:34:18 == Step 4  evaluate out/samples.pt -> out/samples.json
+2026-09-28 12:34:20 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:20   d = torch.load(cache_path)
+2026-09-28 12:34:20 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:20 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:20 Decoding sequences...
+2026-09-28 12:34:24 Computing diversity...
+2026-09-28 12:34:24 Computing family accuracy...
+2026-09-28 12:34:24 
+2026-09-28 12:34:24 ==================================================
+2026-09-28 12:34:24 Results:
+2026-09-28 12:34:24 {
+2026-09-28 12:34:24   "n_samples": 1000,
+2026-09-28 12:34:24   "n_valid": 1000,
+2026-09-28 12:34:24   "valid_rate": 1.0,
+2026-09-28 12:34:24   "uniqueness": 1.0,
+2026-09-28 12:34:24   "novelty": 1.0,
+2026-09-28 12:34:24   "diversity": 0.876540625,
+2026-09-28 12:34:24   "mean_pairwise_identity": 0.123459375,
+2026-09-28 12:34:24   "family_accuracy": 1.0,
+2026-09-28 12:34:24   "nfe": 200,
+2026-09-28 12:34:24   "mean_gate": 0.6450218863412738,
+2026-09-28 12:34:24   "config": {
+2026-09-28 12:34:24     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:24     "out": "out/samples.pt",
+2026-09-28 12:34:24     "n": 1000,
+2026-09-28 12:34:24     "batch_size": 64,
+2026-09-28 12:34:24     "steps": 100,
+2026-09-28 12:34:24     "w": 2.0,
+2026-09-28 12:34:24     "gate": "per_residue",
+2026-09-28 12:34:24     "beta": 1.0,
+2026-09-28 12:34:24     "target_family": null,
+2026-09-28 12:34:24     "seed": 0
+2026-09-28 12:34:24   }
+2026-09-28 12:34:24 }
+2026-09-28 12:34:24 
+2026-09-28 12:34:24 Saved to out/samples.json
+2026-09-28 12:34:24 
+2026-09-28 12:34:24 == Step 4  evaluate out/abl_none.pt -> out/abl_none.json
+2026-09-28 12:34:26 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:26   d = torch.load(cache_path)
+2026-09-28 12:34:26 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:26 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:26 Decoding sequences...
+2026-09-28 12:34:30 Computing diversity...
+2026-09-28 12:34:30 Computing family accuracy...
+2026-09-28 12:34:30 
+2026-09-28 12:34:30 ==================================================
+2026-09-28 12:34:30 Results:
+2026-09-28 12:34:30 {
+2026-09-28 12:34:30   "n_samples": 1000,
+2026-09-28 12:34:30   "n_valid": 1000,
+2026-09-28 12:34:30   "valid_rate": 1.0,
+2026-09-28 12:34:30   "uniqueness": 1.0,
+2026-09-28 12:34:30   "novelty": 1.0,
+2026-09-28 12:34:30   "diversity": 0.877628125,
+2026-09-28 12:34:30   "mean_pairwise_identity": 0.122371875,
+2026-09-28 12:34:30   "family_accuracy": 0.32100000977516174,
+2026-09-28 12:34:30   "nfe": 100,
+2026-09-28 12:34:30   "mean_gate": 1.0,
+2026-09-28 12:34:30   "config": {
+2026-09-28 12:34:30     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:30     "out": "out/abl_none.pt",
+2026-09-28 12:34:30     "n": 1000,
+2026-09-28 12:34:30     "batch_size": 64,
+2026-09-28 12:34:30     "steps": 100,
+2026-09-28 12:34:30     "w": 0.0,
+2026-09-28 12:34:30     "gate": "none",
+2026-09-28 12:34:30     "beta": 1.0,
+2026-09-28 12:34:30     "target_family": null,
+2026-09-28 12:34:30     "seed": 0
+2026-09-28 12:34:30   }
+2026-09-28 12:34:30 }
+2026-09-28 12:34:30 
+2026-09-28 12:34:30 Saved to out/abl_none.json
+2026-09-28 12:34:30 
+2026-09-28 12:34:30 == Step 4  evaluate out/abl_cfg.pt -> out/abl_cfg.json
+2026-09-28 12:34:32 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:32   d = torch.load(cache_path)
+2026-09-28 12:34:32 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:32 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:32 Decoding sequences...
+2026-09-28 12:34:36 Computing diversity...
+2026-09-28 12:34:36 Computing family accuracy...
+2026-09-28 12:34:36 
+2026-09-28 12:34:36 ==================================================
+2026-09-28 12:34:36 Results:
+2026-09-28 12:34:36 {
+2026-09-28 12:34:36   "n_samples": 1000,
+2026-09-28 12:34:36   "n_valid": 1000,
+2026-09-28 12:34:36   "valid_rate": 1.0,
+2026-09-28 12:34:36   "uniqueness": 1.0,
+2026-09-28 12:34:36   "novelty": 1.0,
+2026-09-28 12:34:36   "diversity": 0.8717953125,
+2026-09-28 12:34:36   "mean_pairwise_identity": 0.1282046875,
+2026-09-28 12:34:36   "family_accuracy": 1.0,
+2026-09-28 12:34:36   "nfe": 200,
+2026-09-28 12:34:36   "mean_gate": 1.0,
+2026-09-28 12:34:36   "config": {
+2026-09-28 12:34:36     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:36     "out": "out/abl_cfg.pt",
+2026-09-28 12:34:36     "n": 1000,
+2026-09-28 12:34:36     "batch_size": 64,
+2026-09-28 12:34:36     "steps": 100,
+2026-09-28 12:34:36     "w": 2.0,
+2026-09-28 12:34:36     "gate": "none",
+2026-09-28 12:34:36     "beta": 1.0,
+2026-09-28 12:34:36     "target_family": null,
+2026-09-28 12:34:36     "seed": 0
+2026-09-28 12:34:36   }
+2026-09-28 12:34:36 }
+2026-09-28 12:34:36 
+2026-09-28 12:34:36 Saved to out/abl_cfg.json
+2026-09-28 12:34:36 
+2026-09-28 12:34:36 == Step 4  evaluate out/abl_gated.pt -> out/abl_gated.json
+2026-09-28 12:34:38 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:38   d = torch.load(cache_path)
+2026-09-28 12:34:38 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:38 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:38 Decoding sequences...
+2026-09-28 12:34:42 Computing diversity...
+2026-09-28 12:34:42 Computing family accuracy...
+2026-09-28 12:34:42 
+2026-09-28 12:34:42 ==================================================
+2026-09-28 12:34:42 Results:
+2026-09-28 12:34:42 {
+2026-09-28 12:34:42   "n_samples": 1000,
+2026-09-28 12:34:42   "n_valid": 1000,
+2026-09-28 12:34:42   "valid_rate": 1.0,
+2026-09-28 12:34:42   "uniqueness": 1.0,
+2026-09-28 12:34:42   "novelty": 1.0,
+2026-09-28 12:34:42   "diversity": 0.876540625,
+2026-09-28 12:34:42   "mean_pairwise_identity": 0.123459375,
+2026-09-28 12:34:42   "family_accuracy": 1.0,
+2026-09-28 12:34:42   "nfe": 200,
+2026-09-28 12:34:42   "mean_gate": 0.6450218863412738,
+2026-09-28 12:34:42   "config": {
+2026-09-28 12:34:42     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:42     "out": "out/abl_gated.pt",
+2026-09-28 12:34:42     "n": 1000,
+2026-09-28 12:34:42     "batch_size": 64,
+2026-09-28 12:34:42     "steps": 100,
+2026-09-28 12:34:42     "w": 2.0,
+2026-09-28 12:34:42     "gate": "per_residue",
+2026-09-28 12:34:42     "beta": 1.0,
+2026-09-28 12:34:42     "target_family": null,
+2026-09-28 12:34:42     "seed": 0
+2026-09-28 12:34:42   }
+2026-09-28 12:34:42 }
+2026-09-28 12:34:42 
+2026-09-28 12:34:42 Saved to out/abl_gated.json
+2026-09-28 12:34:43 
+2026-09-28 12:34:43 == Step 4  evaluate out/abl_global.pt -> out/abl_global.json
+2026-09-28 12:34:44 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:44   d = torch.load(cache_path)
+2026-09-28 12:34:44 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:45 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:45 Decoding sequences...
+2026-09-28 12:34:48 Computing diversity...
+2026-09-28 12:34:49 Computing family accuracy...
+2026-09-28 12:34:49 
+2026-09-28 12:34:49 ==================================================
+2026-09-28 12:34:49 Results:
+2026-09-28 12:34:49 {
+2026-09-28 12:34:49   "n_samples": 1000,
+2026-09-28 12:34:49   "n_valid": 1000,
+2026-09-28 12:34:49   "valid_rate": 1.0,
+2026-09-28 12:34:49   "uniqueness": 1.0,
+2026-09-28 12:34:49   "novelty": 1.0,
+2026-09-28 12:34:49   "diversity": 0.875996875,
+2026-09-28 12:34:49   "mean_pairwise_identity": 0.124003125,
+2026-09-28 12:34:49   "family_accuracy": 1.0,
+2026-09-28 12:34:49   "nfe": 200,
+2026-09-28 12:34:49   "mean_gate": 0.6448444149270653,
+2026-09-28 12:34:49   "config": {
+2026-09-28 12:34:49     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:49     "out": "out/abl_global.pt",
+2026-09-28 12:34:49     "n": 1000,
+2026-09-28 12:34:49     "batch_size": 64,
+2026-09-28 12:34:49     "steps": 100,
+2026-09-28 12:34:49     "w": 2.0,
+2026-09-28 12:34:49     "gate": "global",
+2026-09-28 12:34:49     "beta": 1.0,
+2026-09-28 12:34:49     "target_family": null,
+2026-09-28 12:34:49     "seed": 0
+2026-09-28 12:34:49   }
+2026-09-28 12:34:49 }
+2026-09-28 12:34:49 
+2026-09-28 12:34:49 Saved to out/abl_global.json
+2026-09-28 12:34:49 
+2026-09-28 12:34:49 == Step 4  evaluate out/abl_shuffled.pt -> out/abl_shuffled.json
+2026-09-28 12:34:51 /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project1/proteins/data/pfam.py:328: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-09-28 12:34:51   d = torch.load(cache_path)
+2026-09-28 12:34:51 Loaded 1248 training sequences for novelty check
+2026-09-28 12:34:51 Loaded classifier from ckpt/classifier.pt
+2026-09-28 12:34:51 Decoding sequences...
+2026-09-28 12:34:54 Computing diversity...
+2026-09-28 12:34:55 Computing family accuracy...
+2026-09-28 12:34:55 
+2026-09-28 12:34:55 ==================================================
+2026-09-28 12:34:55 Results:
+2026-09-28 12:34:55 {
+2026-09-28 12:34:55   "n_samples": 1000,
+2026-09-28 12:34:55   "n_valid": 1000,
+2026-09-28 12:34:55   "valid_rate": 1.0,
+2026-09-28 12:34:55   "uniqueness": 1.0,
+2026-09-28 12:34:55   "novelty": 1.0,
+2026-09-28 12:34:55   "diversity": 0.8771296875,
+2026-09-28 12:34:55   "mean_pairwise_identity": 0.1228703125,
+2026-09-28 12:34:55   "family_accuracy": 1.0,
+2026-09-28 12:34:55   "nfe": 200,
+2026-09-28 12:34:55   "mean_gate": 0.6435007501021027,
+2026-09-28 12:34:55   "config": {
+2026-09-28 12:34:55     "ckpt": "ckpt/flow.pt",
+2026-09-28 12:34:55     "out": "out/abl_shuffled.pt",
+2026-09-28 12:34:55     "n": 1000,
+2026-09-28 12:34:55     "batch_size": 64,
+2026-09-28 12:34:55     "steps": 100,
+2026-09-28 12:34:55     "w": 2.0,
+2026-09-28 12:34:55     "gate": "shuffled",
+2026-09-28 12:34:55     "beta": 1.0,
+2026-09-28 12:34:55     "target_family": null,
+2026-09-28 12:34:55     "seed": 0
+2026-09-28 12:34:55   }
+2026-09-28 12:34:55 }
+2026-09-28 12:34:55 
+2026-09-28 12:34:55 Saved to out/abl_shuffled.json
+2026-09-28 12:34:55 
+2026-09-28 12:34:55 == done
+2026-09-28 12:34:55 EXIT_CODE=0

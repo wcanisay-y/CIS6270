@@ -1,0 +1,24 @@
+{
+  "n_samples": 1000,
+  "n_valid": 1000,
+  "valid_rate": 1.0,
+  "uniqueness": 1.0,
+  "novelty": 1.0,
+  "diversity": 0.8771296875,
+  "mean_pairwise_identity": 0.1228703125,
+  "family_accuracy": 1.0,
+  "nfe": 200,
+  "mean_gate": 0.6435007501021027,
+  "config": {
+    "ckpt": "ckpt/flow.pt",
+    "out": "out/abl_shuffled.pt",
+    "n": 1000,
+    "batch_size": 64,
+    "steps": 100,
+    "w": 2.0,
+    "gate": "shuffled",
+    "beta": 1.0,
+    "target_family": null,
+    "seed": 0
+  }
+}
