@@ -1,0 +1,6 @@
+# Protein flow matching dependencies
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.14.0
+numpy>=1.24.0
+scipy>=1.10.0  # for OT coupling
