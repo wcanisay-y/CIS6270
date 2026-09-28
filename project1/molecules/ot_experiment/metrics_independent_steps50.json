@@ -1,0 +1,23 @@
+{
+  "n_samples": 500,
+  "atom_stability": 0.17912258207798004,
+  "mol_stability": 0.0,
+  "validity": 0.024,
+  "uniqueness": 1.0,
+  "nfe": 50,
+  "mean_gate": 1.0,
+  "config": {
+    "ckpt": "ot_experiment\\flow_independent.pt",
+    "out": "ot_experiment\\samples_independent_steps50.pt",
+    "n": 500,
+    "batch_size": 250,
+    "steps": 50,
+    "w": 0.0,
+    "gate": "none",
+    "beta": 1.0,
+    "rho": 0.0,
+    "one_sided": false,
+    "target": null,
+    "seed": 42
+  }
+}

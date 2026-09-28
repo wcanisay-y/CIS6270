@@ -14,13 +14,24 @@ we use per-residue decoding confidence from ESM's frozen lm_head.
     g_i = exp(-beta * r_i^2)            (gate in (0, 1])
     v_i = v_null_i + w * g_i * (v_cond_i - v_null_i)
 
-Confident residue = resolved. The gate applies per-residue exactly as
-valency gating does per-atom in the molecules code.
+PHYSICAL INTERPRETATION (matches molecules exactly):
+    - Confident residue: max_prob high → r ≈ 0 → g ≈ 1 → FULL guidance
+    - Uncertain residue: max_prob low  → r large → g ≈ 0 → DAMPED guidance
+
+We apply full property guidance to positions the model is confident about,
+and damp guidance on uncertain positions to let the unconditional flow
+resolve basic protein grammar first. This matches the molecule code where
+feasible atoms (correct valency) get full guidance and infeasible atoms
+get damped.
+
+The frozen ESM-2 lm_head acts as a zero-cost feasibility oracle: it encodes
+whether a latent looks protein-like without any extra training, just as the
+bond-length table encodes chemistry for molecules.
 
 GATE MODES (ablation):
-    none       - no gating, standard CFG (g=1 everywhere)
-    global     - average gate over sequence, same for all residues
-    shuffled   - permute gates randomly (mean-matched control)
+    none        - no gating, standard CFG (g=1 everywhere)
+    global      - average gate over sequence, same for all residues
+    shuffled    - permute gates randomly (mean-matched control)
     per_residue - full position-specific gating (the innovation)
 """
 import torch

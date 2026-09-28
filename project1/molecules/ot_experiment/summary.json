@@ -1,0 +1,59 @@
+{
+  "config": {
+    "data": "data/qm9.pt",
+    "out_dir": "ot_experiment",
+    "epochs": 2,
+    "limit": 2000,
+    "n_samples": 500,
+    "batch_size": 64,
+    "nf": 64,
+    "layers": 4,
+    "seed": 42
+  },
+  "results": {
+    "independent": {
+      "10": {
+        "atom_stability": 0.17978395521640778,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      },
+      "25": {
+        "atom_stability": 0.18011464178562164,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      },
+      "50": {
+        "atom_stability": 0.17912258207798004,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      },
+      "100": {
+        "atom_stability": 0.17890211939811707,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      }
+    },
+    "ot": {
+      "10": {
+        "atom_stability": 0.1814373880624771,
+        "mol_stability": 0.0,
+        "validity": 0.022
+      },
+      "25": {
+        "atom_stability": 0.1816578507423401,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      },
+      "50": {
+        "atom_stability": 0.1816578507423401,
+        "mol_stability": 0.0,
+        "validity": 0.024
+      },
+      "100": {
+        "atom_stability": 0.1816578507423401,
+        "mol_stability": 0.0,
+        "validity": 0.026
+      }
+    }
+  }
+}

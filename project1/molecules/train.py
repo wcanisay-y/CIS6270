@@ -20,7 +20,7 @@ from data.qm9 import QM9Data
 
 def build(name, args):
     if name == "flow":
-        return FlowModel(args.nf, args.layers, args.cond_drop)
+        return FlowModel(args.nf, args.layers, args.cond_drop, args.coupling)
     if name == "diff":
         return DiffusionModel(args.nf, args.layers, args.cond_drop, args.steps)
     if name == "prop":
@@ -56,6 +56,8 @@ def main():
     p.add_argument("--nf", type=int, default=128)
     p.add_argument("--layers", type=int, default=6)
     p.add_argument("--cond-drop", type=float, default=0.1)
+    p.add_argument("--coupling", choices=["independent", "ot"], default="independent",
+                   help="noise coupling for flow matching: independent (default) or ot (minibatch OT)")
     p.add_argument("--steps", type=int, default=1000, help="diffusion K")
     p.add_argument("--clean-only", action="store_true", help="prop net at t=1 only")
     p.add_argument("--limit", type=int, default=None, help="subset for debugging")

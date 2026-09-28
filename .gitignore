@@ -21,3 +21,15 @@ __pycache__/
 # ignored: a clean clone has to be able to rebuild the dataset.
 project1/molecules/data/qm9_raw/
 project1/molecules/data/train_smiles.json
+
+# Helper scripts for defense/verification (not part of the method)
+project1/molecules/scripts/
+project1/proteins/scripts/
+
+# Windows null device artifacts (created when bash misinterprets `> nul`)
+nul
+
+# Local smoke test outputs
+project1/*/ckpt/
+project1/*/results/
+project1/*/out/
