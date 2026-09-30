@@ -25,8 +25,7 @@ def load(path, device):
     if ck["model"] == "prop":
         model = cls(a["nf"], max(a["layers"] - 2, 2))
     elif ck["model"] == "flow":
-        coupling = a.get("coupling", "independent")  # backwards compat
-        model = cls(a["nf"], a["layers"], a["cond_drop"], coupling)
+        model = cls(a["nf"], a["layers"], a["cond_drop"])
     else:
         model = cls(a["nf"], a["layers"], a["cond_drop"], a["steps"])
     model.load_state_dict(ck["state"])
