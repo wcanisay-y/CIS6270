@@ -1,0 +1,117 @@
+figure,run,metric,value,ci_lo,ci_hi
+fig_training,flow,saved_epoch,93,,
+fig_training,flow,saved_validation_loss,1.8585,,
+fig_training,flow,final_train_loss,1.8768,,
+fig_training,flow,final_validation_loss,1.8865,,
+fig_training,diff,saved_epoch,91,,
+fig_training,diff,saved_validation_loss,0.2298,,
+fig_training,diff,final_train_loss,0.2342,,
+fig_training,diff,final_validation_loss,0.2303,,
+fig_training,prop,saved_epoch,47,,
+fig_training,prop,saved_validation_loss,0.0034,,
+fig_training,prop,final_train_loss,0.0052,,
+fig_training,prop,final_validation_loss,0.0038,,
+fig42_nfe,42_diff,atom_stability,0.8511,0.8463,0.8557
+fig42_nfe,42_diff,mol_stability,0.1055,0.0915,0.1195
+fig42_nfe,42_diff,validity,0.3770,0.3555,0.3995
+fig42_nfe,42_flow_100,atom_stability,0.8452,0.8409,0.8493
+fig42_nfe,42_flow_100,mol_stability,0.0770,0.0655,0.0900
+fig42_nfe,42_flow_100,validity,0.4235,0.4040,0.4435
+fig42_nfe,42_flow_200,atom_stability,0.8500,0.8457,0.8540
+fig42_nfe,42_flow_200,mol_stability,0.0795,0.0685,0.0920
+fig42_nfe,42_flow_200,validity,0.4165,0.3960,0.4365
+fig42_nfe,42_flow_50,atom_stability,0.8351,0.8311,0.8391
+fig42_nfe,42_flow_50,mol_stability,0.0595,0.0495,0.0700
+fig42_nfe,42_flow_50,validity,0.4055,0.3845,0.4265
+fig43_guidance,43_cfg_w0,atom_stability,0.8500,0.8457,0.8540
+fig43_guidance,43_cfg_w0,mol_stability,0.0795,0.0685,0.0920
+fig43_guidance,43_cfg_w0,validity,0.4165,0.3960,0.4365
+fig43_guidance,43_cfg_w0,prop_mae,6.1147,5.9238,6.3228
+fig43_guidance,43_cfg_w1,atom_stability,0.8413,0.8366,0.8457
+fig43_guidance,43_cfg_w1,mol_stability,0.0710,0.0605,0.0820
+fig43_guidance,43_cfg_w1,validity,0.3930,0.3720,0.4135
+fig43_guidance,43_cfg_w1,prop_mae,2.9027,2.8023,3.0037
+fig43_guidance,43_cfg_w2,atom_stability,0.8406,0.8358,0.8454
+fig43_guidance,43_cfg_w2,mol_stability,0.0825,0.0710,0.0945
+fig43_guidance,43_cfg_w2,validity,0.3790,0.3590,0.4005
+fig43_guidance,43_cfg_w2,prop_mae,2.6146,2.5122,2.7198
+fig43_guidance,43_cfg_w4,atom_stability,0.8336,0.8284,0.8387
+fig43_guidance,43_cfg_w4,mol_stability,0.0770,0.0655,0.0890
+fig43_guidance,43_cfg_w4,validity,0.3680,0.3455,0.3890
+fig43_guidance,43_cfg_w4,prop_mae,2.6731,2.5441,2.8046
+fig44_ablation,44_global,atom_stability,0.8422,0.8379,0.8469
+fig44_ablation,44_global,mol_stability,0.0780,0.0670,0.0895
+fig44_ablation,44_global,validity,0.3960,0.3755,0.4175
+fig44_ablation,44_global,prop_mae,2.6936,2.5974,2.7870
+fig44_ablation,44_none,atom_stability,0.8406,0.8358,0.8454
+fig44_ablation,44_none,mol_stability,0.0825,0.0710,0.0945
+fig44_ablation,44_none,validity,0.3790,0.3590,0.4005
+fig44_ablation,44_none,prop_mae,2.6146,2.5122,2.7198
+fig44_ablation,44_penalty_r0.001,atom_stability,0.8332,0.8285,0.8384
+fig44_ablation,44_penalty_r0.001,mol_stability,0.0640,0.0535,0.0750
+fig44_ablation,44_penalty_r0.001,validity,0.3700,0.3490,0.3920
+fig44_ablation,44_penalty_r0.001,prop_mae,2.6743,2.5713,2.7815
+fig44_ablation,44_penalty_r0.01,atom_stability,0.8266,0.8219,0.8313
+fig44_ablation,44_penalty_r0.01,mol_stability,0.0590,0.0495,0.0685
+fig44_ablation,44_penalty_r0.01,validity,0.3355,0.3150,0.3565
+fig44_ablation,44_penalty_r0.01,prop_mae,2.6565,2.5467,2.7773
+fig44_ablation,44_per_atom,atom_stability,0.8457,0.8414,0.8500
+fig44_ablation,44_per_atom,mol_stability,0.0755,0.0645,0.0880
+fig44_ablation,44_per_atom,validity,0.3930,0.3735,0.4135
+fig44_ablation,44_per_atom,prop_mae,2.9569,2.8640,3.0613
+fig44_ablation,44_shuffled,atom_stability,0.8401,0.8356,0.8448
+fig44_ablation,44_shuffled,mol_stability,0.0670,0.0565,0.0780
+fig44_ablation,44_shuffled,validity,0.3805,0.3605,0.4005
+fig44_ablation,44_shuffled,prop_mae,2.7081,2.6037,2.8053
+fig44_ablation,44_wmatched,atom_stability,0.8456,0.8413,0.8499
+fig44_ablation,44_wmatched,mol_stability,0.0825,0.0715,0.0945
+fig44_ablation,44_wmatched,validity,0.3970,0.3765,0.4180
+fig44_ablation,44_wmatched,prop_mae,3.2225,3.1127,3.3341
+fig45_headline,45_base,atom_stability,0.8413,0.8391,0.8434
+fig45_headline,45_base,mol_stability,0.0739,0.0686,0.0794
+fig45_headline,45_base,validity,0.3892,0.3798,0.3987
+fig45_headline,45_base,prop_mae,2.6146,2.5679,2.6600
+fig45_headline,45_ours,atom_stability,0.8446,0.8426,0.8464
+fig45_headline,45_ours,mol_stability,0.0718,0.0668,0.0770
+fig45_headline,45_ours,validity,0.3906,0.3815,0.4001
+fig45_headline,45_ours,prop_mae,2.9311,2.8867,2.9775
+fig43_guidance,43_cfg_w1 - 43_cfg_w0,prop_mae,-3.2121,-3.4020,-3.0264
+fig43_guidance,43_cfg_w1 - 43_cfg_w0,validity,-0.0235,-0.0475,0.0015
+fig43_guidance,43_cfg_w1 - 43_cfg_w0,mol_stability,-0.0085,-0.0230,0.0055
+fig43_guidance,43_cfg_w1 - 43_cfg_w0,atom_stability,-0.0087,-0.0132,-0.0037
+fig43_guidance,43_cfg_w2 - 43_cfg_w0,prop_mae,-3.5001,-3.7058,-3.3068
+fig43_guidance,43_cfg_w2 - 43_cfg_w0,validity,-0.0375,-0.0630,-0.0110
+fig43_guidance,43_cfg_w2 - 43_cfg_w0,mol_stability,0.0030,-0.0120,0.0185
+fig43_guidance,43_cfg_w2 - 43_cfg_w0,atom_stability,-0.0094,-0.0147,-0.0039
+fig43_guidance,43_cfg_w4 - 43_cfg_w0,prop_mae,-3.4416,-3.6663,-3.2440
+fig43_guidance,43_cfg_w4 - 43_cfg_w0,validity,-0.0485,-0.0745,-0.0200
+fig43_guidance,43_cfg_w4 - 43_cfg_w0,mol_stability,-0.0025,-0.0185,0.0130
+fig43_guidance,43_cfg_w4 - 43_cfg_w0,atom_stability,-0.0164,-0.0224,-0.0102
+fig44_ablation,44_global - 44_none,prop_mae,0.0790,-0.0209,0.1819
+fig44_ablation,44_global - 44_none,validity,0.0170,-0.0040,0.0380
+fig44_ablation,44_global - 44_none,mol_stability,-0.0045,-0.0170,0.0080
+fig44_ablation,44_global - 44_none,atom_stability,0.0016,-0.0029,0.0060
+fig44_ablation,44_shuffled - 44_none,prop_mae,0.0935,-0.0610,0.2250
+fig44_ablation,44_shuffled - 44_none,validity,0.0015,-0.0280,0.0290
+fig44_ablation,44_shuffled - 44_none,mol_stability,-0.0155,-0.0315,0.0005
+fig44_ablation,44_shuffled - 44_none,atom_stability,-0.0005,-0.0068,0.0060
+fig44_ablation,44_per_atom - 44_none,prop_mae,0.3423,0.2239,0.4622
+fig44_ablation,44_per_atom - 44_none,validity,0.0140,-0.0115,0.0385
+fig44_ablation,44_per_atom - 44_none,mol_stability,-0.0070,-0.0205,0.0075
+fig44_ablation,44_per_atom - 44_none,atom_stability,0.0051,-0.0001,0.0096
+fig44_ablation,44_penalty_r0.001 - 44_none,prop_mae,0.0597,-0.0210,0.1342
+fig44_ablation,44_penalty_r0.001 - 44_none,validity,-0.0090,-0.0315,0.0140
+fig44_ablation,44_penalty_r0.001 - 44_none,mol_stability,-0.0185,-0.0315,-0.0050
+fig44_ablation,44_penalty_r0.001 - 44_none,atom_stability,-0.0074,-0.0119,-0.0027
+fig44_ablation,44_penalty_r0.01 - 44_none,prop_mae,0.0419,-0.0614,0.1488
+fig44_ablation,44_penalty_r0.01 - 44_none,validity,-0.0435,-0.0700,-0.0155
+fig44_ablation,44_penalty_r0.01 - 44_none,mol_stability,-0.0235,-0.0385,-0.0075
+fig44_ablation,44_penalty_r0.01 - 44_none,atom_stability,-0.0139,-0.0194,-0.0085
+fig44_ablation,44_wmatched - 44_none,prop_mae,0.6079,0.4826,0.7296
+fig44_ablation,44_wmatched - 44_none,validity,0.0180,-0.0055,0.0415
+fig44_ablation,44_wmatched - 44_none,mol_stability,0.0000,-0.0135,0.0150
+fig44_ablation,44_wmatched - 44_none,atom_stability,0.0050,0.0006,0.0096
+fig45_headline,45_ours - 45_base,prop_mae,0.3165,0.2634,0.3671
+fig45_headline,45_ours - 45_base,validity,0.0014,-0.0095,0.0121
+fig45_headline,45_ours - 45_base,mol_stability,-0.0021,-0.0085,0.0035
+fig45_headline,45_ours - 45_base,atom_stability,0.0033,0.0010,0.0053

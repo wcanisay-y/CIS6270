@@ -1,0 +1,24 @@
+{
+  "n_samples": 2000,
+  "atom_stability": 0.8499972224235535,
+  "mol_stability": 0.07950000464916229,
+  "validity": 0.4165,
+  "uniqueness": 1.0,
+  "nfe": 200,
+  "mean_gate": 1.0,
+  "novelty": 0.957983193277311,
+  "config": {
+    "ckpt": "ckpt/flow_s0.pt",
+    "out": "results/42_flow_200.pt",
+    "n": 2000,
+    "batch_size": 250,
+    "steps": 200,
+    "w": 0.0,
+    "gate": "none",
+    "beta": 1.0,
+    "rho": 0.0,
+    "one_sided": false,
+    "target": null,
+    "seed": 0
+  }
+}
