@@ -1,10 +1,42 @@
 # Project 1
 
-CIS 6270, Fall 2026. Continuous generative modelling across two modalities.
+CIS 6270, Fall 2026. Continuous generative modelling across two modalities, with the same
+proposed innovation — feasibility-gated guidance — transferred between them.
 
-Modality 1 is QM9 3D molecular coordinates, in `project1/molecules/`: a continuous
-flow-matching model and a diffusion model on a shared EGNN backbone, classifier-free
-guidance, and the proposed feasibility-gated guidance.
+## Repository structure
+
+```
+project1/
+  molecules/    Modality 1: QM9 3D coordinates. Flow matching + diffusion on a shared
+                 EGNN backbone, classifier-free guidance, feasibility-gated guidance (§4.2-4.5)
+  proteins/     Modality 2: Pfam protein sequences in ESM-2 latent space. Flow matching,
+                 classifier-free guidance, the same gate transferred to this domain (§4.6)
+  benchmarks/   External baselines for §4.5: EDM and GCDM reproduced from the authors'
+                 pretrained QM9 checkpoints under one shared evaluator (not our method)
+  requirements.txt   dependencies for molecules/ (see Setup)
+```
+
+Each of the three directories is self-contained (its own scripts, `run/` or top-level pipeline
+script, `figures/`, and either `results/` or `out/`) and has its own README with full detail;
+this file gives the setup and the map from paper section to script.
+
+## Setup
+
+Molecules and proteins have separate dependencies (different frameworks: `torch_geometric` +
+`rdkit` vs `transformers` + `datasets`), each installed from its own directory:
+
+```bash
+pip install -r project1/requirements.txt              # molecules
+pip install -r project1/proteins/requirements.txt      # proteins
+```
+
+`numpy` must stay below 2 for molecules: the torch 2.2.x wheels are built against the numpy 1.x
+C ABI, and with numpy 2.x installed every tensor-to-array conversion fails — training survives
+it, but plotting and the RDKit scoring in `metrics.py` do not.
+
+`project1/benchmarks/` reproduces two external models and has its own, heavier setup (conda env,
+cloned repos, downloaded checkpoints) — see `project1/benchmarks/README.md`. It is not needed to
+reproduce our method, only the external comparison rows in §4.5.
 
 ## Running Modality 1
 
@@ -109,8 +141,8 @@ re-run the base model at `w × mean_gate`.
 | `results/45_base.*` | internal base model |
 | `results/45_ours.*` | our method |
 
-The three external rows are not regenerated here. EDM and GCDM live on the `benchmarks`
-branch, already reproduced at 10,000 samples with bootstrap intervals; SemlaFlow is quoted
+The three external rows are not regenerated here. EDM and GCDM are reproduced at 10,000
+samples with bootstrap intervals in `project1/benchmarks/` (see below); SemlaFlow is quoted
 from its paper and must be labelled as quoted.
 
 **What is and isn't tracked by git**
@@ -119,24 +151,60 @@ Checkpoints and the generated-sample `.pt` files are gitignored — they are lar
 regenerable. The metric `.json` files and everything in `figures/` **are** tracked, because
 the paper cites them directly.
 
-## Setup
-
-```bash
-pip install -r project1/requirements.txt
-```
-
-`numpy` must stay below 2. The torch 2.2.x wheels are built against the numpy 1.x C ABI,
-and with numpy 2.x installed every tensor-to-array conversion fails — training survives it,
-but plotting and the RDKit scoring in `metrics.py` do not.
-
 To rebuild the QM9 cache from scratch, see `build_cache` in `project1/molecules/data/qm9.py`.
 
-## Other modalities and baselines
+## Running Modality 2
 
-On the `benchmarks` branch, not yet merged:
+Everything is one script, same shape as Modality 1. Run it from `project1/proteins/`:
 
-- `project1/benchmarks/` — EDM and GCDM run from the authors' pretrained QM9 checkpoints,
-  10,000 samples each under one shared evaluator with bootstrap intervals. These are the
-  external comparisons for section 4.5, reproduced rather than quoted.
-- `project1/protein_structure/` — Modality 2, sparse SE(3) diffusion over protein Cα
-  backbones.
+```bash
+cd project1/proteins
+
+python smoke_test.py    # tiny end-to-end pass, CPU-friendly -- do this first
+bash run/run_all.sh      # the real run: dataset, both trainings, sampling, figures
+```
+
+`run/run_all.sh` builds the Pfam-ESM2 dataset cache, trains the flow model and the (evaluation
+-only) family classifier, samples the guidance ablation (§4.6), scores it, and draws
+`figures/fig_training.*` and `figures/fig46_*.*`. Full detail — the dataset, the ablation rows,
+file-by-file structure — is in `project1/proteins/README.md`.
+
+## External baseline comparison (§4.5)
+
+`project1/benchmarks/` reproduces two published E(3)-equivariant diffusion models, EDM and
+GCDM, from the authors' pretrained QM9 checkpoints, 10,000 unconditional samples each scored by
+one shared evaluator with 95% bootstrap intervals. Nothing here is retrained — it exists only
+to give Modality 1's §4.5 comparison external rows that are reproduced rather than quoted.
+Setup is heavier (clones the two repos, downloads a 2.4 GB checkpoint) and is independent of
+molecules/proteins; see `project1/benchmarks/README.md` for reproduction steps.
+
+## Connection to the paper
+
+| Section | What | Produced by |
+|---|---|---|
+| 4.2 | flow matching vs. diffusion, Modality 1 | `molecules/run/run_all.sh` (`train` + `samples` stages) |
+| 4.3 | classifier-free guidance sweep, Modality 1 | `molecules/run/run_all.sh` (`samples` stage) |
+| 4.4 | feasibility-gate ablation, Modality 1 (**the innovation**) | `molecules/guidance.py` (`feasibility_gate`, `cfg`); run via `molecules/sample.py --gate per_atom` |
+| 4.5 | comparison with recent methods | `molecules/results/45_*` (ours) + `benchmarks/` (EDM, GCDM, reproduced) + SemlaFlow (quoted) |
+| 4.6 | feasibility gate transferred to protein sequences (**the innovation**) | `proteins/guidance.py` (`feasibility_gate`, `cfg`); run via `proteins/run/run_all.sh` |
+
+**External code and data adapted, not authored here:**
+
+- EGNN backbone (`molecules/egnn.py`) follows Satorras et al. 2021, *E(n) Equivariant Graph
+  Neural Networks*.
+- QM9 (`molecules/data/qm9.py`) is loaded via `torch_geometric`; bond-length reference tables in
+  `molecules/guidance.py` and stability/validity definitions in `molecules/metrics.py` follow
+  Hoogeboom et al. 2022 (EDM).
+- The additive-constraint ablation control in `molecules/guidance.py` (`constraint_grad`)
+  reproduces the form of Awasthi et al., *HLTF*, ICLR 2026 workshop, for comparison against the
+  proposed multiplicative gate — see the docstring there for the exact differences.
+- `project1/benchmarks/` runs EDM (github.com/ehoogeboom/e3_diffusion_for_molecules) and GCDM
+  (github.com/BioinfoMachineLearning/Bio-Diffusion) from their authors' pretrained checkpoints;
+  see `project1/benchmarks/README.md`.
+- Modality 2 encodes sequences with the frozen ESM-2 (`facebook/esm2_t6_8M_UR50D`; Lin et al.
+  2023, *Evolutionary-scale prediction of atomic-level protein structure with a language
+  model*, Science) via HuggingFace `transformers`, and trains on
+  `DanielHesslow/SwissProt-Pfam` via `datasets`.
+
+Everything else — the flow-matching and diffusion models, classifier-free guidance, and the
+feasibility gate itself (both modalities) — is this project's code.
