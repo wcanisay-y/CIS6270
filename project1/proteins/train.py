@@ -16,8 +16,7 @@ from data.pfam import PfamData
 
 def build(name, args):
     if name == "flow":
-        use_ot = getattr(args, 'use_ot', False)
-        return FlowModel(args.layers, args.n_heads, args.cond_drop, use_ot=use_ot)
+        return FlowModel(args.layers, args.n_heads, args.cond_drop)
     if name == "classifier":
         return FamilyClassifier()
     raise ValueError(name)
@@ -51,7 +50,6 @@ def main():
     p.add_argument("--layers", type=int, default=4)
     p.add_argument("--n-heads", type=int, default=4)
     p.add_argument("--cond-drop", type=float, default=0.1)
-    p.add_argument("--use-ot", action="store_true", help="use OT coupling (straighter paths)")
     p.add_argument("--clean-only", action="store_true", help="classifier at t=1 only")
     p.add_argument("--limit", type=int, default=None, help="subset for debugging")
     p.add_argument("--seed", type=int, default=0)

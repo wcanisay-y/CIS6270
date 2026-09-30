@@ -3,10 +3,6 @@
 Parametrization: Small Transformer (no equivariance needed for latents)
 
 Predicts velocity v_theta. Flow: x_t = (1-t)x0 + t*x1, target = x1 - x0.
-
-Supports two flow matching variants:
-- Standard: random pairing of noise and data (default)
-- OT (Optimal Transport): mini-batch OT coupling for straighter paths
 """
 import torch
 from torch import nn
@@ -20,43 +16,6 @@ COND_DIM = 64   # family embedding dimension
 def mse_loss(pred, target):
     """MSE loss averaged over all dimensions."""
     return ((pred - target) ** 2).mean()
-
-
-def ot_coupling(z0, z1):
-    """Mini-batch optimal transport coupling.
-
-    Given a batch of noise samples z0 and data samples z1,
-    find the permutation of z0 that minimizes total transport cost.
-    This leads to straighter flow paths and faster convergence.
-
-    Uses the Hungarian algorithm via linear_sum_assignment.
-    For large batches, falls back to greedy matching for speed.
-    """
-    from scipy.optimize import linear_sum_assignment
-
-    b = z0.shape[0]
-    if b == 1:
-        return z0, z1
-
-    # Flatten to [B, L*D] for distance computation
-    z0_flat = z0.view(b, -1)
-    z1_flat = z1.view(b, -1)
-
-    # Compute pairwise squared distances
-    # cost[i,j] = ||z0[i] - z1[j]||^2
-    with torch.no_grad():
-        cost = torch.cdist(z0_flat, z1_flat, p=2).pow(2)
-        cost_np = cost.cpu().numpy()
-
-        # Hungarian algorithm for optimal assignment
-        row_ind, col_ind = linear_sum_assignment(cost_np)
-
-        # Permute z0 to match optimal coupling
-        perm = torch.tensor(col_ind, device=z0.device)
-
-    # Return permuted z0 (matched to z1)
-    z0_matched = z0[torch.argsort(perm)]
-    return z0_matched, z1
 
 
 class SinusoidalPosEmb(nn.Module):
@@ -201,17 +160,12 @@ class FlowModel(nn.Module):
 
     Uses linear time interpolation: x_t = (1-t) x_0 + t x_1
     Target velocity is x_1 - x_0.
-
-    Supports two variants:
-    - use_ot=False (default): Random pairing of noise and data
-    - use_ot=True: Optimal transport coupling for straighter paths
     """
 
-    def __init__(self, n_layers=4, n_heads=4, cond_drop=0.1, use_ot=False):
+    def __init__(self, n_layers=4, n_heads=4, cond_drop=0.1):
         super().__init__()
         self.field = Field(n_layers=n_layers, n_heads=n_heads)
         self.cond_drop = cond_drop
-        self.use_ot = use_ot
 
     def loss(self, z1, family):
         """
@@ -229,10 +183,6 @@ class FlowModel(nn.Module):
 
         # Sample from prior
         z0 = sample_prior(b, device)
-
-        # Apply OT coupling if enabled (straighter paths)
-        if self.use_ot:
-            z0, z1 = ot_coupling(z0, z1)
 
         # Random time
         t = torch.rand(b, device=device)
