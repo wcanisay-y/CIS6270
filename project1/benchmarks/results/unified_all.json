@@ -1,0 +1,29 @@
+{
+  "QM9 data": {
+    "n_molecules": 10000,
+    "atom_stability": 0.9936806394749388,
+    "molecule_stability": 0.9528,
+    "validity": 0.9749,
+    "uniqueness": 1.0,
+    "valid_and_unique": 0.9749,
+    "novelty": null
+  },
+  "EDM": {
+    "n_molecules": 10000,
+    "atom_stability": 0.9830596849345462,
+    "molecule_stability": 0.8103,
+    "validity": 0.9193,
+    "uniqueness": 0.9852061351027956,
+    "valid_and_unique": 0.9057,
+    "novelty": 0.5587943027492547
+  },
+  "GCDM": {
+    "n_molecules": 10000,
+    "atom_stability": 0.9874169541154157,
+    "molecule_stability": 0.8642,
+    "validity": 0.9489,
+    "uniqueness": 0.9848245336705659,
+    "valid_and_unique": 0.9345,
+    "novelty": 0.5124665596575709
+  }
+}
