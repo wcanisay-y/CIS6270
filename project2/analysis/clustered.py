@@ -68,7 +68,13 @@ def row(A, label):
 
 def main(orig="results/J_cond_orig_scored.json",
          purged="results/J_cond_purged_scored.json",
-         split="data/clustered/heldout_patterns.json"):
+         split="data/clustered/heldout_patterns.json",
+         summary=None):
+    # Derive the summary path from the inputs so a second dataset does not
+    # overwrite the first one's result.
+    if summary is None:
+        stem = os.path.basename(orig).split("_")[0]
+        summary = "results/%s_clustered_summary.json" % stem
     if os.path.exists(split):
         s = json.load(open(split))
         print("split: %d patterns, %d of them with a training relative, "
@@ -123,8 +129,8 @@ def main(orig="results/J_cond_orig_scored.json",
 
     json.dump(dict(rows=[r for _, _, r in rows],
                    dod=dict(mean=m, lo=lo, hi=hi, n=n)),
-              open("results/J_clustered_summary.json", "w"), indent=1)
-    print("\nWROTE results/J_clustered_summary.json")
+              open(summary, "w"), indent=1)
+    print("\nWROTE %s" % summary)
 
 
 if __name__ == "__main__":

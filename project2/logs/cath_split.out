@@ -1,0 +1,30 @@
+blastp: /cm/shared/easybuild/software/BLAST+/2.14.0-gompi-2022b/bin/blastp
+candidates: 3875  training: 165230
+########## sample 128 held-out CATH pattern sources ##########
+selected 128 of 3876 dev candidates (seed 0) -> h.fasta
+########## round 1: CATH patterns vs the SwissProt training corpus ####
+4239 data/clustered_cath/h_vs_train.tsv
+########## expand one step (single linkage) ##########
+  h_vs_train.tsv: 4239 HSP rows, 2660 kept at E <= 0.001, 54 queries with a hit
+round-1 relatives: 2127 -> purge.fasta (for depth-2 expansion)
+purge.fasta has 2127 sequences
+########## round 2 ##########
+629921 data/clustered_cath/purge_vs_train.tsv
+########## build the purged corpus (depth 2) ##########
+corpus: 165231 training, 3876 dev candidates, 128 held-out sources
+
+round 1: pattern sources vs training
+  h_vs_train.tsv: 4239 HSP rows, 2660 kept at E <= 0.001, 54 queries with a hit
+  54 of 128 sources have >= 1 relative; 2127 distinct training sequences are relatives
+
+round 2: single-linkage expansion
+  purge_vs_train.tsv: 629921 HSP rows, 546656 kept at E <= 0.001, 2127 queries with a hit
+  expansion added 4513 (2127 -> 6640)
+
+purge set: 6640 sequences = 4.02 % of the corpus
+purged corpus: 158591 sequences (was 165231)
+wrote train_purged.txt and heldout_patterns.json
+
+held-out length mean 225.0 vs candidate pool 224.3
+fraction of sources WITH a training relative: 0.422 -- a high value means the set is representative and the purge does real work
+DONE
