@@ -68,6 +68,11 @@ def main():
     ap.add_argument("--warmup", type=int, default=500)
     ap.add_argument("--wd", type=float, default=0.01)
     ap.add_argument("--max-n", type=int, default=None)
+    ap.add_argument("--train-file", default=None,
+                    help="override the training corpus; used to train on the "
+                         "homology-purged split built by "
+                         "tools/build_clustered_split.py")
+    ap.add_argument("--dev-file", default=None)
     ap.add_argument("--eval-every", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", required=True)
@@ -80,7 +85,9 @@ def main():
     tag = args.tag or os.path.basename(args.out).replace(".pt", "")
 
     tr, va = load_swissprot(min_len=40, max_len=args.max_len - 2,
-                            max_n=args.max_n)
+                            max_n=args.max_n,
+                            train_file=args.train_file,
+                            dev_file=args.dev_file)
     Xtr, Xva = encode(tr, args.max_len), encode(va, args.max_len)
     print(f"[{tag}] train {len(tr)} val {len(va)} tokens/epoch "
           f"{int((Xtr != 255).sum())}", flush=True)

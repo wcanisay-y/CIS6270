@@ -13,11 +13,19 @@ SWISSPROT_DEV = os.path.join(_HERE, "data", "swissprot_dev.txt")
 from .alphabet import AA20, AA_IDX
 
 
-def load_swissprot(min_len=40, max_len=254, max_n=None, seed=0):
+def load_swissprot(min_len=40, max_len=254, max_n=None, seed=0,
+                   train_file=None, dev_file=None):
     """-> (train list[str], val list[str]).
 
     Keeps sequences of canonical residues only, within [min_len, max_len].
     The upstream dev split is used for validation so the split is not ours.
+
+    `train_file` / `dev_file` override the default corpus paths. This is how
+    the homology-purged corpus is fed in: the clustered-split experiment
+    trains on data/clustered/train_purged.txt, which is the standard training
+    set minus every BLAST neighbour of the held-out pattern proteins. The
+    filtering and capping below are identical either way, so a purged run
+    differs from the standard run only in which sequences exist.
     """
     ok = set(AA20)
 
@@ -31,8 +39,9 @@ def load_swissprot(min_len=40, max_len=254, max_n=None, seed=0):
             out = [out[i] for i in idx]
         return out
 
-    tr = prep(SWISSPROT_TRAIN, max_n)
-    va = prep(SWISSPROT_DEV, 2000 if max_n is None else min(2000, max_n // 10))
+    tr = prep(train_file or SWISSPROT_TRAIN, max_n)
+    va = prep(dev_file or SWISSPROT_DEV,
+              2000 if max_n is None else min(2000, max_n // 10))
     return tr, va
 
 
