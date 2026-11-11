@@ -45,6 +45,7 @@ result, both reported in full in sections at the end of Idea B:
 | question | answer |
 |---|---|
 | Does the conditioning gain survive deleting the pattern sources' homologs from training? | **Yes.** +23.38 [+20.07, +26.68] after purging, against +26.09 unpurged. Memorised homologs are worth +2.71 [+0.95, +4.55], about 10 %. 125 of 128 sources had a BLAST relative in training, so the earlier "homology-clean" set was clean only of shared substrings. |
+| Does it replicate on a second, classical dataset? | **Yes.** CATH S35 domains, same 2×2: **+19.85 [+16.62, +23.05]** purged, overlapping the SwissProt interval. Memorisation there is +1.21 [-0.68, +3.06], smaller as the lower homology (42 % of sources vs 98 %) predicts. |
 | Can the model predict the family pattern itself, instead of being given one? | **No.** A perfect pattern is worth +18.83 pLDDT and the model's own is worth +0.29. The error budget is 8 % for half the gain; the family head's error is 64-78 %. Two corrected training variants improve the loss by 1.0-1.25 nats and leave accuracy pinned at the majority-class floor. |
 
 The verdict did not change in either round: neither proposal works as
@@ -492,10 +493,65 @@ random conditioned arm stays at 0.000 — so the only arm producing foldable
 sequences does so on a model that has never seen a relative of any pattern it
 is handed.
 
-Quote **+23.4 [+20.1, +26.7]**. Scope: a depth-1 single-linkage blastp
-neighbourhood, not an MMseqs2 clustering (neither MMseqs2 nor CD-HIT is
-installed), so relatives-of-relatives and fold-level homologs undetectable by
-BLAST remain in training.
+Scope: a depth-1 single-linkage blastp neighbourhood, not an MMseqs2
+clustering (neither MMseqs2 nor CD-HIT is installed), so
+relatives-of-relatives and fold-level homologs undetectable by BLAST remain
+in training.
+
+### And it replicates on CATH S35
+
+Added 2026-11-11, full detail in `results/K_cath_dataset_note.md`. Every
+number above uses SwissProt dev sequences as pattern sources, drawn from the
+same corpus the model trains on. Repeated with CATH S35 — one of the two
+canonical fold classifications, non-redundant at 35 % identity, and composed
+of structural *domains* rather than full-length records, at matched length
+(mean 224.3 against 225.8).
+
+| dataset | original corpus | purged corpus | memorisation |
+|---|---|---|---|
+| SwissProt dev | +26.09 [+22.89, +29.28] | **+23.38 [+20.07, +26.68]** | +2.71 [+0.95, +4.55] |
+| CATH S35 | +21.06 [+17.86, +24.24] | **+19.85 [+16.62, +23.05]** | +1.21 [−0.68, +3.06] |
+
+The intervals overlap, so the effect is a property of protein chemistry
+rather than of the SwissProt dev split. (Separate bootstraps on different
+pattern sets, so overlap is an informal check, not a test of equality.)
+Memorisation is smaller on CATH exactly as its lower homology predicts — 42 %
+of sources have a training relative against SwissProt's 98 % — and its
+interval contains zero. Together the two datasets bound memorisation at
+roughly 1–3 pLDDT of a 20–26 pLDDT effect.
+
+The CATH run is the better-controlled of the two: the depth-2 single-linkage
+expansion ran where SwissProt's exceeded its budget, and the purge cost 4.02 %
+of the corpus against 11.89 %, so its purged row is barely handicapped by
+lost training data (flat-arm validation 4.6505 against 4.6328 on the full
+corpus, versus 4.7536 for the SwissProt purge).
+
+**The random control goes negative on CATH, which is new and corroborating.**
+A random-partition pattern scores −1.80 against its own unconditional
+baseline (33.87 vs 35.67) where on SwissProt it was +0.72. That is the
+degradation-curve mechanism showing up independently: a chemically meaningless
+pattern costs something because binding makes a family error unrecoverable,
+and it costs more on compact structural domains than on full-length records
+with their linkers and disordered regions. The separation widens because the
+control gets worse, not because the chemical arm gets better.
+
+Two things to carry forward rather than gloss. CATH foldability for the
+conditioned chemical arm is 0.047–0.055 against SwissProt's 0.156–0.172, with
+every random arm at 0.000 — so the "only arm that folds at all" claim holds in
+form on both datasets but its magnitude is a SwissProt number and should not
+be quoted as general. And ESM-2 pseudo-perplexity does not favour the
+conditioned arm on CATH either (16.56 conditioned against 14.94
+unconditional, slightly worse), so the caveat that the one metric not read
+off ESMFold fails to support the effect is unchanged and if anything sharper.
+
+**Quote +19.9 [+16.6, +23.1] on CATH and +23.4 [+20.1, +26.7] on SwissProt,
+both with the pattern sources' homologs deleted from training.**
+
+Scope on both: the *generator* is SwissProt-trained throughout. This shows the
+pattern source can be independent of training, not that the effect survives a
+model trained on a different corpus — and training on CATH is not feasible
+here, since 3,876 eligible domains is far too small a corpus for a 38M model
+from scratch.
 
 ### The model cannot supply the pattern itself
 

@@ -927,3 +927,75 @@ Accuracy by reveal level on the original checkpoint, showing the head ignores co
 Pattern composition, real against model-generated: real [0.363, 0.107, 0.189, 0.112, 0.113, 0.115], generated [0.432, 0.083, 0.165, 0.099, 0.107, 0.115] -- over-weighting the majority class, as a near-constant predictor does. Lag-3 autocorrelation of the hydrophobic family is 0.011 real and 0.001 generated, so neither carries local periodic structure at this granularity.
 
 Both loss corrections improve validation by 1.0 to 1.25 nats and carry 2.5x the information, and neither moves argmax accuracy off the floor. The failure is informational, not a training artefact; the earlier suspicion that it was an artefact is withdrawn.
+
+
+---
+
+# Round 5, 2026-11-11: the conditioning test on CATH S35
+
+Jobs 27447590 (purge), 27447591_[0-2] (retrain), 27447592 (2x2 conditioning). Note in `results/K_cath_dataset_note.md`. Identical design to Round 4, with CATH S35 domains as pattern sources instead of SwissProt dev sequences.
+
+### The CATH S35 candidate pool
+
+`tools/cath_patterns.py` over `cath-domain-seqs-S35.fa` (latest CATH release, 37,350 domains, non-redundant at 35 % sequence identity).
+
+| filter | domains removed | remaining |
+|---|---|---|
+| all S35 domains | — | 37,350 |
+| shorter than 200 | 28,507 | 8,843 |
+| longer than 254 | 4,805 | 4,038 |
+| non-canonical residues | 159 | 3,876 |
+
+Candidate length mean 224.3, median 223, range 200-254, against 225.8 mean for the SwissProt candidate pool.
+
+### Homology of each pattern set to the SwissProt training corpus
+
+| | SwissProt dev | CATH S35 |
+|---|---|---|
+| sources sampled (no homology criterion) | 128 | 128 |
+| sources with a BLAST relative at E <= 1e-3 | 125 = **97.7 %** | 54 = **42.2 %** |
+| direct relatives | 19,645 | 2,127 |
+| depth-2 expansion added | — (over budget) | 4,513 |
+| purge depth achieved | 1 | **2** |
+| sequences purged | 19,645 = **11.89 %** | 6,640 = **4.02 %** |
+| corpus after purge | 145,586 | 158,591 |
+
+### The CATH-purged retrain
+
+| arm | full corpus | CATH-purged (4.02 % removed) | SwissProt-purged (11.89 % removed) |
+|---|---|---|---|
+| flat | 4.6328 | **4.6505** | 4.7536 |
+| dms6 | 8.5019 | **8.5287** | 8.6251 |
+| rand6 | 8.6741 | **8.6712** | 8.6966 |
+
+The CATH purge costs 0.02-0.03 nats against the SwissProt purge's 0.10-0.12, in proportion to the corpus removed.
+
+### The 2x2 on CATH patterns
+
+| corpus | chemical cond. | chemical uncond. | random cond. | random uncond. |
+|---|---|---|---|---|
+| original | 54.93 | 36.67 | **33.87** | 35.67 |
+| CATH-purged | 53.47 | 35.44 | **33.62** | 35.49 |
+
+| corpus | chemical - random, paired per source | own gains, chem / rand | chem fold / pTM | rand fold / pTM |
+|---|---|---|---|---|
+| original | **+21.06 [+17.86, +24.24]** | +18.26 / **-1.80** | 0.055 / 0.497 | 0.000 / 0.193 |
+| CATH-purged | **+19.85 [+16.62, +23.05]** | +18.03 / **-1.87** | 0.047 / 0.480 | 0.000 / 0.189 |
+
+| difference of differences, paired per source | value |
+|---|---|
+| what training homologs were worth, CATH | **+1.21 [-0.68, +3.06]** |
+| the same on SwissProt, for comparison | +2.71 [+0.95, +4.55] |
+
+### Cross-dataset summary
+
+| dataset | original corpus | purged corpus | memorisation |
+|---|---|---|---|
+| SwissProt dev | +26.09 [+22.89, +29.28] | **+23.38 [+20.07, +26.68]** | +2.71 [+0.95, +4.55] |
+| CATH S35 | +21.06 [+17.86, +24.24] | **+19.85 [+16.62, +23.05]** | +1.21 [-0.68, +3.06] |
+
+The purged intervals overlap, so the effect does not depend on which dataset supplies the patterns. These are separate bootstraps on different pattern sets, so overlap is an informal check and not a test of equality. Memorisation is smaller on CATH, as its 42 % source homology against SwissProt's 97.7 % predicts, and its interval contains zero; together the two datasets bound memorisation at roughly 1-3 pLDDT of a 20-26 pLDDT effect.
+
+Three readings to carry forward. The random control is **negative** on CATH (-1.80 against its own unconditional baseline, where SwissProt gave +0.72), which independently corroborates the degradation-curve finding that a chemically meaningless pattern costs something because binding makes a family error unrecoverable, and costs more on compact structural domains. Foldability for the conditioned chemical arm is 0.047-0.055 on CATH against 0.156-0.172 on SwissProt, so the "only arm that folds at all" claim holds in form on both datasets but its magnitude is a SwissProt number. And ESM-2 pseudo-perplexity does not favour the conditioned arm on CATH either (16.56 against 14.94 unconditional), leaving the Round 3 caveat about the one non-ESMFold metric unchanged.
+
+Scope: the generator is SwissProt-trained in both experiments, so this establishes that the pattern source can be independent of training, not that the effect survives a model trained on a different corpus. Training on CATH is not feasible here -- 3,876 eligible domains is far too small for a 38M model from scratch.
