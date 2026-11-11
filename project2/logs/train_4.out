@@ -1,0 +1,7 @@
+=== arm 4 : soft08 : --arm hier --partition dms6 --soft-xi 0.8 ===
+NVIDIA A100 80GB PCIe
+[soft08] train 165231 val 2000 tokens/epoch 25973006
+[soft08] partition dms6 chemical k=6 sizes=[6, 4, 4, 2, 2, 2]
+[soft08] params 37.99M
+[soft08] step 200/20000 loss 1606.8517 {'ce_id': 538.0613758665826, 'ce_fam': 1.6695410894206548} lr 1.20e-04 45s
+[soft08] step 400/20000 loss 1665.3474 {'ce_id': 570.0085920319133, 'ce_fam': 1.6671455180856491} lr 2.40e-04 89s

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 2, in <module>
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/venv2/lib/python3.12/site-packages/pyarrow/__init__.py", line 59, in <module>
+    from pyarrow.lib import (BuildInfo, CppBuildInfo, RuntimeInfo, set_timezone_db_path,
+  File "pyarrow/lib.pyx", line 42, in init pyarrow.lib
+ImportError: pyarrow requires NumPy 2.0 or newer, found 1.26.4

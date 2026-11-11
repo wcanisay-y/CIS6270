@@ -1,0 +1,8 @@
+downloading facebook/esm2_t30_150M_UR50D
+OK facebook/esm2_t30_150M_UR50D /home/pany3/.cache/huggingface/hub/models--facebook--esm2_t30_150M_UR50D/snapshots/a695f6045e2e32885fa60af20c13cb35398ce30c
+downloading facebook/esmfold_v1
+OK facebook/esmfold_v1 /home/pany3/.cache/huggingface/hub/models--facebook--esmfold_v1/snapshots/75a3841ee059df2bf4d56688166c8fb459ddd97a
+downloading airkingbd/dplm_650m
+OK airkingbd/dplm_650m /home/pany3/.cache/huggingface/hub/models--airkingbd--dplm_650m/snapshots/7a7e651baa667d094aba05e9dc1cf52a3332110a
+8.9G	/home/pany3/.cache/huggingface/hub/models--facebook--esmfold_v1
+DONE

@@ -1,0 +1,226 @@
+### re-scoring results/D_confirm_w035T50.json -> results/D_confirm_w035T50_scored2.json ###
+3 cells, 2880 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 14s
+  fold [1/4] confidence T=50 plddt 55.96 CI(54.78, 57.07) (2077s)
+  fold [2/4] contact T=50 plddt 56.61 CI(55.44, 57.77) (2077s)
+  fold [3/4] contact_shuffled T=50 plddt 56.32 CI(55.17, 57.46) (2076s)
+  fold [4/4] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/4] confidence T=50 12.311
+  pppl [2/4] contact T=50 11.421
+  pppl [3/4] contact_shuffled T=50 13.300
+  pppl [4/4] natural T=None 3.499
+WROTE results/D_confirm_w035T50_scored2.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            50   55.96   12.31  0.150  0.934  0.999   3.2
+contact               50   56.61   11.42  0.150  0.933  0.999   3.1
+contact_shuffled      50   56.32   13.30  0.151  0.934  0.999   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+OK results/D_confirm_w035T50_scored2.json
+### re-scoring results/A_oracle_cath_gen.json -> results/A_oracle_cath_scored2.json ###
+16 cells, 688 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 23s
+  fold [1/17] confidence T=12 plddt 48.79 CI(44.05, 53.96) (93s)
+  fold [2/17] contact_oracle T=12 plddt 49.75 CI(44.99, 54.67) (93s)
+  fold [3/17] contact_oracle_shuffled T=12 plddt 45.10 CI(41.38, 48.94) (93s)
+  fold [4/17] anti_contact_oracle T=12 plddt 44.05 CI(40.68, 47.51) (93s)
+  fold [5/17] confidence T=25 plddt 50.41 CI(45.28, 55.96) (93s)
+  fold [6/17] contact_oracle T=25 plddt 47.74 CI(43.64, 52.25) (93s)
+  fold [7/17] contact_oracle_shuffled T=25 plddt 42.96 CI(39.21, 47.04) (93s)
+  fold [8/17] anti_contact_oracle T=25 plddt 46.63 CI(42.5, 51.04) (93s)
+  fold [9/17] confidence T=50 plddt 57.93 CI(52.32, 63.7) (93s)
+  fold [10/17] contact_oracle T=50 plddt 60.42 CI(54.55, 66.29) (93s)
+  fold [11/17] contact_oracle_shuffled T=50 plddt 60.04 CI(54.22, 65.95) (93s)
+  fold [12/17] anti_contact_oracle T=50 plddt 49.98 CI(45.71, 54.29) (93s)
+  fold [13/17] confidence T=100 plddt 55.17 CI(49.42, 61.07) (93s)
+  fold [14/17] contact_oracle T=100 plddt 58.78 CI(53.21, 64.46) (93s)
+  fold [15/17] contact_oracle_shuffled T=100 plddt 56.97 CI(51.63, 63.23) (93s)
+  fold [16/17] anti_contact_oracle T=100 plddt 57.75 CI(52.96, 62.74) (93s)
+  fold [17/17] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/17] confidence T=12 14.449
+  pppl [2/17] contact_oracle T=12 14.497
+  pppl [3/17] contact_oracle_shuffled T=12 14.445
+  pppl [4/17] anti_contact_oracle T=12 15.949
+  pppl [5/17] confidence T=25 11.962
+  pppl [6/17] contact_oracle T=25 13.801
+  pppl [7/17] contact_oracle_shuffled T=25 14.079
+  pppl [8/17] anti_contact_oracle T=25 12.728
+  pppl [9/17] confidence T=50 11.906
+  pppl [10/17] contact_oracle T=50 12.167
+  pppl [11/17] contact_oracle_shuffled T=50 13.151
+  pppl [12/17] anti_contact_oracle T=50 12.908
+  pppl [13/17] confidence T=100 11.656
+  pppl [14/17] contact_oracle T=100 11.628
+  pppl [15/17] contact_oracle_shuffled T=100 12.139
+  pppl [16/17] anti_contact_oracle T=100 12.322
+  pppl [17/17] natural T=None 3.499
+WROTE results/A_oracle_cath_scored2.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+anti_contact_oracle    12   44.05   15.95  0.150  0.937  1.000   2.9
+anti_contact_oracle    25   46.63   12.73  0.157  0.934  1.000   2.7
+anti_contact_oracle    50   49.98   12.91  0.148  0.935  1.000   3.1
+anti_contact_oracle   100   57.75   12.32  0.154  0.934  0.999   3.3
+confidence            12   48.79   14.45  0.152  0.933  0.999   3.0
+confidence            25   50.41   11.96  0.142  0.935  1.000   3.3
+confidence            50   57.93   11.91  0.153  0.935  1.000   3.0
+confidence           100   55.17   11.66  0.147  0.934  1.000   3.1
+contact_oracle        12   49.75   14.50  0.149  0.933  1.000   2.8
+contact_oracle        25   47.74   13.80  0.146  0.933  0.999   3.0
+contact_oracle        50   60.42   12.17  0.146  0.933  1.000   3.0
+contact_oracle       100   58.78   11.63  0.147  0.933  0.998   3.3
+contact_oracle_shuffled    12   45.10   14.45  0.146  0.935  1.000   2.8
+contact_oracle_shuffled    25   42.96   14.08  0.149  0.935  1.000   2.8
+contact_oracle_shuffled    50   60.04   13.15  0.153  0.936  1.000   3.0
+contact_oracle_shuffled   100   56.97   12.14  0.144  0.936  1.000   2.9
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+OK results/A_oracle_cath_scored2.json
+### re-scoring results/A_oracle_pdb_gen.json -> results/A_oracle_pdb_scored2.json ###
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 12s
+  fold [1/13] confidence T=12 plddt 50.40 CI(45.68, 55.38) (104s)
+  fold [2/13] contact_oracle T=12 plddt 43.48 CI(40.18, 47.11) (104s)
+  fold [3/13] contact_oracle_shuffled T=12 plddt 48.43 CI(44.25, 53.06) (104s)
+  fold [4/13] confidence T=25 plddt 52.00 CI(47.38, 56.7) (104s)
+  fold [5/13] contact_oracle T=25 plddt 50.73 CI(45.93, 55.84) (104s)
+  fold [6/13] contact_oracle_shuffled T=25 plddt 50.00 CI(45.93, 53.94) (104s)
+  fold [7/13] confidence T=50 plddt 61.00 CI(55.84, 66.03) (104s)
+  fold [8/13] contact_oracle T=50 plddt 51.54 CI(46.56, 56.45) (104s)
+  fold [9/13] contact_oracle_shuffled T=50 plddt 61.82 CI(56.68, 67.32) (104s)
+  fold [10/13] confidence T=100 plddt 59.37 CI(54.13, 64.72) (104s)
+  fold [11/13] contact_oracle T=100 plddt 60.29 CI(55.18, 65.46) (104s)
+  fold [12/13] contact_oracle_shuffled T=100 plddt 55.88 CI(51.39, 60.59) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] confidence T=12 14.449
+  pppl [2/13] contact_oracle T=12 14.579
+  pppl [3/13] contact_oracle_shuffled T=12 14.247
+  pppl [4/13] confidence T=25 13.124
+  pppl [5/13] contact_oracle T=25 12.072
+  pppl [6/13] contact_oracle_shuffled T=25 13.754
+  pppl [7/13] confidence T=50 11.127
+  pppl [8/13] contact_oracle T=50 13.700
+  pppl [9/13] contact_oracle_shuffled T=50 12.903
+  pppl [10/13] confidence T=100 13.839
+  pppl [11/13] contact_oracle T=100 11.232
+  pppl [12/13] contact_oracle_shuffled T=100 12.130
+  pppl [13/13] natural T=None 3.499
+WROTE results/A_oracle_pdb_scored2.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            12   50.40   14.45  0.152  0.934  0.999   3.1
+confidence            25   52.00   13.12  0.149  0.934  1.000   2.9
+confidence            50   61.00   11.13  0.154  0.932  0.999   3.1
+confidence           100   59.37   13.84  0.150  0.934  0.998   4.1
+contact_oracle        12   43.48   14.58  0.147  0.934  1.000   2.8
+contact_oracle        25   50.73   12.07  0.150  0.934  0.999   3.1
+contact_oracle        50   51.54   13.70  0.152  0.934  1.000   3.0
+contact_oracle       100   60.29   11.23  0.146  0.935  1.000   3.3
+contact_oracle_shuffled    12   48.43   14.25  0.153  0.934  1.000   2.9
+contact_oracle_shuffled    25   50.00   13.75  0.148  0.936  0.999   2.9
+contact_oracle_shuffled    50   61.82   12.90  0.152  0.934  1.000   2.9
+contact_oracle_shuffled   100   55.88   12.13  0.148  0.931  1.000   3.0
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+OK results/A_oracle_pdb_scored2.json
+### re-scoring results/C_reparam_w0.0.json -> results/C_reparam_w0.0_scored2.json ###
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 11s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (104s)
+  fold [2/13] reparam_contact T=25 plddt 50.28 CI(47.12, 53.58) (104s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 52.05 CI(47.97, 56.27) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 53.01 CI(49.62, 56.32) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 55.08 CI(50.18, 60.04) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.46 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 57.42 CI(53.39, 61.55) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 66.90 CI(61.44, 72.37) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 54.07 CI(49.4, 58.9) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 70.17 CI(64.77, 75.66) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 12.175
+  pppl [3/13] reparam_contact_shuffled T=25 13.916
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 8.176
+  pppl [6/13] reparam_contact_shuffled T=50 9.561
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 7.751
+  pppl [9/13] reparam_contact_shuffled T=100 7.588
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 7.387
+  pppl [12/13] reparam_contact_shuffled T=200 5.914
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.0_scored2.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.46    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   50.28   12.17  0.144  0.931  0.999   5.0
+reparam_contact       50   53.01    8.18  0.148  0.936  0.990   7.8
+reparam_contact      100   57.42    7.75  0.151  0.935  0.989   9.9
+reparam_contact      200   54.07    7.39  0.132  0.939  0.989  13.4
+reparam_contact_shuffled    25   52.05   13.92  0.147  0.933  0.998   4.5
+reparam_contact_shuffled    50   55.08    9.56  0.145  0.938  0.995   6.8
+reparam_contact_shuffled   100   66.90    7.59  0.145  0.939  0.990   6.2
+reparam_contact_shuffled   200   70.17    5.91  0.160  0.935  0.993  10.1
+OK results/C_reparam_w0.0_scored2.json
+### re-scoring results/C_reparam_w0.75.json -> results/C_reparam_w0.75_scored2.json ###
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (104s)
+  fold [2/13] reparam_contact T=25 plddt 55.38 CI(49.74, 61.32) (104s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 59.47 CI(54.66, 64.26) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 68.01 CI(62.09, 73.77) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 65.54 CI(60.02, 71.08) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.46 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 73.48 CI(67.63, 79.18) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 72.57 CI(66.47, 78.51) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 80.27 CI(74.56, 85.52) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 86.35 CI(82.7, 89.54) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 10.484
+  pppl [3/13] reparam_contact_shuffled T=25 9.347
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 8.163
+  pppl [6/13] reparam_contact_shuffled T=50 6.676
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 5.802
+  pppl [9/13] reparam_contact_shuffled T=100 5.786
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 5.936
+  pppl [12/13] reparam_contact_shuffled T=200 3.940
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.75_scored2.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.46    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   55.38   10.48  0.141  0.936  0.998   4.2
+reparam_contact       50   68.01    8.16  0.152  0.935  0.990   5.5
+reparam_contact      100   73.48    5.80  0.169  0.938  0.993   6.1
+reparam_contact      200   80.27    5.94  0.157  0.936  0.990   7.6
+reparam_contact_shuffled    25   59.47    9.35  0.151  0.934  0.998   3.9
+reparam_contact_shuffled    50   65.54    6.68  0.165  0.936  0.995   6.1
+reparam_contact_shuffled   100   72.57    5.79  0.164  0.937  0.990   6.5
+reparam_contact_shuffled   200   86.35    3.94  0.168  0.938  0.988   5.2
+OK results/C_reparam_w0.75_scored2.json
+DONE fail=0

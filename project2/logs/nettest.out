@@ -1,0 +1,8 @@
+m-09-10
+--- curl HF ---
+HTTP/2 200 
+content-type: application/json; charset=utf-8
+curl_exit=0
+--- scratch writable? ---
+/local
+resnfs05-hpc.datanet:/tan_lab  705T  517T  189T  74% /mnt/isilon/tan_lab

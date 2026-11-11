@@ -1,0 +1,30 @@
+########## clean confidence vs gumbel-perturbed, absorbing ##########
+loaded airkingbd/dplm_150m on cuda
+[1/4] L=200 T=25 confidence tau=0.3 nfe=25+0 2.7s coupled_pairs=None | MLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+[2/4] L=200 T=25 random tau=0.3 nfe=25+0 2.3s coupled_pairs=None | MSPLKALIKKLAWTIRHPLWVVVILNGVLLFILKSSQIAS
+[3/4] L=200 T=200 confidence tau=0.3 nfe=200+0 18.1s coupled_pairs=None | MKKLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+[4/4] L=200 T=200 random tau=0.3 nfe=200+0 18.0s coupled_pairs=None | FIAPEENPYNTPVFCIKKKNSDKWRKVVDFRELNKKTQTF
+ALL DONE 41s -> results/A_clean.json
+4 cells, 192 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 14s
+  fold [1/5] confidence T=25 plddt 73.86 CI(71.98, 75.65) (103s)
+  fold [2/5] random T=25 plddt 47.44 CI(43.21, 51.97) (103s)
+  fold [3/5] confidence T=200 plddt 76.01 CI(70.95, 80.77) (103s)
+  fold [4/5] random T=200 plddt 55.40 CI(50.05, 60.87) (104s)
+  fold [5/5] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/5] confidence T=25 1.271
+  pppl [2/5] random T=25 15.143
+  pppl [3/5] confidence T=200 1.164
+  pppl [4/5] random T=200 11.381
+  pppl [5/5] natural T=None 3.499
+WROTE results/A_clean_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            25   73.86    1.27  0.094  0.283  0.734 130.9
+confidence           200   76.01    1.16  0.085  0.365  0.642 143.7
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+random                25   47.44   15.14  0.150  0.936  1.000   3.2
+random               200   55.40   11.38  0.153  0.934  1.000   2.8
+DONE

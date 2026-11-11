@@ -1,0 +1,59 @@
+NVIDIA A100 80GB PCIe, 81920 MiB
+======================================================================
+1) DPLM GENERATION
+======================================================================
+reparam T=100  3.1s
+    PRRRPRPRPRRPRRRPRPRPRRPRRRPRRRPRPPRPRPRRRPRRPRRRRRRPRPRRPRRRRRRRPRRRPRRRPRRRPRPRPRRLRRRPRPRPRRPRSRPR
+    MKKKKRYSEEFKKQAVEMSLSGKSIYEICEEFEISQSSLNNWVNKYKKYGSEGLERENKNSIESLRNSLKELEKQIRELKMERDILKKASAFFAKEYNLS
+confidence        T= 25   0.6s nfe=25 coupled_pairs=None
+    MWLPPGSQSNALSDGVNDLVSLPLARILLHEYALQFGYETSVVANKVLSLMNGRYPNDPNHADYSTPGKSYILVVEETFLRSGTRLADENQEDLSASHTI
+contact           T= 25   0.8s nfe=25 coupled_pairs=0.0
+    MWLPDGSQVNALSFGVNDLVSLPLARILGLEYALQFGYESIVVESKVLSLMNGDKVNSPNHADVITPWKSYILVVEETFLRSGMRLKDENQEDLSMSHTI
+contact_shuffled  T= 25   0.8s nfe=25 coupled_pairs=0.001666666716337204
+    MSAPLRAQPSPKPKLLTRASANKEAAQLGSSTPTQTTAVAPITPAPVQNEQETNADPLNETNKNTEKKKAKKIYTSDKIHILNNKAESITLMGELVHKSK
+random            T= 25   0.6s nfe=25 coupled_pairs=None
+    MDIFDCKFCNKLHSLEKVRLSKMIQDLELFKDAQFKCLESMTSFVEKLEDRIPSLLQDLVEMKKPSRKVMLMHCWQMWLTVMWLVLELLRLGRSKVGDLI
+punt              T= 25   1.4s nfe=50 coupled_pairs=0.2200000023841858
+    MWKRKRSQRKLLTILVWGKHCRFFFFRSFSFYALAFCVCLCIGAQSTVTNVLTPALTSHPFSLYSTPPSSRSDTVAIVSAQQGTRQIGENLSFWFPTDCI
+confidence        T=100   2.3s nfe=100 coupled_pairs=None
+    MWISLDSQASATDFYVEGDSVRFRGLLPLRIDALESITESDDGTYTFSFNEGIGFALEDTTVDIYTPVTVTAEQVKFNSEAFGLFLQFGNVYKPSIWYRI
+
+======================================================================
+2) CONTACT HEAD UNDER MASKING
+======================================================================
+mask_frac  spearman(self,ext)  topL_overlap  ext_mean  self_mean
+     0.00               0.668         0.487    0.0179     0.0176
+     0.25               0.358         0.079    0.0092     0.0173
+     0.50               0.311         0.075    0.0096     0.0145
+     0.75               0.290         0.069    0.0097     0.0122
+     0.90               0.396         0.088    0.0088     0.0154
+
+======================================================================
+3) ESMFOLD
+======================================================================
+load 31s
+folded 6 seqs in 4.6s = 0.76s/seq
+  pLDDT   0.72  L=100  PRRRPRPRPRRPRRRPRPRPRRPRRRPRRR
+  pLDDT   0.85  L=100  MKKKKRYSEEFKKQAVEMSLSGKSIYEICE
+  pLDDT   0.78  L=100  YFFLYFFLYFFLYFFLYFFFYLYFFLYFFL
+  pLDDT   0.79  L=100  KEEEKEEEEKEEEKEEEKEEEKEEKEEEKE
+  pLDDT   0.90  L=120  MQKLKQQVFEANMDLPRYGLVTFTWGNVSA
+  pLDDT   0.92  L=120  MAGLNSLEAVKRKIQALQQQADEAEDRAQG
+
+======================================================================
+4) IDEA-B ARMS TRAIN AND SAMPLE
+======================================================================
+flat  params 37.98M  loss  6.123     47 ms/step  sample  0.2s
+      SAAAAAAAGVAAAAALAAAAATAAAAAAAALAAAAARELAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAPAAAATAVALTAAAAAIAAVTAAAAAAAAA
+hier  params 37.99M  loss  9.542     37 ms/step  sample  0.1s
+      AAAAALAAAALAAAAVCASASSAALAAAAAAAAALAASAAAAAAAAAAAFFAAAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAFKGA
+ar    params 37.98M  loss  2.851     35 ms/step  sample  0.5s
+      KSGKKKQMTDRELDMFGDMRTKYSEEKLERYESKKGERSSLDIGKVKYFRWLRPWLFRKALLSETRADNIRGEEVHGKQEARDSAYEFLESYGLRTSELV
+
+======================================================================
+5) COST PROJECTION
+======================================================================
+Idea A: 2304 seqs to fold -> 29 min ESMFold
+Idea B: 8 arms x 12000 steps x 47 ms = 1.3 GPU-h (0.3 h on 4 GPUs)
+
+SMOKE OK

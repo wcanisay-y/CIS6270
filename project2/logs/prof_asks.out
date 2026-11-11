@@ -1,0 +1,202 @@
+########## smoke: 2 chains, fail fast before the long arms ##########
+2 chains from results/A_oracle_cath.npz
+
+reveal   recovery  | ext  masked->argmax | self masked->argmax | (precision@L)
+0.50     0.395     |  0.065 ->  0.705 |  0.588 ->  0.613
+null     -         |  0.018            |  0.065
+
+AUROC
+0.50               |  0.695 ->  0.962 |  0.937 ->  0.939
+
+wrote results/F_argmax_smoke.json in 0.0 min
+########## ask 4a: argmax completion, CATH S40 (fold-non-redundant) #####
+43 chains from results/A_oracle_cath.npz
+  5/43 chains (0.1 min)
+  10/43 chains (0.1 min)
+  15/43 chains (0.2 min)
+  20/43 chains (0.2 min)
+  25/43 chains (0.3 min)
+  30/43 chains (0.4 min)
+  35/43 chains (0.4 min)
+  40/43 chains (0.5 min)
+
+reveal   recovery  | ext  masked->argmax | self masked->argmax | (precision@L)
+1.00     1.000     |  0.606 ->  0.606 |  0.475 ->  0.475
+0.75     0.300     |  0.066 ->  0.564 |  0.438 ->  0.440
+0.50     0.253     |  0.056 ->  0.426 |  0.358 ->  0.352
+0.25     0.127     |  0.054 ->  0.147 |  0.123 ->  0.130
+0.10     0.094     |  0.053 ->  0.053 |  0.053 ->  0.048
+null     -         |  0.050            |  0.066
+
+AUROC
+1.00               |  0.919 ->  0.919 |  0.871 ->  0.871
+0.75               |  0.690 ->  0.897 |  0.851 ->  0.853
+0.50               |  0.671 ->  0.826 |  0.809 ->  0.804
+0.25               |  0.644 ->  0.697 |  0.680 ->  0.686
+0.10               |  0.643 ->  0.666 |  0.650 ->  0.652
+
+wrote results/F_argmax_cath.json in 0.5 min
+########## ask 4b: same on the ad-hoc PDB set, for comparability ########
+48 chains from results/A_oracle_pdb.npz
+  5/48 chains (0.1 min)
+  10/48 chains (0.1 min)
+  15/48 chains (0.2 min)
+  20/48 chains (0.2 min)
+  25/48 chains (0.3 min)
+  30/48 chains (0.4 min)
+  35/48 chains (0.4 min)
+  40/48 chains (0.5 min)
+  45/48 chains (0.5 min)
+
+reveal   recovery  | ext  masked->argmax | self masked->argmax | (precision@L)
+1.00     1.000     |  0.747 ->  0.747 |  0.642 ->  0.642
+0.75     0.447     |  0.067 ->  0.737 |  0.623 ->  0.624
+0.50     0.364     |  0.051 ->  0.621 |  0.525 ->  0.526
+0.25     0.175     |  0.059 ->  0.193 |  0.168 ->  0.169
+0.10     0.098     |  0.054 ->  0.068 |  0.070 ->  0.058
+null     -         |  0.069            |  0.065
+
+AUROC
+1.00               |  0.953 ->  0.953 |  0.929 ->  0.929
+0.75               |  0.703 ->  0.949 |  0.922 ->  0.923
+0.50               |  0.682 ->  0.899 |  0.877 ->  0.877
+0.25               |  0.656 ->  0.728 |  0.707 ->  0.711
+0.10               |  0.663 ->  0.675 |  0.664 ->  0.666
+
+wrote results/F_argmax_pdb.json in 0.6 min
+########## ask 5: confidence / spacing / PUNT / attention-graph ########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/30] L=200 T=12 confidence tau=0.3 nfe=12+0 1.3s coupled_pairs=None | MPGPRRSQPKASSIETNGKHSLLAAAISRKRACLQYGVSK
+[2/30] L=200 T=12 distance tau=0.3 nfe=12+0 4.0s coupled_pairs=None | MNGFLMNQGARLLIAGVHRFSGLGIFPPVQVCEPLPRYKG
+[3/30] L=200 T=12 punt tau=0.3 nfe=24+0 6.2s coupled_pairs=0.36362847736341386 | MTGKKVLSGLIVIILAIVGGAAGSILLGSESVTTPLYSPL
+[4/30] L=200 T=12 contact tau=0.3 nfe=12+0 3.6s coupled_pairs=0.0004723243505900933 | MEREEIVLVFKRLPGIVQSMLVMSSLLVSICDVKFAGTES
+[5/30] L=200 T=12 contact_shuffled tau=0.3 nfe=12+0 3.5s coupled_pairs=0.0008808210922224033 | MVVFAGTVKILDPQGGDIIAPGITITSTFPPIKSIPSGIG
+[6/30] L=200 T=12 random tau=0.3 nfe=12+0 1.1s coupled_pairs=None | MINFCAAVSCRVGQENVLFEPLLSFAKLYISDKNEIISVF
+[7/30] L=200 T=25 confidence tau=0.3 nfe=25+0 2.2s coupled_pairs=None | MSFKQIALLVLILLPAASFDVNAKQLKGALSDEFMPGRIK
+[8/30] L=200 T=25 distance tau=0.3 nfe=25+0 3.7s coupled_pairs=None | MEAQRAETKRLGRDLIVAVRPIDGDDSILLANLHEGQDFA
+[9/30] L=200 T=25 punt tau=0.3 nfe=50+0 10.6s coupled_pairs=0.21151786264963449 | MKRRQVLLSVIAATIASAAVYFSGKYQGAGANWRHTQLPV
+[10/30] L=200 T=25 contact tau=0.3 nfe=25+0 6.2s coupled_pairs=0.0002976190609236558 | MTNNLSLELRELTLSSFHTAYARASSSSSNACGGFIGWKA
+[11/30] L=200 T=25 contact_shuffled tau=0.3 nfe=25+0 6.2s coupled_pairs=0.0002976190609236558 | MPPHSYVTSLANWGHALGLETVRSMNGGESFAKVAIRTLD
+[12/30] L=200 T=25 random tau=0.3 nfe=25+0 2.2s coupled_pairs=None | MARQLTLISMLQSSLTMAIASWVMLSAFVFRFRRRVIAEC
+[13/30] L=200 T=50 confidence tau=0.3 nfe=50+0 4.5s coupled_pairs=None | MDVSAVIFDFDGTLDASAGYIKANLKLGGATFTLTDLEAN
+[14/30] L=200 T=50 distance tau=0.3 nfe=50+0 6.1s coupled_pairs=None | MGPGSRKGESSQPPKPRRKLSQRWAKIREYSAADVKLGEF
+[15/30] L=200 T=50 punt tau=0.3 nfe=100+0 15.4s coupled_pairs=0.10826388978088895 | MRWPDLSLVVSVYISQDIDTLLEAVHDTSPLMDGRVTHLL
+[16/30] L=200 T=50 contact tau=0.3 nfe=50+0 11.5s coupled_pairs=0.00013888889302810032 | MRFLSRHDVRYLHKLSEDSESAAIGASIFAHEHADEVEHH
+[17/30] L=200 T=50 contact_shuffled tau=0.3 nfe=50+0 11.5s coupled_pairs=0.00027777778605620065 | MADDKTGLPFATRRDKAITGGVLGGGIAFLTLPVLLSAAS
+[18/30] L=200 T=50 random tau=0.3 nfe=50+0 4.5s coupled_pairs=None | MRSSDSSFSGRCCECDFGWAFGSVAQRVRVANSFVKHLVP
+[19/30] L=200 T=100 confidence tau=0.3 nfe=100+0 9.0s coupled_pairs=None | MTIHDPGLLVTDIHWDSYAPPGHDGRRRVWERFRSDNLDR
+[20/30] L=200 T=100 distance tau=0.3 nfe=100+0 11.1s coupled_pairs=None | MSNWPPTNSNCLDLLIPRVERNKVARIIQSEGHLGKIKED
+[21/30] L=200 T=100 punt tau=0.3 nfe=200+0 23.2s coupled_pairs=0.05395833333333333 | MLPKINACYIYRFIYKNYFRGMFKELSKPETYVRYMNYEI
+[22/30] L=200 T=100 contact tau=0.3 nfe=100+0 22.1s coupled_pairs=0.00020833333333333335 | MACRVSLGLFMAQCSVAPPFYQYADEGGTVVINCTYKWSD
+[23/30] L=200 T=100 contact_shuffled tau=0.3 nfe=100+0 22.3s coupled_pairs=0.0 | MEDSISKSDTATTEQNNHTGPGLLAAAQALEKLEQRYTGF
+[24/30] L=200 T=100 random tau=0.3 nfe=100+0 9.0s coupled_pairs=None | MLRPRNWRWFTDPVDAITWIKDDMRAVLAEITEGWPPLMD
+[25/30] L=200 T=200 confidence tau=0.3 nfe=200+0 18.2s coupled_pairs=None | MCSIGNINENTFEDNIDNDSLKTERFCGVKQETNENVDSQ
+[26/30] L=200 T=200 distance tau=0.3 nfe=200+0 21.3s coupled_pairs=None | MSLSQPADDQPDLTVVARRGVITSAGELNALIRSGRSGVA
+[27/30] L=200 T=200 punt tau=0.3 nfe=400+0 38.4s coupled_pairs=None | MKHFLSLLTVLIALAVSVPAFSLSSEMTSEVFTQSDKSCA
+[28/30] L=200 T=200 contact tau=0.3 nfe=200+0 41.9s coupled_pairs=None | MPAALQLRYYQVRYYLSRHLINGVEKVVRIPAHTRLIFLW
+[29/30] L=200 T=200 contact_shuffled tau=0.3 nfe=200+0 42.2s coupled_pairs=None | MLLSVAALSALAAPESAGLDGQPGGQPGDQPGDQPGDQPG
+[30/30] L=200 T=200 random tau=0.3 nfe=200+0 18.0s coupled_pairs=None | MSTLVTNPNLTISFPSLAREEEVDLWCGQLQVRMTDQAAN
+ALL DONE 382s -> results/F_ladder.json
+########## score the ladder ##########
+30 cells, 1440 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 20s
+  fold [1/31] confidence T=12 plddt 50.40 CI(45.68, 55.38) (105s)
+  fold [2/31] distance T=12 plddt 48.18 CI(44.52, 51.91) (105s)
+  fold [3/31] punt T=12 plddt 39.36 CI(36.43, 42.46) (105s)
+  fold [4/31] contact T=12 plddt 48.09 CI(44.02, 52.49) (105s)
+  fold [5/31] contact_shuffled T=12 plddt 47.56 CI(43.4, 52.25) (104s)
+  fold [6/31] random T=12 plddt 44.37 CI(40.45, 48.61) (105s)
+  fold [7/31] confidence T=25 plddt 49.52 CI(45.7, 53.65) (105s)
+  fold [8/31] distance T=25 plddt 54.46 CI(49.37, 59.66) (105s)
+  fold [9/31] punt T=25 plddt 48.99 CI(44.95, 53.61) (105s)
+  fold [10/31] contact T=25 plddt 50.39 CI(45.91, 54.93) (105s)
+  fold [11/31] contact_shuffled T=25 plddt 50.90 CI(46.66, 55.45) (104s)
+  fold [12/31] random T=25 plddt 44.32 CI(40.76, 48.41) (104s)
+  fold [13/31] confidence T=50 plddt 54.88 CI(50.51, 59.5) (105s)
+  fold [14/31] distance T=50 plddt 54.61 CI(49.62, 59.87) (104s)
+  fold [15/31] punt T=50 plddt 54.17 CI(49.08, 59.51) (104s)
+  fold [16/31] contact T=50 plddt 57.19 CI(51.83, 62.97) (105s)
+  fold [17/31] contact_shuffled T=50 plddt 55.73 CI(51.15, 60.36) (104s)
+  fold [18/31] random T=50 plddt 57.07 CI(51.2, 63.05) (105s)
+  fold [19/31] confidence T=100 plddt 62.15 CI(56.43, 68.4) (104s)
+  fold [20/31] distance T=100 plddt 58.05 CI(52.06, 63.97) (104s)
+  fold [21/31] punt T=100 plddt 58.28 CI(53.31, 63.65) (104s)
+  fold [22/31] contact T=100 plddt 64.18 CI(59.0, 69.5) (104s)
+  fold [23/31] contact_shuffled T=100 plddt 56.08 CI(50.51, 61.44) (104s)
+  fold [24/31] random T=100 plddt 57.63 CI(53.07, 62.2) (105s)
+  fold [25/31] confidence T=200 plddt 61.34 CI(56.32, 66.63) (105s)
+  fold [26/31] distance T=200 plddt 54.63 CI(50.2, 58.92) (104s)
+  fold [27/31] punt T=200 plddt 60.95 CI(55.5, 66.52) (105s)
+  fold [28/31] contact T=200 plddt 57.82 CI(52.62, 63.11) (104s)
+  fold [29/31] contact_shuffled T=200 plddt 57.93 CI(52.8, 63.27) (105s)
+  fold [30/31] random T=200 plddt 49.25 CI(44.86, 53.74) (104s)
+  fold [31/31] natural T=None plddt 90.10 CI(87.37, 92.22) (105s)
+esm2 650M loaded
+  pppl [1/31] confidence T=12 14.449
+  pppl [2/31] distance T=12 15.049
+  pppl [3/31] punt T=12 16.356
+  pppl [4/31] contact T=12 13.051
+  pppl [5/31] contact_shuffled T=12 13.788
+  pppl [6/31] random T=12 15.993
+  pppl [7/31] confidence T=25 13.248
+  pppl [8/31] distance T=25 12.716
+  pppl [9/31] punt T=25 13.657
+  pppl [10/31] contact T=25 15.281
+  pppl [11/31] contact_shuffled T=25 12.759
+  pppl [12/31] random T=25 14.562
+  pppl [13/31] confidence T=50 12.580
+  pppl [14/31] distance T=50 12.332
+  pppl [15/31] punt T=50 12.866
+  pppl [16/31] contact T=50 10.167
+  pppl [17/31] contact_shuffled T=50 12.359
+  pppl [18/31] random T=50 14.559
+  pppl [19/31] confidence T=100 12.389
+  pppl [20/31] distance T=100 14.856
+  pppl [21/31] punt T=100 12.617
+  pppl [22/31] contact T=100 11.359
+  pppl [23/31] contact_shuffled T=100 12.155
+  pppl [24/31] random T=100 10.987
+  pppl [25/31] confidence T=200 10.765
+  pppl [26/31] distance T=200 13.093
+  pppl [27/31] punt T=200 13.342
+  pppl [28/31] contact T=200 11.267
+  pppl [29/31] contact_shuffled T=200 12.184
+  pppl [30/31] random T=200 13.390
+  pppl [31/31] natural T=None 3.499
+WROTE results/F_ladder_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            12   50.40   14.45  0.152  0.934  0.999   3.1
+confidence            25   49.52   13.25  0.153  0.932  1.000   3.2
+confidence            50   54.88   12.58  0.152  0.932  1.000   2.9
+confidence           100   62.15   12.39  0.152  0.934  1.000   3.0
+confidence           200   61.34   10.76  0.155  0.933  0.999   3.2
+contact               12   48.09   13.05  0.155  0.935  1.000   2.9
+contact               25   50.39   15.28  0.155  0.935  0.999   2.9
+contact               50   57.19   10.17  0.154  0.933  1.000   3.0
+contact              100   64.18   11.36  0.145  0.932  0.997   3.6
+contact              200   57.82   11.27  0.148  0.935  0.998   4.1
+contact_shuffled      12   47.56   13.79  0.145  0.935  0.999   2.9
+contact_shuffled      25   50.90   12.76  0.149  0.934  0.999   2.8
+contact_shuffled      50   55.73   12.36  0.155  0.932  0.999   3.0
+contact_shuffled     100   56.08   12.16  0.152  0.934  0.998   3.3
+contact_shuffled     200   57.93   12.18  0.153  0.934  0.999   3.4
+distance              12   48.18   15.05  0.147  0.934  1.000   2.9
+distance              25   54.46   12.72  0.153  0.934  1.000   2.9
+distance              50   54.61   12.33  0.154  0.933  1.000   2.8
+distance             100   58.05   14.86  0.150  0.936  0.999   3.1
+distance             200   54.63   13.09  0.150  0.934  0.999   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+punt                  12   39.36   16.36  0.149  0.937  1.000   2.6
+punt                  25   48.99   13.66  0.154  0.935  1.000   2.9
+punt                  50   54.17   12.87  0.150  0.934  1.000   3.0
+punt                 100   58.28   12.62  0.155  0.934  0.999   2.7
+punt                 200   60.95   13.34  0.152  0.934  0.998   3.3
+random                12   44.37   15.99  0.149  0.937  1.000   2.8
+random                25   44.32   14.56  0.150  0.936  1.000   3.0
+random                50   57.07   14.56  0.150  0.935  1.000   3.0
+random               100   57.63   10.99  0.149  0.935  0.998   3.1
+random               200   49.25   13.39  0.142  0.936  0.999   3.0
+DONE

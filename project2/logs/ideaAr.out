@@ -1,0 +1,58 @@
+########## score what is already generated ##########
+--- scoring A_fidelity ---
+8 cells, 384 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 31s
+  fold [1/9] confidence T=200 plddt 57.18 CI(52.2, 62.57) (103s)
+  fold [2/9] random T=200 plddt 55.23 CI(50.49, 60.19) (104s)
+  fold [3/9] entropy T=200 plddt 53.65 CI(48.79, 59.12) (104s)
+  fold [4/9] dplm_reparam T=200 plddt 83.60 CI(79.32, 87.45) (104s)
+  fold [5/9] confidence T=500 plddt 57.64 CI(52.22, 63.57) (104s)
+  fold [6/9] random T=500 plddt 51.53 CI(47.08, 56.14) (104s)
+  fold [7/9] entropy T=500 plddt 52.66 CI(47.51, 58.06) (104s)
+  fold [8/9] dplm_reparam T=500 plddt 87.44 CI(84.26, 89.99) (104s)
+  fold [9/9] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/9] confidence T=200 12.461
+  pppl [2/9] random T=200 14.065
+  pppl [3/9] entropy T=200 13.390
+  pppl [4/9] dplm_reparam T=200 4.774
+  pppl [5/9] confidence T=500 11.581
+  pppl [6/9] random T=500 14.200
+  pppl [7/9] entropy T=500 12.482
+  pppl [8/9] dplm_reparam T=500 4.040
+  pppl [9/9] natural T=None 3.667
+WROTE results/A_fidelity_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence           200   57.18   12.46  0.146  0.935  0.999   3.5
+confidence           500   57.64   11.58  0.159  0.933  1.000   3.1
+dplm_reparam         200   83.60    4.77  0.159  0.937  0.991   5.8
+dplm_reparam         500   87.44    4.04  0.165  0.935  0.994   4.7
+entropy              200   53.65   13.39  0.151  0.936  1.000   3.1
+entropy              500   52.66   12.48  0.155  0.934  1.000   3.0
+natural             None   90.10    3.67  0.150  0.929  0.476   2.9
+random               200   55.23   14.06  0.151  0.935  1.000   3.0
+random               500   51.53   14.20  0.152  0.936  1.000   2.8
+--- scoring A_self ---
+57 cells, 2736 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/58] confidence T=6 plddt 42.74 CI(39.65, 46.24) (103s)
+  fold [2/58] random T=6 plddt 39.32 CI(36.68, 42.39) (104s)
+  fold [3/58] entropy T=6 plddt 34.09 CI(32.67, 35.71) (104s)
+  fold [4/58] contact T=6 plddt 40.95 CI(37.4, 44.63) (104s)
+  fold [5/58] contact_shuffled T=6 plddt 40.48 CI(37.6, 43.66) (104s)
+  fold [6/58] anti_contact T=6 plddt 34.50 CI(33.04, 36.02) (104s)
+  fold [7/58] contact_degree T=6 plddt 36.00 CI(34.38, 37.78) (104s)
+  fold [8/58] distance T=6 plddt 41.02 CI(37.5, 44.67) (104s)
+  fold [9/58] punt T=6 plddt 37.93 CI(35.7, 40.53) (104s)
+  fold [10/58] confidence T=12 plddt 46.69 CI(42.8, 50.9) (104s)
+  fold [11/58] random T=12 plddt 44.54 CI(41.13, 48.29) (104s)
+  fold [12/58] entropy T=12 plddt 36.97 CI(35.43, 38.46) (104s)
+  fold [13/58] contact T=12 plddt 42.31 CI(38.9, 46.44) (104s)
+  fold [14/58] contact_shuffled T=12 plddt 48.10 CI(43.75, 52.26) (104s)
+  fold [15/58] anti_contact T=12 plddt 36.66 CI(34.75, 38.79) (104s)
+  fold [16/58] contact_degree T=12 plddt 38.16 CI(35.25, 41.45) (104s)
+  fold [17/58] distance T=12 plddt 52.17 CI(47.75, 56.72) (104s)
+  fold [18/58] punt T=12 plddt 40.25 CI(37.3, 43.51) (104s)

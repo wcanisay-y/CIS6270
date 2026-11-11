@@ -33,3 +33,26 @@ nul
 project1/*/ckpt/
 project1/*/results/
 project1/*/out/
+
+# ---------------------------------------------------------------------------
+# Project 2 (masked diffusion on proteins)
+# ---------------------------------------------------------------------------
+
+# The virtualenv: 6.4 GB of torch 2.7.1 + transformers 4.57.6. Rebuild with
+# run/mkvenv.sh, then run/fixdeps.sh.
+project2/venv2/
+project2/.piptmp/
+
+# Downloaded corpora and structures, 285 MB, all re-fetchable:
+#   swissprot_{train,dev}.txt  -> tools/cache_swissprot.py
+#   pdb_cif/                   -> parallel/pdb_oracle.py (RCSB)
+#   cath_raw/                  -> parallel/cath_oracle.py (download.cathdb.info, curl -L)
+# Nothing in project2/data/ is hand-written, so none of it is source.
+project2/data/
+
+# project2/ckpt/{flat,dms6,rand6}.pt (152 MB each) are already covered by the
+# *.pt rule above. Retrain with run/train_all.sh.
+#
+# project2/results/ IS tracked (15 MB of metric JSON, npz contact maps and the
+# per-finding notes), as is project2/logs/ and project2/figures/, because the
+# reports cite them line by line.

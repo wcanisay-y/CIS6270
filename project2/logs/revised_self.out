@@ -1,0 +1,133 @@
+MEASURED cost: denoiser 0.0233 s, denoiser+attn 0.0243 s (x1.04), ESM-2 650 contact 0.1789 s (x7.69 vs denoiser)
+[1/30] T=25 confidence/none warm=0.00 nfe=25+0 cost=25.0 steps=25 refresh=0.0 {'distribution': 0, 'reveal': 0, 'age': 0, 'init': 0} 2.3s | MWLPPGSQPNASSTGPNDTSSLPLLNISLLLYALQF
+[2/30] T=25 contact/self warm=0.00 nfe=25+0 cost=26.1 steps=25 refresh=9.0 {'distribution': 1, 'reveal': 23, 'age': 0, 'init': 3} 5.1s | MNRPPPNQAQAVLHAGVCFAVFLGGFLGNALCLLTI
+[3/30] T=25 contact_shuffled/self warm=0.00 nfe=25+0 cost=26.1 steps=25 refresh=9.0 {'distribution': 0, 'reveal': 24, 'age': 0, 'init': 3} 4.9s | MKIKFKNKNGSILHYSKSALAIALLCGIGQSAMATG
+[4/30] T=25 contact/self warm=0.20 nfe=25+0 cost=26.1 steps=25 refresh=7.0 {'distribution': 1, 'reveal': 17, 'age': 0, 'init': 3} 4.3s | MTPLEQELDQKARRYWDQIAEKYSSLNISFSPQDFL
+[5/30] T=25 contact_shuffled/self warm=0.20 nfe=25+0 cost=26.1 steps=25 refresh=7.0 {'distribution': 0, 'reveal': 18, 'age': 0, 'init': 3} 4.3s | MKFIPIVVIISSIFGVATDNYSSQSTSTLPTTVTNV
+[6/30] T=25 contact/self warm=0.35 nfe=25+0 cost=26.1 steps=25 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 3.9s | MRGLPSFNTAGLLNGPNPNVPGQLVYPSPDRGVKAH
+[7/30] T=25 contact_shuffled/self warm=0.35 nfe=25+0 cost=26.1 steps=25 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 4.0s | MSSDQPNHLSVILKMAAIFDVNGQPLKLQVADGFRP
+[8/30] T=25 contact/self warm=0.50 nfe=25+0 cost=26.1 steps=25 refresh=4.0 {'distribution': 0, 'reveal': 9, 'age': 0, 'init': 3} 3.5s | MILQRANTKGVGRDQDTAKRPRDQDAATRRANHHIG
+[9/30] T=25 contact_shuffled/self warm=0.50 nfe=25+0 cost=26.1 steps=25 refresh=4.0 {'distribution': 0, 'reveal': 9, 'age': 0, 'init': 3} 3.5s | MFSLADDLHYPTKAFLKDYDFNSGKIQWGRAKDFYV
+[10/30] T=25 contact/rawattn warm=0.35 nfe=25+0 cost=26.1 steps=25 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 3.4s | MINNLSNELPELTLSSFHTPNRPGSVSSSNSSSGST
+[11/30] T=50 confidence/none warm=0.00 nfe=50+0 cost=50.0 steps=50 refresh=0.0 {'distribution': 0, 'reveal': 0, 'age': 0, 'init': 0} 4.5s | MNFVGRLKAGLCLALAFGSVAPAFAEHWVNVSAADI
+[12/30] T=50 contact/self warm=0.00 nfe=50+0 cost=52.2 steps=50 refresh=9.0 {'distribution': 2, 'reveal': 22, 'age': 0, 'init': 3} 7.4s | MPAGGALGFEAVDDRYGGTLQDLESLNSVRRVNTQG
+[13/30] T=50 contact_shuffled/self warm=0.00 nfe=50+0 cost=52.2 steps=50 refresh=9.0 {'distribution': 0, 'reveal': 24, 'age': 0, 'init': 3} 7.4s | MAVCTYIKMTELYSTREEIETMLKEAQFMDIQRAVE
+[14/30] T=50 contact/self warm=0.20 nfe=50+0 cost=52.2 steps=50 refresh=7.0 {'distribution': 1, 'reveal': 17, 'age': 0, 'init': 3} 6.9s | MGPGSHHTESSQPPKPRRRLSASLASIREESAADVK
+[15/30] T=50 contact_shuffled/self warm=0.20 nfe=50+0 cost=52.2 steps=50 refresh=7.0 {'distribution': 0, 'reveal': 18, 'age': 0, 'init': 3} 6.9s | MRMDGARAVPTKTSSQEADHEVAAGEACLYWTATVV
+[16/30] T=50 contact/self warm=0.35 nfe=50+0 cost=52.2 steps=50 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 6.5s | MRFVSKNDVVYLHKLSEDIESAIIGASIFATEHAVY
+[17/30] T=50 contact_shuffled/self warm=0.35 nfe=50+0 cost=52.2 steps=50 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 6.5s | MRRRQELQRSDRGTLRALFDSPLRSTTRPAIELPPS
+[18/30] T=50 contact/self warm=0.50 nfe=50+0 cost=52.2 steps=50 refresh=5.0 {'distribution': 0, 'reveal': 12, 'age': 0, 'init': 3} 6.1s | MKMARLSALLVCWTALTPLVKAQFSDLIFGPSFHYS
+[19/30] T=50 contact_shuffled/self warm=0.50 nfe=50+0 cost=52.2 steps=50 refresh=5.0 {'distribution': 0, 'reveal': 12, 'age': 0, 'init': 3} 6.1s | MLLKLSNINVESITECLYLPPFDNIPVLHTERMGLN
+[20/30] T=50 contact/rawattn warm=0.35 nfe=50+0 cost=52.2 steps=50 refresh=6.0 {'distribution': 0, 'reveal': 15, 'age': 0, 'init': 3} 5.9s | MSGWESTGSNYLDWRIPRLRRRDAARIIRAFTHLLE
+[21/30] T=100 confidence/none warm=0.00 nfe=100+0 cost=100.0 steps=100 refresh=0.0 {'distribution': 0, 'reveal': 0, 'age': 0, 'init': 0} 9.1s | MGHKVTECDKKVTEMEKDVRGMQNEVDKMQNDVRNM
+[22/30] T=100 contact/self warm=0.00 nfe=100+0 cost=104.4 steps=100 refresh=12.0 {'distribution': 3, 'reveal': 0, 'age': 30, 'init': 3} 13.2s | MAADVSLGKKMADCIVAPPFYQYIDEGGTLRINCTY
+[23/30] T=100 contact_shuffled/self warm=0.00 nfe=100+0 cost=104.4 steps=100 refresh=12.0 {'distribution': 1, 'reveal': 0, 'age': 32, 'init': 3} 13.3s | MPIKRLKYQGNREGEREMAKICEAGDDRALEELLRR
+[24/30] T=100 contact/self warm=0.20 nfe=100+0 cost=104.4 steps=100 refresh=9.0 {'distribution': 1, 'reveal': 0, 'age': 23, 'init': 3} 12.4s | MAGTRLRDAAVALACLPVFLWRAVGYPLARYWLRPV
+[25/30] T=100 contact_shuffled/self warm=0.20 nfe=100+0 cost=104.4 steps=100 refresh=9.0 {'distribution': 0, 'reveal': 0, 'age': 24, 'init': 3} 12.4s | MCEQLNKHRSTDTLNYDFDVWITNPPYGQKQSMNLA
+[26/30] T=100 contact/self warm=0.35 nfe=100+0 cost=104.4 steps=100 refresh=8.0 {'distribution': 0, 'reveal': 0, 'age': 21, 'init': 3} 11.8s | MSDTPPAHPNRDADDVRIPGWYLDNGEVGGYDRPKD
+[27/30] T=100 contact_shuffled/self warm=0.35 nfe=100+0 cost=104.4 steps=100 refresh=8.0 {'distribution': 0, 'reveal': 0, 'age': 21, 'init': 3} 11.9s | MSPFIIELFFTFGLLIHVSATGKEPEHWKSVVITSR
+[28/30] T=100 contact/self warm=0.50 nfe=100+0 cost=104.4 steps=100 refresh=6.0 {'distribution': 0, 'reveal': 0, 'age': 15, 'init': 3} 11.3s | MPIDVQWHKERLVYIDSMHAMNGVPQVVRNHANHKL
+[29/30] T=100 contact_shuffled/self warm=0.50 nfe=100+0 cost=104.4 steps=100 refresh=6.0 {'distribution': 0, 'reveal': 0, 'age': 15, 'init': 3} 11.3s | MVNWFIPGVIAMVVAFGGIGLVAISILRMKESGTLR
+[30/30] T=100 contact/rawattn warm=0.35 nfe=100+0 cost=104.4 steps=100 refresh=8.0 {'distribution': 0, 'reveal': 0, 'age': 21, 'init': 3} 11.2s | MILIKTMEIKILKHGHITQEDYANYMKWYHNDPMNL
+all arms done in 3.7 min -> results/C_revised_self.json
+30 cells, 1440 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 38s
+  fold [1/31] confidence T=25 plddt 53.13 CI(48.34, 58.27) (105s)
+  fold [2/31] contact T=25 plddt 55.56 CI(50.18, 60.77) (105s)
+  fold [3/31] contact_shuffled T=25 plddt 54.55 CI(49.87, 59.65) (105s)
+  fold [4/31] contact T=25 plddt 50.48 CI(45.94, 55.3) (105s)
+  fold [5/31] contact_shuffled T=25 plddt 51.41 CI(46.4, 56.72) (105s)
+  fold [6/31] contact T=25 plddt 51.00 CI(46.72, 55.82) (105s)
+  fold [7/31] contact_shuffled T=25 plddt 49.92 CI(45.99, 54.09) (105s)
+  fold [8/31] contact T=25 plddt 51.12 CI(46.56, 55.67) (105s)
+  fold [9/31] contact_shuffled T=25 plddt 49.70 CI(45.45, 54.36) (105s)
+  fold [10/31] contact T=25 plddt 52.68 CI(47.55, 57.83) (105s)
+  fold [11/31] confidence T=50 plddt 53.83 CI(48.57, 59.38) (105s)
+  fold [12/31] contact T=50 plddt 54.57 CI(50.11, 59.21) (105s)
+  fold [13/31] contact_shuffled T=50 plddt 55.07 CI(50.27, 59.83) (105s)
+  fold [14/31] contact T=50 plddt 55.56 CI(50.98, 60.42) (105s)
+  fold [15/31] contact_shuffled T=50 plddt 55.70 CI(50.52, 61.33) (105s)
+  fold [16/31] contact T=50 plddt 61.08 CI(55.93, 66.59) (105s)
+  fold [17/31] contact_shuffled T=50 plddt 54.86 CI(49.98, 59.74) (105s)
+  fold [18/31] contact T=50 plddt 54.07 CI(48.78, 59.76) (105s)
+  fold [19/31] contact_shuffled T=50 plddt 54.58 CI(49.28, 60.0) (105s)
+  fold [20/31] contact T=50 plddt 61.16 CI(55.67, 66.69) (105s)
+  fold [21/31] confidence T=100 plddt 57.83 CI(52.73, 62.89) (105s)
+  fold [22/31] contact T=100 plddt 60.75 CI(55.19, 66.27) (105s)
+  fold [23/31] contact_shuffled T=100 plddt 61.04 CI(56.54, 65.61) (105s)
+  fold [24/31] contact T=100 plddt 61.79 CI(57.32, 66.4) (105s)
+  fold [25/31] contact_shuffled T=100 plddt 59.20 CI(54.17, 64.51) (105s)
+  fold [26/31] contact T=100 plddt 55.19 CI(49.71, 60.56) (105s)
+  fold [27/31] contact_shuffled T=100 plddt 56.63 CI(51.56, 62.21) (105s)
+  fold [28/31] contact T=100 plddt 56.83 CI(51.46, 62.23) (105s)
+  fold [29/31] contact_shuffled T=100 plddt 63.41 CI(57.67, 69.34) (105s)
+  fold [30/31] contact T=100 plddt 60.15 CI(54.47, 66.05) (105s)
+  fold [31/31] natural T=None plddt 90.10 CI(87.37, 92.22) (105s)
+esm2 650M loaded
+  pppl [1/31] confidence T=25 10.423
+  pppl [2/31] contact T=25 14.685
+  pppl [3/31] contact_shuffled T=25 13.487
+  pppl [4/31] contact T=25 13.127
+  pppl [5/31] contact_shuffled T=25 12.817
+  pppl [6/31] contact T=25 13.685
+  pppl [7/31] contact_shuffled T=25 14.162
+  pppl [8/31] contact T=25 12.192
+  pppl [9/31] contact_shuffled T=25 15.022
+  pppl [10/31] contact T=25 14.208
+  pppl [11/31] confidence T=50 12.377
+  pppl [12/31] contact T=50 12.004
+  pppl [13/31] contact_shuffled T=50 12.718
+  pppl [14/31] contact T=50 10.639
+  pppl [15/31] contact_shuffled T=50 12.795
+  pppl [16/31] contact T=50 10.948
+  pppl [17/31] contact_shuffled T=50 11.184
+  pppl [18/31] contact T=50 14.240
+  pppl [19/31] contact_shuffled T=50 12.847
+  pppl [20/31] contact T=50 11.930
+  pppl [21/31] confidence T=100 14.247
+  pppl [22/31] contact T=100 12.570
+  pppl [23/31] contact_shuffled T=100 9.860
+  pppl [24/31] contact T=100 10.118
+  pppl [25/31] contact_shuffled T=100 13.046
+  pppl [26/31] contact T=100 12.693
+  pppl [27/31] contact_shuffled T=100 13.721
+  pppl [28/31] contact T=100 12.198
+  pppl [29/31] contact_shuffled T=100 9.877
+  pppl [30/31] contact T=100 10.531
+  pppl [31/31] natural T=None 3.499
+WROTE results/C_revised_self_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            25   53.13   10.42  0.152  0.933  1.000   3.0
+confidence            50   53.83   12.38  0.152  0.932  0.999   3.3
+confidence           100   57.83   14.25  0.154  0.934  1.000   2.9
+contact               25   55.56   14.69  0.151  0.931  0.999   2.9
+contact               25   50.48   13.13  0.144  0.934  1.000   2.9
+contact               25   51.00   13.68  0.151  0.933  1.000   2.8
+contact               25   51.12   12.19  0.148  0.934  1.000   3.1
+contact               25   52.68   14.21  0.151  0.933  1.000   3.0
+contact               50   54.57   12.00  0.152  0.934  0.999   3.3
+contact               50   55.56   10.64  0.151  0.933  1.000   2.9
+contact               50   61.08   10.95  0.155  0.934  1.000   3.0
+contact               50   54.07   14.24  0.143  0.932  0.999   4.0
+contact               50   61.16   11.93  0.153  0.936  1.000   3.1
+contact              100   60.75   12.57  0.156  0.934  0.997   3.5
+contact              100   61.79   10.12  0.148  0.934  0.999   3.2
+contact              100   55.19   12.69  0.142  0.937  0.999   2.9
+contact              100   56.83   12.20  0.159  0.934  1.000   3.0
+contact              100   60.15   10.53  0.153  0.933  1.000   2.8
+contact_shuffled      25   54.55   13.49  0.149  0.933  0.999   3.7
+contact_shuffled      25   51.41   12.82  0.151  0.934  1.000   3.0
+contact_shuffled      25   49.92   14.16  0.152  0.933  1.000   2.9
+contact_shuffled      25   49.70   15.02  0.147  0.935  1.000   3.1
+contact_shuffled      50   55.07   12.72  0.157  0.932  1.000   3.1
+contact_shuffled      50   55.70   12.80  0.147  0.933  1.000   3.0
+contact_shuffled      50   54.86   11.18  0.153  0.932  0.999   3.0
+contact_shuffled      50   54.58   12.85  0.153  0.934  1.000   3.1
+contact_shuffled     100   61.04    9.86  0.151  0.934  1.000   3.2
+contact_shuffled     100   59.20   13.05  0.155  0.934  0.999   3.0
+contact_shuffled     100   56.63   13.72  0.156  0.934  1.000   4.2
+contact_shuffled     100   63.41    9.88  0.158  0.933  0.999   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

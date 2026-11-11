@@ -1,0 +1,78 @@
+loaded airkingbd/dplm_150m on cuda
+oracle maps (43, 200, 200) density 0.0198
+[1/16] L=200 T=12 confidence tau=0.5 nfe=12+0 1.7s coupled_pairs=None | MPGPRRSQPKASSIETNGKHSLLAAAISRKRACLQYGVSK
+[2/16] L=200 T=12 contact_oracle tau=0.5 nfe=12+0 2.2s coupled_pairs=0.0025222298811919007 | MQKPSYNQGVDLLSAGVVVGEVLGVFFVLQTCFRYARYSS
+[3/16] L=200 T=12 contact_oracle_shuffled tau=0.5 nfe=12+0 2.1s coupled_pairs=0.002436730553136142 | MCIFLFLFLFSSIHFASSRSLLFVKKEYFIFFSSDFFTLS
+[4/16] L=200 T=12 anti_contact_oracle tau=0.5 nfe=12+0 1.7s coupled_pairs=0.10235408412079623 | MSLLDIDEVLITRNAIKGADIILSKVGCSAVDQTLLFSES
+[5/16] L=200 T=25 confidence tau=0.5 nfe=25+0 2.1s coupled_pairs=None | MKAAPIIVFYVSLLLDTVINCWAEYTSCYFPTQAEMVDMG
+[6/16] L=200 T=25 contact_oracle tau=0.5 nfe=25+0 3.3s coupled_pairs=0.0006976744567239007 | MKGEKKSNKASKLNGPNDNVPGWLVLLVGVIGVVAGVVFY
+[7/16] L=200 T=25 contact_oracle_shuffled tau=0.5 nfe=25+0 3.3s coupled_pairs=0.0010631229849748832 | MDFDSSIWERRRRGLGKPGAPPSEPRQQGKMGGVWARIST
+[8/16] L=200 T=25 anti_contact_oracle tau=0.5 nfe=25+0 3.0s coupled_pairs=0.19189369484089142 | MEKFLHLGKPVQRRLKTRVGIKADSASTDVILHSVAQDMA
+[9/16] L=200 T=50 confidence tau=0.5 nfe=50+0 4.2s coupled_pairs=None | MWIKIIGEHPYNTPVFAIKKKNSGKWRKLVDFRELNKRTQ
+[10/16] L=200 T=50 contact_oracle tau=0.5 nfe=50+0 5.7s coupled_pairs=0.0005426356750865316 | MTDNLSPELRERTLSDFHRAYRMLSTLGFADISPERGWTT
+[11/16] L=200 T=50 contact_oracle_shuffled tau=0.5 nfe=50+0 5.7s coupled_pairs=0.00046511629293131273 | MSMKILIAATDKSTLKDILIDAKSIQEAGVDAIKLRVKTY
+[12/16] L=200 T=50 anti_contact_oracle tau=0.5 nfe=50+0 5.3s coupled_pairs=0.33922481005968047 | MFPLDSDCLDLADLRLLAAELDRRLGDSVHLSHRIAAAVD
+[13/16] L=200 T=100 confidence tau=0.5 nfe=100+0 8.5s coupled_pairs=None | MGVIRDIHEEDILDVAEDYFLMVNEYLGGATFIDTGKPFN
+[14/16] L=200 T=100 contact_oracle tau=0.5 nfe=100+0 10.6s coupled_pairs=0.00023255813953488373 | MFPGSPTGESLQPPFPLQQDPVSFILDRKDSAKLLELRKR
+[15/16] L=200 T=100 contact_oracle_shuffled tau=0.5 nfe=100+0 10.6s coupled_pairs=0.00023255813953488373 | MAGWRAIGGAGGFLVGVVMMVFISVTNPWLVGNEGAIRMR
+[16/16] L=200 T=100 anti_contact_oracle tau=0.5 nfe=100+0 10.0s coupled_pairs=0.5855813953488372 | MEKLSELKKFYTIKGASDSFIDEKIQKINASEHAVKVDIL
+ALL DONE 80s -> results/A_oracle_cath_gen.json
+16 cells, 688 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 16s
+  fold [1/17] confidence T=12 plddt 48.79 CI(44.05, 53.96) (93s)
+  fold [2/17] contact_oracle T=12 plddt 49.75 CI(44.99, 54.67) (93s)
+  fold [3/17] contact_oracle_shuffled T=12 plddt 45.10 CI(41.38, 48.94) (94s)
+  fold [4/17] anti_contact_oracle T=12 plddt 44.05 CI(40.68, 47.51) (94s)
+  fold [5/17] confidence T=25 plddt 50.41 CI(45.28, 55.96) (93s)
+  fold [6/17] contact_oracle T=25 plddt 47.74 CI(43.64, 52.25) (93s)
+  fold [7/17] contact_oracle_shuffled T=25 plddt 42.96 CI(39.21, 47.04) (93s)
+  fold [8/17] anti_contact_oracle T=25 plddt 46.63 CI(42.5, 51.04) (93s)
+  fold [9/17] confidence T=50 plddt 57.93 CI(52.32, 63.7) (93s)
+  fold [10/17] contact_oracle T=50 plddt 60.42 CI(54.55, 66.29) (93s)
+  fold [11/17] contact_oracle_shuffled T=50 plddt 60.04 CI(54.22, 65.95) (93s)
+  fold [12/17] anti_contact_oracle T=50 plddt 49.98 CI(45.71, 54.29) (93s)
+  fold [13/17] confidence T=100 plddt 55.17 CI(49.42, 61.07) (93s)
+  fold [14/17] contact_oracle T=100 plddt 58.78 CI(53.21, 64.46) (93s)
+  fold [15/17] contact_oracle_shuffled T=100 plddt 56.97 CI(51.63, 63.23) (93s)
+  fold [16/17] anti_contact_oracle T=100 plddt 57.75 CI(52.96, 62.74) (93s)
+  fold [17/17] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/17] confidence T=12 14.449
+  pppl [2/17] contact_oracle T=12 14.497
+  pppl [3/17] contact_oracle_shuffled T=12 14.445
+  pppl [4/17] anti_contact_oracle T=12 15.949
+  pppl [5/17] confidence T=25 11.962
+  pppl [6/17] contact_oracle T=25 13.801
+  pppl [7/17] contact_oracle_shuffled T=25 14.079
+  pppl [8/17] anti_contact_oracle T=25 12.728
+  pppl [9/17] confidence T=50 11.906
+  pppl [10/17] contact_oracle T=50 12.167
+  pppl [11/17] contact_oracle_shuffled T=50 13.151
+  pppl [12/17] anti_contact_oracle T=50 12.908
+  pppl [13/17] confidence T=100 11.656
+  pppl [14/17] contact_oracle T=100 11.628
+  pppl [15/17] contact_oracle_shuffled T=100 12.139
+  pppl [16/17] anti_contact_oracle T=100 12.322
+  pppl [17/17] natural T=None 3.499
+WROTE results/A_oracle_cath_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+anti_contact_oracle    12   44.05   15.95  0.150  0.937  1.000   2.9
+anti_contact_oracle    25   46.63   12.73  0.157  0.934  1.000   2.7
+anti_contact_oracle    50   49.98   12.91  0.148  0.935  1.000   3.1
+anti_contact_oracle   100   57.75   12.32  0.154  0.934  0.999   3.3
+confidence            12   48.79   14.45  0.152  0.933  0.999   3.0
+confidence            25   50.41   11.96  0.142  0.935  1.000   3.3
+confidence            50   57.93   11.91  0.153  0.935  1.000   3.0
+confidence           100   55.17   11.66  0.147  0.934  1.000   3.1
+contact_oracle        12   49.75   14.50  0.149  0.933  1.000   2.8
+contact_oracle        25   47.74   13.80  0.146  0.933  0.999   3.0
+contact_oracle        50   60.42   12.17  0.146  0.933  1.000   3.0
+contact_oracle       100   58.78   11.63  0.147  0.933  0.998   3.3
+contact_oracle_shuffled    12   45.10   14.45  0.146  0.935  1.000   2.8
+contact_oracle_shuffled    25   42.96   14.08  0.149  0.935  1.000   2.8
+contact_oracle_shuffled    50   60.04   13.15  0.153  0.936  1.000   3.0
+contact_oracle_shuffled   100   56.97   12.14  0.144  0.936  1.000   2.9
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

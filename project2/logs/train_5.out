@@ -1,0 +1,7 @@
+=== arm 5 : gamma1 : --arm hier --partition dms6 --gamma 1.0 ===
+NVIDIA A100 80GB PCIe
+[gamma1] train 165231 val 2000 tokens/epoch 25973006
+[gamma1] partition dms6 chemical k=6 sizes=[6, 4, 4, 2, 2, 2]
+[gamma1] params 37.99M
+[gamma1] step 200/20000 loss 9.7730 {'ce_id': 2.8396232640831283, 'ce_fam': 1.6556473239259342} lr 1.20e-04 45s
+[gamma1] step 400/20000 loss 8.6494 {'ce_id': 2.832421072031617, 'ce_fam': 1.653730591107087} lr 2.40e-04 90s

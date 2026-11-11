@@ -1,0 +1,89 @@
+{
+ "config": {
+  "model": "airkingbd/dplm_150m",
+  "length": 200,
+  "oracle_file": "results/A_oracle_cath.npz",
+  "reveals": [
+   0.1,
+   0.25,
+   0.5,
+   0.75
+  ],
+  "n_probe": 40,
+  "group": [
+   8,
+   16
+  ],
+  "states": 6,
+  "batch": 8,
+  "tau_q": 0.9,
+  "gamma": 4.0,
+  "lam": 1.0,
+  "seed": 0,
+  "part": "A",
+  "out": "results/E_depA_cath.json"
+ },
+ "partA": [
+  {
+   "reveal": 0.09999999999999998,
+   "auroc_true_contact_predicts_dep": 0.5362621824556772,
+   "dep_mean_contact": 0.036781572476895744,
+   "dep_mean_noncontact": 0.03447387031777654,
+   "contact_frac": 0.021049493142516397,
+   "dep_mean": 0.03452706850285447,
+   "auroc_seqdist": 0.6608004943457011,
+   "auroc_seqdist_predicts_dep": 0.6997126363554509,
+   "auroc_contact_predicts_hidep": 0.5012257337838734,
+   "spearman_dep_seqdist": 0.29144759567370465,
+   "auroc_selfmap_predicts_dep": 0.5637797790451338,
+   "auroc_selfmap_predicts_contact": 0.6558427705477544,
+   "n": 43
+  },
+  {
+   "reveal": 0.25,
+   "auroc_true_contact_predicts_dep": 0.5431677096929501,
+   "dep_mean_contact": 0.05177068322637053,
+   "dep_mean_noncontact": 0.045361283473497216,
+   "contact_frac": 0.021496720333929638,
+   "dep_mean": 0.04551937463585028,
+   "auroc_seqdist": 0.6482344254048987,
+   "auroc_seqdist_predicts_dep": 0.6969538859073743,
+   "auroc_contact_predicts_hidep": 0.5026336712383224,
+   "spearman_dep_seqdist": 0.2872458207939586,
+   "auroc_selfmap_predicts_dep": 0.5354303319419599,
+   "auroc_selfmap_predicts_contact": 0.6566736679450248,
+   "n": 43
+  },
+  {
+   "reveal": 0.5,
+   "auroc_true_contact_predicts_dep": 0.6112091105991273,
+   "dep_mean_contact": 0.046088206159427415,
+   "dep_mean_noncontact": 0.03548562590595941,
+   "contact_frac": 0.01952892069171139,
+   "dep_mean": 0.03571243128241148,
+   "auroc_seqdist": 0.6655657109046627,
+   "auroc_seqdist_predicts_dep": 0.7548052501839025,
+   "auroc_contact_predicts_hidep": 0.5103524812827139,
+   "spearman_dep_seqdist": 0.3377082008084911,
+   "auroc_selfmap_predicts_dep": 0.5458764633630465,
+   "auroc_selfmap_predicts_contact": 0.7857458053346619,
+   "n": 43
+  },
+  {
+   "reveal": 0.75,
+   "auroc_true_contact_predicts_dep": 0.6497987238489042,
+   "dep_mean_contact": 0.030582889048166053,
+   "dep_mean_noncontact": 0.022078478535593943,
+   "contact_frac": 0.020542635658914732,
+   "dep_mean": 0.02225470391297063,
+   "auroc_seqdist": 0.6730255854985959,
+   "auroc_seqdist_predicts_dep": 0.8227941888496451,
+   "auroc_contact_predicts_hidep": 0.5164148943218709,
+   "spearman_dep_seqdist": 0.4375341232923181,
+   "auroc_selfmap_predicts_dep": 0.5572973207141364,
+   "auroc_selfmap_predicts_contact": 0.8468609586569871,
+   "n": 43
+  }
+ ],
+ "partB": []
+}

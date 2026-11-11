@@ -1,0 +1,61 @@
+{
+ "config": {
+  "model": "airkingbd/dplm_150m",
+  "oracle_file": "results/A_oracle_cath.npz",
+  "n": 2,
+  "reveals": [
+   0.5
+  ],
+  "contact_size": 650,
+  "seed": 0,
+  "out": "results/F_argmax_smoke.json"
+ },
+ "rows": [
+  {
+   "chain": 0,
+   "reveal": 0.5,
+   "L": 200,
+   "n_masked": 100,
+   "recovery": 0.3199999928474426,
+   "ext_masked_pL": 0.065,
+   "ext_masked_auroc": 0.7071500810153929,
+   "ext_argmax_pL": 0.655,
+   "ext_argmax_auroc": 0.9769626654064272,
+   "self_masked_pL": 0.555,
+   "self_masked_auroc": 0.955530110721037,
+   "self_argmax_pL": 0.6,
+   "self_argmax_auroc": 0.9596949770456387
+  },
+  {
+   "chain": 1,
+   "reveal": 0.5,
+   "L": 200,
+   "n_masked": 100,
+   "recovery": 0.4699999988079071,
+   "ext_masked_pL": 0.065,
+   "ext_masked_auroc": 0.6835157874514058,
+   "ext_argmax_pL": 0.755,
+   "ext_argmax_auroc": 0.9469753525901817,
+   "self_masked_pL": 0.62,
+   "self_masked_auroc": 0.9193594611698761,
+   "self_argmax_pL": 0.625,
+   "self_argmax_auroc": 0.9187908529970166
+  }
+ ],
+ "nulls": [
+  {
+   "chain": 0,
+   "ext_pL": 0.02,
+   "ext_auroc": 0.5759363354037267,
+   "self_pL": 0.075,
+   "self_auroc": 0.7105951930866865
+  },
+  {
+   "chain": 1,
+   "ext_pL": 0.015,
+   "ext_auroc": 0.6716351369677245,
+   "self_pL": 0.055,
+   "self_auroc": 0.684159886086249
+  }
+ ]
+}

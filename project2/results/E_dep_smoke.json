@@ -1,0 +1,80 @@
+{
+ "config": {
+  "model": "airkingbd/dplm_150m",
+  "length": 200,
+  "oracle_file": "results/A_oracle_pdb.npz",
+  "reveals": [
+   0.5
+  ],
+  "n_probe": 24,
+  "group": [
+   8
+  ],
+  "states": 2,
+  "batch": 4,
+  "tau_q": 0.9,
+  "gamma": 4.0,
+  "lam": 1.0,
+  "seed": 0,
+  "out": "results/E_dep_smoke.json"
+ },
+ "partA": [
+  {
+   "reveal": 0.5,
+   "auroc_true_contact_predicts_dep": 0.6200897728317083,
+   "dep_mean_contact": 0.011186659956971804,
+   "dep_mean_noncontact": 0.021030657808296382,
+   "contact_frac": 0.028263403263403264,
+   "dep_mean": 0.021050970070064068,
+   "auroc_seqdist": 0.7185963364592397,
+   "spearman_dep_seqdist": 0.44504763137863457,
+   "auroc_selfmap_predicts_dep": 0.6421912832929781,
+   "auroc_selfmap_predicts_contact": 0.9392259950324467,
+   "n": 8
+  }
+ ],
+ "partB": [
+  {
+   "reveal": 0.5,
+   "group": 8,
+   "rules": {
+    "confidence": {
+     "tv": 0.012333566788583994,
+     "flip": 0.0,
+     "conf": 0.9825710654258728,
+     "n_states": 2
+    },
+    "pair_contact": {
+     "tv": 0.045201122760772705,
+     "flip": 0.0,
+     "conf": 0.9460681974887848,
+     "n_states": 2
+    },
+    "pair_shuffled": {
+     "tv": 0.013600470498204231,
+     "flip": 0.0,
+     "conf": 0.9809495210647583,
+     "n_states": 2
+    },
+    "pair_dep": {
+     "tv": 0.012333566788583994,
+     "flip": 0.0,
+     "conf": 0.9825710654258728,
+     "n_states": 2
+    },
+    "dpp_dep": {
+     "tv": 0.012333566788583994,
+     "flip": 0.0,
+     "conf": 0.9825710654258728,
+     "n_states": 2
+    },
+    "dpp_contact": {
+     "tv": 0.02645752765238285,
+     "flip": 0.0,
+     "conf": 0.9508105516433716,
+     "n_states": 2
+    }
+   }
+  }
+ ]
+}

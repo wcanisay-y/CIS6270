@@ -1,0 +1,70 @@
+########## gate on the argmax-completed external map ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: external_argmax
+[1/6] L=200 T=25 confidence tau=0.3 nfe=25+0 3.5s coupled_pairs=None | MWLPPGSQPNASSTGPNDTSSLPLLNISLLLYALQFVYES
+[2/6] L=200 T=25 contact tau=0.3 nfe=25+25 31.8s coupled_pairs=0.0004464285975943009 | MNRPPLSQKAPLLARGVPDGENLGIFVNVQLAARHARGLF
+[3/6] L=200 T=25 contact_shuffled tau=0.3 nfe=25+25 32.0s coupled_pairs=0.00026785715483129024 | MSLPSPSQEKRALHDVLSATFRISALGVEVTVHFSEPVLS
+[4/6] L=200 T=50 confidence tau=0.3 nfe=50+0 6.5s coupled_pairs=None | MTPQEQLLYPQARRYRDQQAFTLSLLNWSALSYCPLASVL
+[5/6] L=200 T=50 contact tau=0.3 nfe=50+50 63.1s coupled_pairs=6.944444651405016e-05 | MKANESKVGYSVDLDPTTICYYPELTSLSPTYEIEEFFMA
+[6/6] L=200 T=50 contact_shuffled tau=0.3 nfe=50+50 63.4s coupled_pairs=0.00027777778605620065 | MWGLDGINTDDPSGIPPATSFRNPFQGQHEPLFFSEVSHQ
+ALL DONE 200s -> results/F_argmax_gate.json
+########## the same arms on the plain masked external map ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: external
+[1/4] L=200 T=25 contact tau=0.3 nfe=25+25 32.3s coupled_pairs=0.000357142873108387 | MWEPVRSQLHALVDGPDGTVSLPLATGLRAGYALAFVYET
+[2/4] L=200 T=25 contact_shuffled tau=0.3 nfe=25+25 32.1s coupled_pairs=0.00038690477920075257 | MQNHDAAQSASHDPAVIHLMERFQDFCRRAGIRVGDLFGF
+[3/4] L=200 T=50 contact tau=0.3 nfe=50+50 63.3s coupled_pairs=6.944444651405016e-05 | MIRWLVSLRHPDFMPEVVSISLGGASTPVDFLDSPARAAL
+[4/4] L=200 T=50 contact_shuffled tau=0.3 nfe=50+50 63.4s coupled_pairs=6.944444651405016e-05 | MDLSEFDRLAAAAKFSTAEAAGNQKRVLDQTIVEALSDQE
+ALL DONE 191s -> results/F_plainext_gate.json
+########## score ##########
+6 cells, 288 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 12s
+  fold [1/7] confidence T=25 plddt 55.55 CI(50.35, 61.13) (104s)
+  fold [2/7] contact T=25 plddt 50.75 CI(46.98, 54.81) (104s)
+  fold [3/7] contact_shuffled T=25 plddt 50.55 CI(45.74, 55.39) (104s)
+  fold [4/7] confidence T=50 plddt 59.50 CI(54.41, 64.62) (104s)
+  fold [5/7] contact T=50 plddt 55.48 CI(50.26, 60.89) (104s)
+  fold [6/7] contact_shuffled T=50 plddt 51.34 CI(46.15, 57.11) (104s)
+  fold [7/7] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/7] confidence T=25 10.423
+  pppl [2/7] contact T=25 13.689
+  pppl [3/7] contact_shuffled T=25 13.901
+  pppl [4/7] confidence T=50 12.423
+  pppl [5/7] contact T=50 12.418
+  pppl [6/7] contact_shuffled T=50 15.055
+  pppl [7/7] natural T=None 3.499
+WROTE results/F_argmax_gate_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            25   55.55   10.42  0.153  0.932  1.000   3.2
+confidence            50   59.50   12.42  0.148  0.931  1.000   3.1
+contact               25   50.75   13.69  0.160  0.933  1.000   3.1
+contact               50   55.48   12.42  0.153  0.935  1.000   2.8
+contact_shuffled      25   50.55   13.90  0.158  0.932  1.000   3.0
+contact_shuffled      50   51.34   15.06  0.148  0.935  1.000   3.2
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+4 cells, 192 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/5] contact T=25 plddt 51.50 CI(47.02, 56.16) (104s)
+  fold [2/5] contact_shuffled T=25 plddt 54.07 CI(49.58, 58.6) (104s)
+  fold [3/5] contact T=50 plddt 55.93 CI(50.75, 61.39) (104s)
+  fold [4/5] contact_shuffled T=50 plddt 56.53 CI(51.35, 62.07) (104s)
+  fold [5/5] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/5] contact T=25 12.891
+  pppl [2/5] contact_shuffled T=25 12.498
+  pppl [3/5] contact T=50 11.135
+  pppl [4/5] contact_shuffled T=50 13.095
+  pppl [5/5] natural T=None 3.499
+WROTE results/F_plainext_gate_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+contact               25   51.50   12.89  0.149  0.933  1.000   3.1
+contact               50   55.93   11.13  0.148  0.932  0.999   3.1
+contact_shuffled      25   54.07   12.50  0.153  0.932  1.000   2.8
+contact_shuffled      50   56.53   13.09  0.144  0.935  1.000   3.2
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

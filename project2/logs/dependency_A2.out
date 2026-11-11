@@ -1,0 +1,8 @@
+### Part A: true contact map vs the model's own dependency ###
+  reveal 0.10  n=43  AUROC(dep | true contact)=0.536  dep in-contact 0.0368 vs non-contact 0.0345  AUROC(seqdist->contact)=0.661  AUROC(seqdist->hi-dep)=0.700
+  reveal 0.25  n=43  AUROC(dep | true contact)=0.543  dep in-contact 0.0518 vs non-contact 0.0454  AUROC(seqdist->contact)=0.648  AUROC(seqdist->hi-dep)=0.697
+  reveal 0.50  n=43  AUROC(dep | true contact)=0.611  dep in-contact 0.0461 vs non-contact 0.0355  AUROC(seqdist->contact)=0.666  AUROC(seqdist->hi-dep)=0.755
+  reveal 0.75  n=43  AUROC(dep | true contact)=0.650  dep in-contact 0.0306 vs non-contact 0.0221  AUROC(seqdist->contact)=0.673  AUROC(seqdist->hi-dep)=0.823
+### Part B: factorization error by selection rule ###
+done in 0.8 min -> results/E_depA_cath2.json
+DONE

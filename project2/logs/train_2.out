@@ -1,0 +1,9 @@
+=== arm 2 : prop6 : --arm hier --partition proposal6 ===
+NVIDIA A100 80GB PCIe
+[prop6] train 165231 val 2000 tokens/epoch 25973006
+[prop6] partition proposal6 chemical k=6 sizes=[5, 3, 5, 2, 2, 3]
+[prop6] params 37.99M
+[prop6] step 200/20000 loss 9.9170 {'ce_id': 2.2152624328708885, 'ce_fam': 1.6609553682631342} lr 1.20e-04 45s
+[prop6] step 400/20000 loss 8.4110 {'ce_id': 2.3035721386795225, 'ce_fam': 1.6635448591652073} lr 2.40e-04 90s
+[prop6] step 600/20000 loss 9.0043 {'ce_id': 2.286763229808838, 'ce_fam': 1.6605937634666614} lr 3.00e-04 134s
+[prop6] step 800/20000 loss 8.9187 {'ce_id': 2.2804757479689615, 'ce_fam': 1.6619981937708699} lr 3.00e-04 179s

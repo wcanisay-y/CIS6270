@@ -1,0 +1,28 @@
+Some weights of EsmForProteinFolding were not initialized from the model checkpoint at facebook/esmfold_v1 and are newly initialized: ['esm.contact_head.regression.bias', 'esm.contact_head.regression.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of EsmForProteinFolding were not initialized from the model checkpoint at facebook/esmfold_v1 and are newly initialized: ['esm.contact_head.regression.bias', 'esm.contact_head.regression.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/venv2/lib/python3.12/site-packages/transformers/utils/generic.py:1014: UserWarning: `output_attentions=True` is not supported with `attn_implementation` other than ['eager', 'eager_paged', 'flex_attention']. Please use `model.set_attn_implementation('eager')` to enable capturing attention outputs.
+  warnings.warn(
+`sdpa` attention does not support `output_attentions=True` or `head_mask`. Please set your attention to `eager` if you want any of these features.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/parallel/run_generate.py", line 168, in <module>
+    main()
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/parallel/run_generate.py", line 129, in main
+    s, d = generate_absorbing(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/venv2/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/parallel/sample.py", line 159, in generate_absorbing
+    coupling = contact_provider.from_attentions(ids, out.attentions)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/venv2/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/parallel/contacts.py", line 165, in from_attentions
+    n = len(attentions)
+        ^^^^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()

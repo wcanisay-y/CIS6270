@@ -1,0 +1,172 @@
+########## main grid: correct ranking, binding threshold ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/20] L=200 T=12 confidence tau=0.3 nfe=12+0 1.4s coupled_pairs=None | MPGPRRSQPKASSIETNGKHSLLAAAISRKRACLQYGVSK
+[2/20] L=200 T=12 contact tau=0.3 nfe=12+0 3.7s coupled_pairs=0.0004850898718965861 | MNKKLVNQKVLLLSALVVFFEVLGIYGIYQYCEGAAAYYS
+[3/20] L=200 T=12 contact_shuffled tau=0.3 nfe=12+0 3.5s coupled_pairs=0.0010212418435710585 | MEASQEISNSYFEALRKKYALVLVAVLVVASVMQLIGAVA
+[4/20] L=200 T=12 anti_contact tau=0.3 nfe=12+0 3.2s coupled_pairs=0.06111536789992695 | MSELPQNEFNIEPNAIWVMSLIGSAQTGHPLGLQRVNNDM
+[5/20] L=200 T=12 distance tau=0.3 nfe=12+0 4.0s coupled_pairs=None | MKEVKEYKMGKSEEYTKELNVTFSFTSTSLEIQEWEMFMY
+[6/20] L=200 T=25 confidence tau=0.3 nfe=25+0 2.2s coupled_pairs=None | MRGLPSFNTAHLLNGPNPNVPGQLVYSHPDTGVKAHVVSL
+[7/20] L=200 T=25 contact tau=0.3 nfe=25+0 6.2s coupled_pairs=0.00023809524873892466 | MSRFQIALLVLILNSAAAFDVNAKPLKGAQSDEFVPGRIT
+[8/20] L=200 T=25 contact_shuffled tau=0.3 nfe=25+0 6.2s coupled_pairs=0.0003273809670160214 | MTLSVAEIRRWPADPAAAAGRAPEGDPGARLTLHRIDPVE
+[9/20] L=200 T=25 anti_contact tau=0.3 nfe=25+0 5.8s coupled_pairs=0.11080357622355223 | MFGGQERLPGGGVGVGRDDHIGDGPGWPRLRPHHFPDRRA
+[10/20] L=200 T=25 distance tau=0.3 nfe=25+0 3.7s coupled_pairs=None | MGNNLSSELPEGTLVSFHTPYHPKFPSSSNAIGGDGRWKC
+[11/20] L=200 T=50 confidence tau=0.3 nfe=50+0 4.5s coupled_pairs=None | MNFVGRLKAGLCLALAFGSVAPAFAEHWVNVSAADISKVG
+[12/20] L=200 T=50 contact tau=0.3 nfe=50+0 11.5s coupled_pairs=6.944444651405016e-05 | MFRGMSLGFDFTEDDYRGLLQDLESLDSVRRLKRAGQRLD
+[13/20] L=200 T=50 contact_shuffled tau=0.3 nfe=50+0 11.6s coupled_pairs=0.0 | MQVETYSFDLHQSNVGVANAENLGEFQRYRLLFNDTLVFN
+[14/20] L=200 T=50 anti_contact tau=0.3 nfe=50+0 11.0s coupled_pairs=0.2025694478986164 | MFLGSLFAVHFQFHQNGPRLSLHKIPILFHISCLGKFAST
+[15/20] L=200 T=50 distance tau=0.3 nfe=50+0 6.1s coupled_pairs=None | MARRRLLGVPPASAPQATDLAVEATAPDLADALADVAASM
+[16/20] L=200 T=100 confidence tau=0.3 nfe=100+0 9.1s coupled_pairs=None | MNILSLTNEEYLIKIAEDSNSASYEQLLFATEHAVKVVIS
+[17/20] L=200 T=100 contact tau=0.3 nfe=100+0 22.1s coupled_pairs=0.00020833333333333335 | MRDKNSTNNTDWLTLHEQHGGPLPTATLYQPELAPVYRLL
+[18/20] L=200 T=100 contact_shuffled tau=0.3 nfe=100+0 22.4s coupled_pairs=0.0 | MGALRSHLLASIAVLGLYLSACVTDAPELPPQWTKPLIDT
+[19/20] L=200 T=100 anti_contact tau=0.3 nfe=100+0 21.5s coupled_pairs=0.3545833333333333 | MKINIPNCLPVYALSKVYACSGHYIREALCNGFRSNVPFR
+[20/20] L=200 T=100 distance tau=0.3 nfe=100+0 11.2s coupled_pairs=None | MSNWPPTNSNCLDLLIPRVERNKVARIIQSEGHLGKIKED
+ALL DONE 172s -> results/Am_q99.json
+########## stronger threshold: reject the top 10 percent of pairs ####
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/6] L=200 T=12 contact tau=0.3 nfe=12+0 4.3s coupled_pairs=0.00952222919618685 | MWGRLISQRHVSLLGSTQTHSLLRARISFSFPCLQDFVSK
+[2/6] L=200 T=12 contact_shuffled tau=0.3 nfe=12+0 4.2s coupled_pairs=0.010712827037625376 | MTSTEDQQCMLCSPTLFANRQNRFRLGILGETRRTYDQIR
+[3/6] L=200 T=25 contact tau=0.3 nfe=25+0 6.4s coupled_pairs=0.0054464288086940845 | MTGLLVSTRELDSRQRERLACLGHASGLSEEEDYPALVPV
+[4/6] L=200 T=25 contact_shuffled tau=0.3 nfe=25+0 6.5s coupled_pairs=0.0036607144804050524 | MVFTEGTATILLDTNLLIQLLKSRSVLVRQVAVVIDRANI
+[5/6] L=200 T=50 contact tau=0.3 nfe=50+0 11.6s coupled_pairs=0.0036805556155741215 | MKASESKYVHISPPFDTTICYNTEATSFPFEKILEELGMT
+[6/6] L=200 T=50 contact_shuffled tau=0.3 nfe=50+0 11.7s coupled_pairs=0.0024305556217829385 | MVEKIKIGIIGLPGCGKSSLINALLQLGFTELIDLDELIN
+ALL DONE 45s -> results/Am_q90.json
+########## the proposal as written: separate ESM-2 650M pass ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: external
+[1/6] L=200 T=12 contact tau=0.3 nfe=12+12 16.2s coupled_pairs=0.000497855395628398 | MWGPMRSQPLKLVVGVDQKHSLASARISRKNPHLPEDLKL
+[2/6] L=200 T=12 contact_shuffled tau=0.3 nfe=12+12 15.9s coupled_pairs=0.0009318831782568143 | MQLSDGNQSLNKLNAWIENDNDHSSYSNRAAIWVLEIEYF
+[3/6] L=200 T=25 contact tau=0.3 nfe=25+25 32.1s coupled_pairs=0.00020833334264655907 | MTRLLVSTRPTDRQRRRRGFTLIELMVVIAIIGILAALAV
+[4/6] L=200 T=25 contact_shuffled tau=0.3 nfe=25+25 32.1s coupled_pairs=0.00023809524873892466 | MDKAEFERLLAAAKFSGAEGWGNFSPVDIQLTPDNGANSV
+[5/6] L=200 T=50 contact tau=0.3 nfe=50+50 63.2s coupled_pairs=0.0 | MKANESKVKYGVELLLTNICYNDELTSCSSLYEIEELFMA
+[6/6] L=200 T=50 contact_shuffled tau=0.3 nfe=50+50 63.3s coupled_pairs=0.00013888889302810032 | MSELDGNNTDQPSGIPPATSSMNPFLPQHEPKVFSERSHQ
+ALL DONE 223s -> results/Am_ext.json
+########## score ##########
+20 cells, 960 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 16s
+  fold [1/21] confidence T=12 plddt 50.40 CI(45.68, 55.38) (104s)
+  fold [2/21] contact T=12 plddt 45.24 CI(41.32, 49.42) (104s)
+  fold [3/21] contact_shuffled T=12 plddt 46.61 CI(43.26, 50.08) (104s)
+  fold [4/21] anti_contact T=12 plddt 38.29 CI(35.74, 41.03) (104s)
+  fold [5/21] distance T=12 plddt 47.51 CI(43.6, 51.93) (104s)
+  fold [6/21] confidence T=25 plddt 51.51 CI(47.7, 55.77) (104s)
+  fold [7/21] contact T=25 plddt 50.71 CI(46.64, 55.13) (104s)
+  fold [8/21] contact_shuffled T=25 plddt 48.12 CI(43.64, 52.78) (104s)
+  fold [9/21] anti_contact T=25 plddt 43.53 CI(39.91, 47.3) (104s)
+  fold [10/21] distance T=25 plddt 54.12 CI(49.19, 59.2) (104s)
+  fold [11/21] confidence T=50 plddt 53.83 CI(48.57, 59.38) (104s)
+  fold [12/21] contact T=50 plddt 50.55 CI(46.76, 54.52) (104s)
+  fold [13/21] contact_shuffled T=50 plddt 56.96 CI(52.04, 62.21) (104s)
+  fold [14/21] anti_contact T=50 plddt 49.20 CI(44.59, 54.32) (104s)
+  fold [15/21] distance T=50 plddt 57.12 CI(51.33, 62.93) (104s)
+  fold [16/21] confidence T=100 plddt 57.61 CI(52.72, 62.71) (104s)
+  fold [17/21] contact T=100 plddt 57.36 CI(51.79, 63.19) (104s)
+  fold [18/21] contact_shuffled T=100 plddt 57.11 CI(52.22, 62.43) (104s)
+  fold [19/21] anti_contact T=100 plddt 53.26 CI(48.08, 58.65) (104s)
+  fold [20/21] distance T=100 plddt 58.05 CI(52.06, 63.97) (104s)
+  fold [21/21] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/21] confidence T=12 14.449
+  pppl [2/21] contact T=12 15.580
+  pppl [3/21] contact_shuffled T=12 14.764
+  pppl [4/21] anti_contact T=12 16.076
+  pppl [5/21] distance T=12 13.016
+  pppl [6/21] confidence T=25 13.515
+  pppl [7/21] contact T=25 13.301
+  pppl [8/21] contact_shuffled T=25 14.185
+  pppl [9/21] anti_contact T=25 16.621
+  pppl [10/21] distance T=25 14.223
+  pppl [11/21] confidence T=50 12.377
+  pppl [12/21] contact T=50 12.648
+  pppl [13/21] contact_shuffled T=50 14.280
+  pppl [14/21] anti_contact T=50 15.350
+  pppl [15/21] distance T=50 12.803
+  pppl [16/21] confidence T=100 12.521
+  pppl [17/21] contact T=100 10.575
+  pppl [18/21] contact_shuffled T=100 12.180
+  pppl [19/21] anti_contact T=100 13.806
+  pppl [20/21] distance T=100 14.856
+  pppl [21/21] natural T=None 3.499
+WROTE results/Am_q99_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+anti_contact          12   38.29   16.08  0.142  0.936  1.000   2.8
+anti_contact          25   43.53   16.62  0.149  0.938  1.000   2.9
+anti_contact          50   49.20   15.35  0.145  0.935  1.000   2.9
+anti_contact         100   53.26   13.81  0.155  0.935  1.000   3.1
+confidence            12   50.40   14.45  0.152  0.934  0.999   3.1
+confidence            25   51.51   13.51  0.153  0.933  1.000   2.9
+confidence            50   53.83   12.38  0.152  0.932  0.999   3.3
+confidence           100   57.61   12.52  0.161  0.933  1.000   3.1
+contact               12   45.24   15.58  0.145  0.934  1.000   2.9
+contact               25   50.71   13.30  0.150  0.932  1.000   3.4
+contact               50   50.55   12.65  0.153  0.933  1.000   3.0
+contact              100   57.36   10.57  0.152  0.936  0.998   3.6
+contact_shuffled      12   46.61   14.76  0.156  0.934  1.000   2.8
+contact_shuffled      25   48.12   14.18  0.144  0.935  1.000   3.4
+contact_shuffled      50   56.96   14.28  0.149  0.934  0.999   3.1
+contact_shuffled     100   57.11   12.18  0.149  0.934  0.999   3.2
+distance              12   47.51   13.02  0.151  0.934  1.000   2.8
+distance              25   54.12   14.22  0.149  0.932  1.000   3.1
+distance              50   57.12   12.80  0.151  0.935  1.000   3.0
+distance             100   58.05   14.86  0.150  0.936  0.999   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+6 cells, 288 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/7] contact T=12 plddt 44.38 CI(41.1, 47.83) (104s)
+  fold [2/7] contact_shuffled T=12 plddt 44.47 CI(40.8, 48.61) (104s)
+  fold [3/7] contact T=25 plddt 54.38 CI(49.34, 59.49) (104s)
+  fold [4/7] contact_shuffled T=25 plddt 54.15 CI(49.36, 59.02) (104s)
+  fold [5/7] contact T=50 plddt 56.61 CI(50.82, 62.48) (104s)
+  fold [6/7] contact_shuffled T=50 plddt 56.58 CI(51.68, 61.64) (104s)
+  fold [7/7] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/7] contact T=12 15.186
+  pppl [2/7] contact_shuffled T=12 14.648
+  pppl [3/7] contact T=25 14.193
+  pppl [4/7] contact_shuffled T=25 12.605
+  pppl [5/7] contact T=50 12.737
+  pppl [6/7] contact_shuffled T=50 13.055
+  pppl [7/7] natural T=None 3.499
+WROTE results/Am_q90_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+contact               12   44.38   15.19  0.149  0.935  1.000   2.8
+contact               25   54.38   14.19  0.152  0.931  0.999   2.8
+contact               50   56.61   12.74  0.147  0.934  1.000   3.0
+contact_shuffled      12   44.47   14.65  0.151  0.934  1.000   3.0
+contact_shuffled      25   54.15   12.60  0.152  0.933  1.000   2.9
+contact_shuffled      50   56.58   13.05  0.153  0.934  1.000   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+6 cells, 288 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 15s
+  fold [1/7] contact T=12 plddt 46.52 CI(42.47, 50.72) (104s)
+  fold [2/7] contact_shuffled T=12 plddt 43.13 CI(39.64, 47.11) (104s)
+  fold [3/7] contact T=25 plddt 54.24 CI(49.65, 59.03) (104s)
+  fold [4/7] contact_shuffled T=25 plddt 54.01 CI(49.49, 58.46) (104s)
+  fold [5/7] contact T=50 plddt 55.12 CI(50.16, 60.59) (104s)
+  fold [6/7] contact_shuffled T=50 plddt 54.18 CI(48.85, 60.03) (104s)
+  fold [7/7] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/7] contact T=12 14.150
+  pppl [2/7] contact_shuffled T=12 15.981
+  pppl [3/7] contact T=25 14.279
+  pppl [4/7] contact_shuffled T=25 12.428
+  pppl [5/7] contact T=50 11.977
+  pppl [6/7] contact_shuffled T=50 13.923
+  pppl [7/7] natural T=None 3.499
+WROTE results/Am_ext_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+contact               12   46.52   14.15  0.153  0.933  1.000   2.9
+contact               25   54.24   14.28  0.148  0.932  0.999   2.9
+contact               50   55.12   11.98  0.150  0.936  1.000   2.7
+contact_shuffled      12   43.13   15.98  0.147  0.935  1.000   2.8
+contact_shuffled      25   54.01   12.43  0.145  0.935  1.000   2.9
+contact_shuffled      50   54.18   13.92  0.151  0.934  0.998   3.4
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

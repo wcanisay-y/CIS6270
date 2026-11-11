@@ -1,0 +1,278 @@
+arms found: ckpt/flat.pt ckpt/dms6.pt ckpt/rand6.pt 
+########## stage 1: every arm, matched setting ##########
+=== flat (flat) params 37.98M best_val 4.6328
+  uncond       T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=None | MELQVLGAKGLEVSETKQAREFNETGVHQVVVAYAAGGRQ
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MSSDSALVAGSEALRPRRRLEFLRGGVSAGVYNGIWALLG
+=== rand6 (hier) params 37.99M best_val 8.6741
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MGLLEQELLGPTLLLPKLLQLFFRLGPPALDSPSQDSAAS
+WROTE results/B_main.json
+########## stage 2: quality-diversity frontier ##########
+=== flat (flat) params 37.98M best_val 4.6328
+  uncond       T=100 temp=0.6 famT=None rho=None nfe=100 6s compl=None | MIGRLRGTLLEKQPPTLLIDVNGVGYEVHVPMTCFYELPE
+  uncond       T=100 temp=0.7 famT=None rho=None nfe=100 6s compl=None | MRQGEALLFLGLALGAAQLAAAWVVAATAVFGPILAGSAP
+  uncond       T=100 temp=0.8 famT=None rho=None nfe=100 6s compl=None | MDYLVTTISADSGPRKVVPERALDEVITAAALFRVPVAAQ
+  uncond       T=100 temp=0.9 famT=None rho=None nfe=100 6s compl=None | MAEEILRTIGLPNRVDFDKAVFLSVLGCTLVVAYVGMVLI
+  uncond       T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=None | MTPLDTIPVSVVFGVSPKQRRFTLSQLTLRNAFYACIGYA
+  uncond       T=100 temp=1.1 famT=None rho=None nfe=100 6s compl=None | MERQKVNASALTRVESTFGREFNSELVHQAIAAQLGAKRQ
+WROTE results/B_qd_flat.json
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=0.7 famT=0.7 rho=0.3 nfe=100 6s compl=None | MSSLLLAASVALLALPLALLEFLRGGARALVRLGLAALAG
+  uncond       T=100 temp=0.85 famT=0.7 rho=0.3 nfe=100 6s compl=None | MNKIILGGGIGDSGGRGQVSYAAAAATTESQDAVFGLKHH
+  uncond       T=100 temp=1.0 famT=0.7 rho=0.3 nfe=100 6s compl=None | MTYLVLASLKEFYPLYHVPTCIADLSISEALMFITSIYAA
+  uncond       T=100 temp=1.15 famT=0.7 rho=0.3 nfe=100 6s compl=None | MTILGAAAAVVGLKLAGAIGFITGLALLLYMPLAVDSVLV
+  uncond       T=100 temp=0.7 famT=0.85 rho=0.3 nfe=100 6s compl=None | MNPLQTLFVLLVFGIGLLSRLGLLAQALLALLVPAASGIL
+  uncond       T=100 temp=0.85 famT=0.85 rho=0.3 nfe=100 6s compl=None | MNMMKLVCSVVLRLMTGMGLSLGSLAMGLLITSQLALKSG
+  uncond       T=100 temp=1.0 famT=0.85 rho=0.3 nfe=100 6s compl=None | MTVKPVLIPSLPGALWLTFPLLMMKEEGPILVLLAPLSYA
+  uncond       T=100 temp=1.15 famT=0.85 rho=0.3 nfe=100 6s compl=None | MKKLLLVCALTAAKTVLLLTAKDTWGVSQDSKISGSVASK
+  uncond       T=100 temp=0.7 famT=1.0 rho=0.3 nfe=100 6s compl=None | MPFTVSLIVRAAAAAAARLEGVADERLGVLGFARSRLRSL
+  uncond       T=100 temp=0.85 famT=1.0 rho=0.3 nfe=100 6s compl=None | MSPSTSAAGRAALAYGAGGALHPFSAYLAGGLDLELLAIA
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MAAKEKLLIAVLAALAWVAGAICGANLGAAIACALVIAKL
+  uncond       T=100 temp=1.15 famT=1.0 rho=0.3 nfe=100 6s compl=None | MLPEICFDKNEKKMFLVREKEPEALRGNLIAKEKEIATIT
+WROTE results/B_qd_dms6.json
+########## stage 3: NFE sweep ##########
+=== flat (flat) params 37.98M best_val 4.6328
+  uncond       T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=None | MELQVLGAKGLEVSETKQAREFNETGVHQVVVAYAAGGRQ
+  nfe          T=25 temp=1.0 famT=None rho=None nfe=25 1s compl=None | MYAYLTGEITGIALTHVVLDVNGVGYVVMVMNPYRHNKGI
+  nfe          T=50 temp=1.0 famT=None rho=None nfe=50 3s compl=None | MPKFFSTQSLFQWPRKDQEENALDEVALSAAEFRLSPYMA
+  nfe          T=200 temp=1.0 famT=None rho=None nfe=200 11s compl=None | MTFEGAELLAKPTGLDEAKIGVLKAAICESDPARVGPVLT
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MSSDSALVAGSEALRPRRRLEFLRGGVSAGVYNGIWALLG
+  nfe          T=25 temp=1.0 famT=1.0 rho=0.3 nfe=25 1s compl=None | MDKTVAINKIEVAGASAAANGRIAVDLSVEMGTAYHAIYE
+  nfe          T=50 temp=1.0 famT=1.0 rho=0.3 nfe=50 3s compl=None | MAKFEKLSLKEHVTRIVSVKNSEDKLIYEAKEFLFSVYAR
+  nfe          T=200 temp=1.0 famT=1.0 rho=0.3 nfe=200 12s compl=None | MTVTLILNAATGLVLTGVKGFITATQLGTYVPAVEDTGAA
+=== rand6 (hier) params 37.99M best_val 8.6741
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MGLLEQELLGPTLLLPKLLQLFFRLGPPALDSPSQDSAAS
+  nfe          T=25 temp=1.0 famT=1.0 rho=0.3 nfe=25 1s compl=None | MRWATTWGLYALGSADLQTGSTTTDNIIDLMLGDNGTTEP
+  nfe          T=50 temp=1.0 famT=1.0 rho=0.3 nfe=50 3s compl=None | MAKKKLIGGVLGAPPRAAPAAAADLASERAVEFTMANYAY
+  nfe          T=200 temp=1.0 famT=1.0 rho=0.3 nfe=200 12s compl=None | MKYNFQFGGKGPIFLDSYKIKIIFGIYSNEQSDTLKPFEI
+WROTE results/B_nfe.json
+########## stage 4a: scheduled vs out-of-distribution two-phase ######
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MQIEWTYYDIALHDHAGTHSESARYEISSGVLRWSQAGGG
+  rho          T=100 temp=1.0 famT=1.0 rho=0.15 nfe=100 6s compl=None | MERIIAPSSSSHSLERALLQPMAAALLGTEQFALFTAAHP
+  rho          T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MAKKKKAICGILKNKGVSTSLAIVEAVYRIVTNMKTGKSL
+  rho          T=100 temp=1.0 famT=1.0 rho=0.5 nfe=100 6s compl=None | MEQLLAAVILVLIFLLGMIIFGNGLGAVATMGAFVTSVVA
+WROTE results/B_twophase.json
+########## stage 4b: clean-ranking ablation ##########
+=== flat (flat) params 37.98M best_val 4.6328
+  uncond       T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=None | MQTSPLLTQLMELLRCLPGVGPKSAQRMAFTLLQRDRSGG
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MAAALAAALAAALALAAAAAAAAAAAVAAVVGATAAAAAA
+WROTE results/B_cleanrank.json
+########## stage 5: family-pattern conditioning ##########
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MSSDSALVAGSEALRPRRRLEFLRGGVSAGVYNGIWALLG
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=1.0 | MSNGIAKSQGRRQRLANARRRAVANVLADSFTTFPHFGNR
+=== rand6 (hier) params 37.99M best_val 8.6741
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 6s compl=None | MGLLEQELLGPTLLLPKLLQLFFRLGPPALDSPSQDSAAS
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 6s compl=1.0 | MDQGIVEHQPELSLGVSGEENAARSPGLTDFSTDAHDATL
+WROTE results/B_cond.json
+########## score ##########
+--- scoring B_main ---
+3 cells, 144 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/4] flat|uncond T=100 plddt 43.09 CI(37.46, 49.5) (104s)
+  fold [2/4] dms6|uncond T=100 plddt 36.68 CI(35.06, 38.39) (104s)
+  fold [3/4] rand6|uncond T=100 plddt 35.41 CI(33.86, 37.05) (104s)
+  fold [4/4] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/4] flat|uncond T=100 13.693
+  pppl [2/4] dms6|uncond T=100 14.860
+  pppl [3/4] rand6|uncond T=100 16.369
+  pppl [4/4] natural T=None 3.667
+WROTE results/B_main_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|uncond          100   36.68   14.86  0.142  0.922  1.000   3.2
+flat|uncond          100   43.09   13.69  0.146  0.929  0.952   2.5
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+rand6|uncond         100   35.41   16.37  0.139  0.928  1.000   2.9
+--- scoring B_nfe ---
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 12s
+  fold [1/13] flat|uncond T=100 plddt 43.09 CI(37.46, 49.5) (104s)
+  fold [2/13] flat|nfe T=25 plddt 37.15 CI(33.62, 41.47) (104s)
+  fold [3/13] flat|nfe T=50 plddt 40.38 CI(36.36, 44.91) (104s)
+  fold [4/13] flat|nfe T=200 plddt 43.88 CI(38.52, 49.82) (104s)
+  fold [5/13] dms6|uncond T=100 plddt 36.68 CI(35.06, 38.39) (104s)
+  fold [6/13] dms6|nfe T=25 plddt 35.34 CI(34.1, 36.66) (104s)
+  fold [7/13] dms6|nfe T=50 plddt 35.79 CI(34.32, 37.23) (104s)
+  fold [8/13] dms6|nfe T=200 plddt 35.98 CI(34.32, 37.72) (104s)
+  fold [9/13] rand6|uncond T=100 plddt 35.41 CI(33.86, 37.05) (104s)
+  fold [10/13] rand6|nfe T=25 plddt 34.16 CI(32.73, 35.81) (104s)
+  fold [11/13] rand6|nfe T=50 plddt 33.85 CI(32.72, 34.94) (104s)
+  fold [12/13] rand6|nfe T=200 plddt 35.65 CI(33.7, 37.78) (104s)
+  fold [13/13] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/13] flat|uncond T=100 13.693
+  pppl [2/13] flat|nfe T=25 15.780
+  pppl [3/13] flat|nfe T=50 17.699
+  pppl [4/13] flat|nfe T=200 15.768
+  pppl [5/13] dms6|uncond T=100 14.860
+  pppl [6/13] dms6|nfe T=25 16.494
+  pppl [7/13] dms6|nfe T=50 15.878
+  pppl [8/13] dms6|nfe T=200 16.127
+  pppl [9/13] rand6|uncond T=100 16.369
+  pppl [10/13] rand6|nfe T=25 17.070
+  pppl [11/13] rand6|nfe T=50 16.423
+  pppl [12/13] rand6|nfe T=200 16.898
+  pppl [13/13] natural T=None 3.667
+WROTE results/B_nfe_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|nfe              25   35.34   16.49  0.143  0.924  1.000   2.9
+dms6|nfe              50   35.79   15.88  0.143  0.921  1.000   3.1
+dms6|nfe             200   35.98   16.13  0.146  0.924  1.000   3.0
+dms6|uncond          100   36.68   14.86  0.142  0.922  1.000   3.2
+flat|nfe              25   37.15   15.78  0.139  0.931  0.992   2.8
+flat|nfe              50   40.38   17.70  0.148  0.929  0.994   2.9
+flat|nfe             200   43.88   15.77  0.146  0.925  0.953   2.7
+flat|uncond          100   43.09   13.69  0.146  0.929  0.952   2.5
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+rand6|nfe             25   34.16   17.07  0.140  0.928  1.000   2.7
+rand6|nfe             50   33.85   16.42  0.147  0.928  1.000   3.0
+rand6|nfe            200   35.65   16.90  0.137  0.927  1.000   2.8
+rand6|uncond         100   35.41   16.37  0.139  0.928  1.000   2.9
+--- scoring B_qd_flat ---
+6 cells, 288 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 12s
+  fold [1/7] flat|uncond T=100 plddt 59.24 CI(53.3, 65.21) (104s)
+  fold [2/7] flat|uncond T=100 plddt 50.42 CI(44.5, 56.68) (104s)
+  fold [3/7] flat|uncond T=100 plddt 43.82 CI(39.02, 48.95) (104s)
+  fold [4/7] flat|uncond T=100 plddt 44.89 CI(39.57, 50.4) (104s)
+  fold [5/7] flat|uncond T=100 plddt 42.02 CI(37.33, 47.6) (104s)
+  fold [6/7] flat|uncond T=100 plddt 35.88 CI(33.02, 39.38) (104s)
+  fold [7/7] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/7] flat|uncond T=100 9.784
+  pppl [2/7] flat|uncond T=100 8.236
+  pppl [3/7] flat|uncond T=100 14.613
+  pppl [4/7] flat|uncond T=100 12.636
+  pppl [5/7] flat|uncond T=100 17.295
+  pppl [6/7] flat|uncond T=100 15.778
+  pppl [7/7] natural T=None 3.667
+WROTE results/B_qd_flat_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+flat|uncond          100   59.24    9.78  0.146  0.876  0.857   3.6
+flat|uncond          100   50.42    8.24  0.146  0.903  0.929   3.2
+flat|uncond          100   43.82   14.61  0.136  0.918  0.954   3.2
+flat|uncond          100   44.89   12.64  0.144  0.922  0.953   2.8
+flat|uncond          100   42.02   17.30  0.151  0.928  0.973   2.9
+flat|uncond          100   35.88   15.78  0.141  0.934  0.993   2.6
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+--- scoring B_qd_dms6 ---
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 17s
+  fold [1/13] dms6|uncond T=100 plddt 46.34 CI(44.95, 47.53) (104s)
+  fold [2/13] dms6|uncond T=100 plddt 44.93 CI(43.22, 46.66) (104s)
+  fold [3/13] dms6|uncond T=100 plddt 44.90 CI(43.25, 46.6) (104s)
+  fold [4/13] dms6|uncond T=100 plddt 44.10 CI(42.75, 45.53) (104s)
+  fold [5/13] dms6|uncond T=100 plddt 42.93 CI(41.11, 44.77) (104s)
+  fold [6/13] dms6|uncond T=100 plddt 40.29 CI(38.61, 41.89) (104s)
+  fold [7/13] dms6|uncond T=100 plddt 40.23 CI(38.33, 42.13) (104s)
+  fold [8/13] dms6|uncond T=100 plddt 40.15 CI(38.19, 42.13) (104s)
+  fold [9/13] dms6|uncond T=100 plddt 39.65 CI(37.78, 41.72) (104s)
+  fold [10/13] dms6|uncond T=100 plddt 38.57 CI(36.74, 40.41) (104s)
+  fold [11/13] dms6|uncond T=100 plddt 39.21 CI(37.24, 41.19) (104s)
+  fold [12/13] dms6|uncond T=100 plddt 35.68 CI(34.28, 37.08) (104s)
+  fold [13/13] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/13] dms6|uncond T=100 10.694
+  pppl [2/13] dms6|uncond T=100 13.349
+  pppl [3/13] dms6|uncond T=100 14.272
+  pppl [4/13] dms6|uncond T=100 14.024
+  pppl [5/13] dms6|uncond T=100 12.310
+  pppl [6/13] dms6|uncond T=100 14.229
+  pppl [7/13] dms6|uncond T=100 14.998
+  pppl [8/13] dms6|uncond T=100 15.947
+  pppl [9/13] dms6|uncond T=100 14.813
+  pppl [10/13] dms6|uncond T=100 13.706
+  pppl [11/13] dms6|uncond T=100 15.781
+  pppl [12/13] dms6|uncond T=100 16.116
+  pppl [13/13] natural T=None 3.667
+WROTE results/B_qd_dms6_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|uncond          100   46.34   10.69  0.141  0.864  0.998   4.5
+dms6|uncond          100   44.93   13.35  0.137  0.885  1.000   3.6
+dms6|uncond          100   44.90   14.27  0.141  0.898  1.000   3.6
+dms6|uncond          100   44.10   14.02  0.137  0.900  1.000   3.4
+dms6|uncond          100   42.93   12.31  0.137  0.892  1.000   4.2
+dms6|uncond          100   40.29   14.23  0.144  0.906  0.999   3.5
+dms6|uncond          100   40.23   15.00  0.143  0.913  1.000   3.3
+dms6|uncond          100   40.15   15.95  0.147  0.918  1.000   3.2
+dms6|uncond          100   39.65   14.81  0.140  0.915  1.000   3.7
+dms6|uncond          100   38.57   13.71  0.148  0.915  1.000   3.3
+dms6|uncond          100   39.21   15.78  0.145  0.920  1.000   3.3
+dms6|uncond          100   35.68   16.12  0.146  0.927  1.000   2.8
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+--- scoring B_twophase ---
+4 cells, 192 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/5] dms6|uncond T=100 plddt 37.19 CI(35.61, 38.78) (104s)
+  fold [2/5] dms6|rho T=100 plddt 36.08 CI(34.25, 37.96) (104s)
+  fold [3/5] dms6|rho T=100 plddt 36.66 CI(34.97, 38.31) (104s)
+  fold [4/5] dms6|rho T=100 plddt 35.76 CI(34.17, 37.56) (104s)
+  fold [5/5] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/5] dms6|uncond T=100 15.194
+  pppl [2/5] dms6|rho T=100 15.546
+  pppl [3/5] dms6|rho T=100 15.911
+  pppl [4/5] dms6|rho T=100 15.308
+  pppl [5/5] natural T=None 3.667
+WROTE results/B_twophase_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|rho             100   36.08   15.55  0.144  0.923  1.000   3.0
+dms6|rho             100   36.66   15.91  0.146  0.920  1.000   3.0
+dms6|rho             100   35.76   15.31  0.143  0.921  1.000   3.1
+dms6|uncond          100   37.19   15.19  0.137  0.921  1.000   2.9
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+--- scoring B_cleanrank ---
+2 cells, 96 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/3] flat|uncond T=100 plddt 84.62 CI(83.96, 85.37) (104s)
+  fold [2/3] dms6|uncond T=100 plddt 34.23 CI(33.22, 35.33) (104s)
+  fold [3/3] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/3] flat|uncond T=100 2.791
+  pppl [2/3] dms6|uncond T=100 1.402
+  pppl [3/3] natural T=None 3.667
+WROTE results/B_cleanrank_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|uncond          100   34.23    1.40  0.124  0.078  0.718 109.0
+flat|uncond          100   84.62    2.79  0.169  0.323  0.136   2.3
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+--- scoring B_cond ---
+4 cells, 192 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/5] dms6|uncond T=100 plddt 36.68 CI(35.06, 38.39) (104s)
+  fold [2/5] dms6|conditioned T=100 plddt 63.12 CI(57.72, 67.86) (104s)
+  fold [3/5] rand6|uncond T=100 plddt 35.41 CI(33.86, 37.05) (104s)
+  fold [4/5] rand6|conditioned T=100 plddt 36.54 CI(35.01, 38.24) (104s)
+  fold [5/5] natural T=None plddt 90.12 CI(87.39, 92.24) (104s)
+esm2 650M loaded
+  pppl [1/5] dms6|uncond T=100 14.860
+  pppl [2/5] dms6|conditioned T=100 13.592
+  pppl [3/5] rand6|uncond T=100 16.369
+  pppl [4/5] rand6|conditioned T=100 15.797
+  pppl [5/5] natural T=None 3.667
+WROTE results/B_cond_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|conditioned     100   63.12   13.59  0.153  0.929  1.000   2.7
+dms6|uncond          100   36.68   14.86  0.142  0.922  1.000   3.2
+natural             None   90.12    3.67  0.150  0.929  0.476   2.9
+rand6|conditioned    100   36.54   15.80  0.150  0.925  1.000   2.8
+rand6|uncond         100   35.41   16.37  0.139  0.928  1.000   2.9
+DONE

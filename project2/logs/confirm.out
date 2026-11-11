@@ -1,0 +1,26 @@
+### high-power confirmation, ABSORBING decoder, T=50 warmup=0.35 N=960 ###
+MEASURED cost: denoiser 0.0236 s, denoiser+attn 0.0240 s (x1.02), ESM-2 650 contact 0.1777 s (x7.52 vs denoiser)
+[1/3] T=50 confidence/none warm=0.00 confirm nfe=50+0 cost=50.0 steps=50 refresh=0.0 {'distribution': 0, 'reveal': 0, 'age': 0, 'init': 0} 90.2s | MKPSTFGQPEKREKTAGRAPLALRAMFGGHTLQMLE
+[2/3] T=50 contact/self warm=0.35 confirm nfe=50+0 cost=50.9 steps=50 refresh=6.0 {'distribution': 0, 'reveal': 300, 'age': 0, 'init': 60} 129.3s | MISAIIMAAGQSTRMQGIHKPLYPLGDKPMIRYCID
+[3/3] T=50 contact_shuffled/self warm=0.35 confirm nfe=50+0 cost=50.9 steps=50 refresh=6.0 {'distribution': 0, 'reveal': 300, 'age': 0, 'init': 60} 129.6s | MTKSMVPLVSIARRQRVTIGDGETSELVSVQLSTLG
+all arms done in 5.8 min -> results/D_confirm_w035T50.json
+3 cells, 2880 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 14s
+  fold [1/4] confidence T=50 plddt 55.96 CI(54.78, 57.07) (2068s)
+  fold [2/4] contact T=50 plddt 56.61 CI(55.44, 57.77) (2063s)
+  fold [3/4] contact_shuffled T=50 plddt 56.32 CI(55.17, 57.46) (2063s)
+  fold [4/4] natural T=None plddt 90.10 CI(87.37, 92.22) (103s)
+esm2 650M loaded
+  pppl [1/4] confidence T=50 12.311
+  pppl [2/4] contact T=50 11.421
+  pppl [3/4] contact_shuffled T=50 13.300
+  pppl [4/4] natural T=None 3.499
+WROTE results/D_confirm_w035T50_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+confidence            50   55.96   12.31  0.150  0.934  0.999   3.2
+contact               50   56.61   11.42  0.150  0.933  0.999   3.1
+contact_shuffled      50   56.32   13.30  0.151  0.934  0.999   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

@@ -1,0 +1,126 @@
+########## oracle: true contact maps of natural proteins ##########
+loaded airkingbd/dplm_150m on cuda
+oracle maps (48, 200, 200) density 0.0153
+[1/12] L=200 T=6 contact_oracle tau=0.5 nfe=6+0 2.1s coupled_pairs=0.005280671421334975 | MKKTKRIQVYADLSESPNKALLSSALRSFKFPELQKSWSK
+[2/12] L=200 T=6 contact_oracle_shuffled tau=0.5 nfe=6+0 1.7s coupled_pairs=0.0051688763972682255 | MSYSRVLHVELIRLWRNLNGVDRRLFTEAILDMLDSTEIT
+[3/12] L=200 T=6 anti_contact_oracle tau=0.5 nfe=6+0 1.3s coupled_pairs=0.04977470837911824 | MLRVLNNDLQFTRIVQGRGSFLVEVSSFGATVAEAVIDAG
+[4/12] L=200 T=12 contact_oracle tau=0.5 nfe=12+0 2.2s coupled_pairs=0.002157373402345305 | MEREEIVLVRKALEGIDESMHVYSSLLDSIYDQCFANKES
+[5/12] L=200 T=12 contact_oracle_shuffled tau=0.5 nfe=12+0 2.2s coupled_pairs=0.002170138928502436 | MPKTAEILHDVIFIYNDIPKKYSLSRDQYSILFIDKYFIS
+[6/12] L=200 T=12 anti_contact_oracle tau=0.5 nfe=12+0 1.9s coupled_pairs=0.08795785931660147 | MNKPAQVRQEFNYKKTVPNCPWKLVARMSYIYDNYHVWKA
+[7/12] L=200 T=25 contact_oracle tau=0.5 nfe=25+0 3.5s coupled_pairs=0.0005059524066746235 | MSFEQIQKLVHIMNPNADFDVLDKMLKGAFSDAFMPAGIT
+[8/12] L=200 T=25 contact_oracle_shuffled tau=0.5 nfe=25+0 3.5s coupled_pairs=0.001190476246799032 | MTSVKAQYRREEILRAAKVVFRKDGVKNATMDAVAEQAAV
+[9/12] L=200 T=25 anti_contact_oracle tau=0.5 nfe=25+0 3.2s coupled_pairs=0.1584523869988819 | MAKPSAKKGRRYAVESDDVLDESGKGMGGKGVLVGVAVIV
+[10/12] L=200 T=50 contact_oracle tau=0.5 nfe=50+0 6.1s coupled_pairs=0.000416666679084301 | MTPNSSSERSSLTLSSFHRAYTRSSISSFADITPTRTWTN
+[11/12] L=200 T=50 contact_oracle_shuffled tau=0.5 nfe=50+0 6.1s coupled_pairs=0.0002083333395421505 | MSMGSLLRAGAMTFLAGILIDVVSMQVFGPVAVKHCVKTY
+[12/12] L=200 T=50 anti_contact_oracle tau=0.5 nfe=50+0 5.7s coupled_pairs=0.2722222255418698 | MLLKVFLILIKNAGEYCGVLKDLESLNIVSESAKVSGVMD
+ALL DONE 40s -> results/A_oracle.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 31s
+  fold [1/13] contact_oracle T=6 plddt 41.29 CI(38.72, 44.08) (104s)
+  fold [2/13] contact_oracle_shuffled T=6 plddt 37.47 CI(35.28, 40.13) (104s)
+  fold [3/13] anti_contact_oracle T=6 plddt 38.33 CI(36.02, 40.79) (104s)
+  fold [4/13] contact_oracle T=12 plddt 45.44 CI(41.67, 49.58) (104s)
+  fold [5/13] contact_oracle_shuffled T=12 plddt 45.02 CI(40.62, 49.72) (104s)
+  fold [6/13] anti_contact_oracle T=12 plddt 42.14 CI(39.51, 44.86) (104s)
+  fold [7/13] contact_oracle T=25 plddt 51.27 CI(47.16, 55.8) (104s)
+  fold [8/13] contact_oracle_shuffled T=25 plddt 50.93 CI(46.61, 55.68) (104s)
+  fold [9/13] anti_contact_oracle T=25 plddt 47.04 CI(43.14, 51.2) (104s)
+  fold [10/13] contact_oracle T=50 plddt 55.54 CI(49.76, 61.51) (104s)
+  fold [11/13] contact_oracle_shuffled T=50 plddt 59.66 CI(54.37, 65.08) (104s)
+  fold [12/13] anti_contact_oracle T=50 plddt 52.89 CI(48.26, 57.97) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] contact_oracle T=6 15.912
+  pppl [2/13] contact_oracle_shuffled T=6 16.155
+  pppl [3/13] anti_contact_oracle T=6 16.493
+  pppl [4/13] contact_oracle T=12 15.908
+  pppl [5/13] contact_oracle_shuffled T=12 15.160
+  pppl [6/13] anti_contact_oracle T=12 16.061
+  pppl [7/13] contact_oracle T=25 12.392
+  pppl [8/13] contact_oracle_shuffled T=25 12.706
+  pppl [9/13] anti_contact_oracle T=25 14.370
+  pppl [10/13] contact_oracle T=50 12.519
+  pppl [11/13] contact_oracle_shuffled T=50 12.698
+  pppl [12/13] anti_contact_oracle T=50 13.670
+  pppl [13/13] natural T=None 3.499
+WROTE results/A_oracle_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+anti_contact_oracle     6   38.33   16.49  0.148  0.935  1.000   2.6
+anti_contact_oracle    12   42.14   16.06  0.143  0.934  1.000   3.0
+anti_contact_oracle    25   47.04   14.37  0.144  0.936  1.000   2.8
+anti_contact_oracle    50   52.89   13.67  0.153  0.934  1.000   3.1
+contact_oracle         6   41.29   15.91  0.151  0.935  1.000   2.8
+contact_oracle        12   45.44   15.91  0.145  0.936  1.000   2.7
+contact_oracle        25   51.27   12.39  0.158  0.931  0.999   3.0
+contact_oracle        50   55.54   12.52  0.153  0.933  1.000   2.9
+contact_oracle_shuffled     6   37.47   16.16  0.138  0.937  1.000   2.7
+contact_oracle_shuffled    12   45.02   15.16  0.148  0.935  1.000   3.0
+contact_oracle_shuffled    25   50.93   12.71  0.148  0.935  0.999   2.8
+contact_oracle_shuffled    50   59.66   12.70  0.152  0.934  0.998   4.0
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+########## self-oracle: the map of what the baseline itself makes ####
+T=12 pass1 done
+T=12 folded, contact density 0.0074, pass1 pLDDT 46.35
+T=12 contact_oracle done | MLEMGTPTRTSPHKRRLGSTGRLNSTDDDSPEEKSLKQHT
+T=12 contact_oracle_shuffled done | MVLKPVDGDFTASFKVGCPNTLYTYTIDSLNRYYIMSIGP
+T=12 anti_contact_oracle done | MLEYGTPTRTSPHKRRTGSTIRLSSTHDDSPVTKSLKSHT
+T=25 pass1 done
+T=25 folded, contact density 0.0080, pass1 pLDDT 55.78
+T=25 contact_oracle done | MDEVVGEMKLVCRLFRLFIAPGNERLARRLVKISGFRPGM
+T=25 contact_oracle_shuffled done | MESIFNIISRNTKKPGQIGGSATPSLGLVQAILTALFILP
+T=25 anti_contact_oracle done | MDIMAGFAFENSNLFSRSIQLLGRFLEILVFYILCDIFQR
+T=50 pass1 done
+T=50 folded, contact density 0.0074, pass1 pLDDT 55.31
+T=50 contact_oracle done | MRPRGLLHVFNVAYEDGRPACHLGHYRPDVMRRPGKTIRG
+T=50 contact_oracle_shuffled done | MSWRIKSSRLADERVDQIRDDGLTTPFELGIRGSFQLGLR
+T=50 anti_contact_oracle done | MEKRGLEIVQVDHEEDGAKICSLLEMVFPNRPRPPPTHLL
+WROTE results/A_self_oracle.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/13] confidence T=12 plddt 46.39 CI(42.63, 50.55) (104s)
+  fold [2/13] contact_oracle_self T=12 plddt 44.44 CI(41.51, 47.94) (104s)
+  fold [3/13] contact_oracle_shuffled_self T=12 plddt 45.54 CI(42.1, 49.69) (104s)
+  fold [4/13] anti_contact_oracle_self T=12 plddt 44.95 CI(41.7, 48.54) (104s)
+  fold [5/13] confidence T=25 plddt 55.79 CI(51.24, 60.66) (104s)
+  fold [6/13] contact_oracle_self T=25 plddt 55.81 CI(50.74, 61.16) (104s)
+  fold [7/13] contact_oracle_shuffled_self T=25 plddt 48.09 CI(43.78, 52.84) (104s)
+  fold [8/13] anti_contact_oracle_self T=25 plddt 53.50 CI(48.71, 58.1) (104s)
+  fold [9/13] confidence T=50 plddt 55.31 CI(50.23, 60.87) (104s)
+  fold [10/13] contact_oracle_self T=50 plddt 54.84 CI(49.72, 60.76) (104s)
+  fold [11/13] contact_oracle_shuffled_self T=50 plddt 57.10 CI(51.58, 62.49) (104s)
+  fold [12/13] anti_contact_oracle_self T=50 plddt 56.46 CI(51.53, 61.56) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] confidence T=12 13.682
+  pppl [2/13] contact_oracle_self T=12 14.278
+  pppl [3/13] contact_oracle_shuffled_self T=12 13.466
+  pppl [4/13] anti_contact_oracle_self T=12 15.623
+  pppl [5/13] confidence T=25 13.060
+  pppl [6/13] contact_oracle_self T=25 12.933
+  pppl [7/13] contact_oracle_shuffled_self T=25 14.042
+  pppl [8/13] anti_contact_oracle_self T=25 13.206
+  pppl [9/13] confidence T=50 12.969
+  pppl [10/13] contact_oracle_self T=50 13.592
+  pppl [11/13] contact_oracle_shuffled_self T=50 13.055
+  pppl [12/13] anti_contact_oracle_self T=50 11.869
+  pppl [13/13] natural T=None 3.499
+WROTE results/A_self_oracle_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+anti_contact_oracle_self    12   44.95   15.62  0.151  0.934  1.000   2.8
+anti_contact_oracle_self    25   53.50   13.21  0.151  0.933  1.000   2.9
+anti_contact_oracle_self    50   56.46   11.87  0.147  0.934  0.999   3.1
+confidence            12   46.39   13.68  0.147  0.934  1.000   3.1
+confidence            25   55.79   13.06  0.157  0.933  1.000   2.9
+confidence            50   55.31   12.97  0.153  0.933  0.999   2.9
+contact_oracle_self    12   44.44   14.28  0.146  0.934  1.000   3.0
+contact_oracle_self    25   55.81   12.93  0.159  0.933  1.000   3.0
+contact_oracle_self    50   54.84   13.59  0.152  0.933  0.999   2.9
+contact_oracle_shuffled_self    12   45.54   13.47  0.146  0.936  1.000   2.8
+contact_oracle_shuffled_self    25   48.09   14.04  0.151  0.936  1.000   3.0
+contact_oracle_shuffled_self    50   57.10   13.05  0.154  0.934  1.000   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+DONE

@@ -1,0 +1,249 @@
+########## reparam, self signal, warmup=0.0 ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/12] L=200 T=25 reparam_confidence tau=0.3 nfe=34+0 3.6s coupled_pairs=None | MCLLSLYAAHAAHSTSSHLPHRISLSLSLGQSELALQTSH
+[2/12] L=200 T=25 reparam_contact tau=0.3 nfe=30+0 21.0s coupled_pairs=0.062043443402653796 | MQKEPDVSNTEGPTFERDMESDNEEVIPRPQSQETSKRSK
+[3/12] L=200 T=25 reparam_contact_shuffled tau=0.3 nfe=29+0 20.7s coupled_pairs=0.06186858930528009 | MTDSTGIPSRATGSVKSSSAPGPRRANASTGLPEETKRRP
+[4/12] L=200 T=50 reparam_confidence tau=0.3 nfe=71+0 5.7s coupled_pairs=None | MTGLGSRAPEEGGLRGESDEALVARARRGDREAFEELVRR
+[5/12] L=200 T=50 reparam_contact tau=0.3 nfe=68+0 41.8s coupled_pairs=0.06049042788649482 | MLKQRQEEEEEEEEYEEFEEFEEFETGVESEQEEFDSDEV
+[6/12] L=200 T=50 reparam_contact_shuffled tau=0.3 nfe=65+0 41.4s coupled_pairs=0.061601299906033094 | MNEKNIDDNEEQIDEEEDENEDEVEEEVNEENERVQESQE
+[7/12] L=200 T=100 reparam_confidence tau=0.3 nfe=152+0 12.1s coupled_pairs=None | MITRRRSLLTIIVISTITNTTQRTMIMRTRTRITRTSRRM
+[8/12] L=200 T=100 reparam_contact tau=0.3 nfe=137+0 83.3s coupled_pairs=0.06087451723074385 | MDDITTTTPSVTEIPSDDDTTDIDSSDTESDETDEDSSDT
+[9/12] L=200 T=100 reparam_contact_shuffled tau=0.3 nfe=133+0 83.1s coupled_pairs=0.06275969680780691 | MNRLSIIASISTILKFTTLTIIRFITYPTYINHVFLLYKF
+[10/12] L=200 T=200 reparam_confidence tau=0.3 nfe=297+0 23.6s coupled_pairs=None | MREFTSHAGNDAERRRPGRPRSPEVDAAVLRATRRLVEAQ
+[11/12] L=200 T=200 reparam_contact tau=0.3 nfe=291+0 168.0s coupled_pairs=0.06090403521253999 | MPALFLIPSPFSLSLIYALLSKIIILFPLFNLFILIKIVV
+[12/12] L=200 T=200 reparam_contact_shuffled tau=0.3 nfe=278+0 166.4s coupled_pairs=0.062418079704164076 | MTIDERYERLRERLEETELADEQAERVLETLLEEAEQRRE
+ALL DONE 671s -> results/C_reparam_w0.0.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 38s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (103s)
+  fold [2/13] reparam_contact T=25 plddt 50.28 CI(47.12, 53.58) (103s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 52.05 CI(47.97, 56.27) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 53.01 CI(49.62, 56.32) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 55.08 CI(50.18, 60.04) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.45 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 57.42 CI(53.39, 61.56) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 66.90 CI(61.44, 72.37) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 54.07 CI(49.4, 58.9) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 70.17 CI(64.77, 75.66) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 12.175
+  pppl [3/13] reparam_contact_shuffled T=25 13.916
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 8.176
+  pppl [6/13] reparam_contact_shuffled T=50 9.561
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 7.751
+  pppl [9/13] reparam_contact_shuffled T=100 7.588
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 7.387
+  pppl [12/13] reparam_contact_shuffled T=200 5.914
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.0_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.45    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   50.28   12.17  0.144  0.931  0.999   5.0
+reparam_contact       50   53.01    8.18  0.148  0.936  0.990   7.8
+reparam_contact      100   57.42    7.75  0.151  0.935  0.989   9.9
+reparam_contact      200   54.07    7.39  0.132  0.939  0.989  13.4
+reparam_contact_shuffled    25   52.05   13.92  0.147  0.933  0.998   4.5
+reparam_contact_shuffled    50   55.08    9.56  0.145  0.938  0.995   6.8
+reparam_contact_shuffled   100   66.90    7.59  0.145  0.939  0.990   6.2
+reparam_contact_shuffled   200   70.17    5.91  0.160  0.935  0.993  10.1
+########## reparam, self signal, warmup=0.35 ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/12] L=200 T=25 reparam_confidence tau=0.3 nfe=34+0 3.1s coupled_pairs=None | MCLLSLYAAHAAHSTSSHLPHRISLSLSLGQSELALQTSH
+[2/12] L=200 T=25 reparam_contact tau=0.3 nfe=30+0 16.2s coupled_pairs=0.0855504097165905 | GETSAPRDPAPSQESDEDTDTNRAASRESARSTETSDGSV
+[3/12] L=200 T=25 reparam_contact_shuffled tau=0.3 nfe=30+0 16.1s coupled_pairs=0.08592834000877451 | MKNKDISQRNTLLSPIASKEVSDSVTLSPFPHAKQLDVEQ
+[4/12] L=200 T=50 reparam_confidence tau=0.3 nfe=71+0 5.7s coupled_pairs=None | MTGLGSRAPEEGGLRGESDEALVARARRGDREAFEELVRR
+[5/12] L=200 T=50 reparam_contact tau=0.3 nfe=67+0 31.9s coupled_pairs=0.0874405897509382 | MMEMNEDDDEDSDEIDDDESLNNDKNFTSKSKKKNTKSKK
+[6/12] L=200 T=50 reparam_contact_shuffled tau=0.3 nfe=66+0 31.8s coupled_pairs=0.08640776671271658 | MGHTDGEGRSREPTPPRRPAPRRPTPRRRPPRPPPPRTPR
+[7/12] L=200 T=100 reparam_confidence tau=0.3 nfe=152+0 12.1s coupled_pairs=None | MITRRRSLLTIIVISTITNTTQRTMIMRTRTRITRTSRRM
+[8/12] L=200 T=100 reparam_contact tau=0.3 nfe=142+0 64.2s coupled_pairs=0.08803121066438223 | MICIKILSIILLPLICISIILISPIIIPTLNANISLSKIN
+[9/12] L=200 T=100 reparam_contact_shuffled tau=0.3 nfe=135+0 63.8s coupled_pairs=0.0889701650447372 | MTDAPPPPPGLRERKKRRTRDALTAAALELFTEQGFARTS
+[10/12] L=200 T=200 reparam_confidence tau=0.3 nfe=297+0 23.7s coupled_pairs=None | MREFTSHAGNDAERRRPGRPRSPEVDAAVLRATRRLVEAQ
+[11/12] L=200 T=200 reparam_contact tau=0.3 nfe=287+0 128.0s coupled_pairs=0.08781358557895451 | PPSNSPVASGGERNVEWWLCKEGLQQESEDEIERERRREL
+[12/12] L=200 T=200 reparam_contact_shuffled tau=0.3 nfe=272+0 126.5s coupled_pairs=0.09109523455460103 | QQTHQRTHTGEKPYKCNQCEKSFNQSSNLQTHQRTHTGEK
+ALL DONE 523s -> results/C_reparam_w0.35.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 15s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (104s)
+  fold [2/13] reparam_contact T=25 plddt 53.33 CI(48.87, 58.16) (104s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 58.94 CI(54.49, 63.74) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 57.72 CI(53.06, 62.86) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 63.99 CI(58.93, 69.54) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.45 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 60.69 CI(54.85, 66.85) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 66.82 CI(60.8, 72.81) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 66.71 CI(60.77, 72.93) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 76.06 CI(69.8, 81.88) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 12.086
+  pppl [3/13] reparam_contact_shuffled T=25 10.412
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 8.310
+  pppl [6/13] reparam_contact_shuffled T=50 8.288
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 8.393
+  pppl [9/13] reparam_contact_shuffled T=100 8.104
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 5.018
+  pppl [12/13] reparam_contact_shuffled T=200 5.321
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.35_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.45    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   53.33   12.09  0.144  0.932  0.997   5.0
+reparam_contact       50   57.72    8.31  0.143  0.934  0.987   6.9
+reparam_contact      100   60.69    8.39  0.147  0.939  0.991   7.3
+reparam_contact      200   66.71    5.02  0.149  0.939  0.984  10.5
+reparam_contact_shuffled    25   58.94   10.41  0.160  0.933  0.999   4.0
+reparam_contact_shuffled    50   63.99    8.29  0.152  0.934  0.995   6.9
+reparam_contact_shuffled   100   66.82    8.10  0.156  0.936  0.990   7.7
+reparam_contact_shuffled   200   76.06    5.32  0.156  0.937  0.986   7.8
+########## reparam, self signal, warmup=0.5 ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/12] L=200 T=25 reparam_confidence tau=0.3 nfe=34+0 3.2s coupled_pairs=None | MCLLSLYAAHAAHSTSSHLPHRISLSLSLGQSELALQTSH
+[2/12] L=200 T=25 reparam_contact tau=0.3 nfe=32+0 13.1s coupled_pairs=0.09286929982809876 | EQNEANNVNTEHHERSRDLSNTNLETGDESKSQESHKERI
+[3/12] L=200 T=25 reparam_contact_shuffled tau=0.3 nfe=31+0 13.1s coupled_pairs=0.09341930287579696 | MKKFILLFFIKPILNNNNNNKKKKKVLNKHNKYNKLLTKQ
+[4/12] L=200 T=50 reparam_confidence tau=0.3 nfe=71+0 5.8s coupled_pairs=None | MTGLGSRAPEEGGLRGESDEALVARARRGDREAFEELVRR
+[5/12] L=200 T=50 reparam_contact tau=0.3 nfe=68+0 26.4s coupled_pairs=0.09367635621068378 | MYQSHTLHSQHNSQLLQTQVLGSALTYAKHTQAQLHQQCQ
+[6/12] L=200 T=50 reparam_contact_shuffled tau=0.3 nfe=70+0 26.6s coupled_pairs=0.0928617167011954 | MKTTSQLILALTGALSLTACGGQDAKTDSSNEKTDSSQTE
+[7/12] L=200 T=100 reparam_confidence tau=0.3 nfe=152+0 12.2s coupled_pairs=None | MITRRRSLLTIIVISTITNTTQRTMIMRTRTRITRTSRRM
+[8/12] L=200 T=100 reparam_contact tau=0.3 nfe=144+0 52.3s coupled_pairs=0.09493684762133152 | MMAIVCVCCNLARYEKLFFAGMIAGIGIIVIMNQAQGMIL
+[9/12] L=200 T=100 reparam_contact_shuffled tau=0.3 nfe=137+0 51.9s coupled_pairs=0.09541742624775841 | MGEERRRRRPQEERREETRARLLEAAARLFREKGFRRTSV
+[10/12] L=200 T=200 reparam_confidence tau=0.3 nfe=297+0 23.7s coupled_pairs=None | MREFTSHAGNDAERRRPGRPRSPEVDAAVLRATRRLVEAQ
+[11/12] L=200 T=200 reparam_contact tau=0.3 nfe=304+0 105.3s coupled_pairs=0.09365544368654317 | MVRLFFRVEVEGREDLPREGACILAANHISFLDPVVVGMA
+[12/12] L=200 T=200 reparam_contact_shuffled tau=0.3 nfe=261+0 101.7s coupled_pairs=0.09660076282429739 | MNTHRRIHTGEKPYECDTCSNRFAQSSSVNTHRRIHTGEK
+ALL DONE 435s -> results/C_reparam_w0.5.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 16s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (104s)
+  fold [2/13] reparam_contact T=25 plddt 52.65 CI(47.64, 57.87) (104s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 57.46 CI(53.34, 61.8) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 61.55 CI(55.91, 67.32) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 56.87 CI(50.89, 63.31) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.45 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 67.18 CI(60.81, 73.47) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 72.09 CI(65.84, 77.93) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 72.42 CI(65.91, 78.12) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 82.22 CI(77.59, 86.52) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 12.213
+  pppl [3/13] reparam_contact_shuffled T=25 10.508
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 9.169
+  pppl [6/13] reparam_contact_shuffled T=50 8.932
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 5.488
+  pppl [9/13] reparam_contact_shuffled T=100 7.094
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 5.152
+  pppl [12/13] reparam_contact_shuffled T=200 3.993
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.5_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.45    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   52.65   12.21  0.148  0.935  0.998   4.2
+reparam_contact       50   61.55    9.17  0.146  0.939  0.990   6.0
+reparam_contact      100   67.18    5.49  0.144  0.940  0.993   6.8
+reparam_contact      200   72.42    5.15  0.154  0.941  0.981   9.1
+reparam_contact_shuffled    25   57.46   10.51  0.156  0.932  0.999   3.9
+reparam_contact_shuffled    50   56.87    8.93  0.150  0.938  0.997   4.7
+reparam_contact_shuffled   100   72.09    7.09  0.148  0.936  0.996   5.6
+reparam_contact_shuffled   200   82.22    3.99  0.166  0.936  0.995   5.4
+########## reparam, self signal, warmup=0.75 ##########
+loaded airkingbd/dplm_150m on cuda
+contact provider: self
+[1/12] L=200 T=25 reparam_confidence tau=0.3 nfe=34+0 3.1s coupled_pairs=None | MCLLSLYAAHAAHSTSSHLPHRISLSLSLGQSELALQTSH
+[2/12] L=200 T=25 reparam_contact tau=0.3 nfe=34+0 8.5s coupled_pairs=0.09811680939137227 | METFPTGDRVDKLDIPPPPPPPPTPPPTQDSPTQSPKQKK
+[3/12] L=200 T=25 reparam_contact_shuffled tau=0.3 nfe=33+0 8.3s coupled_pairs=0.098502245554257 | MKKLLTISPFSTFPSLLPAEPTLEEIEKQLQQTKLKLQQL
+[4/12] L=200 T=50 reparam_confidence tau=0.3 nfe=71+0 5.7s coupled_pairs=None | MTGLGSRAPEEGGLRGESDEALVARARRGDREAFEELVRR
+[5/12] L=200 T=50 reparam_contact tau=0.3 nfe=73+0 16.2s coupled_pairs=0.09885597156169705 | MSRPEPREVPAEVPARPPGPANAAPTAAEAPAGGATADPP
+[6/12] L=200 T=50 reparam_contact_shuffled tau=0.3 nfe=75+0 16.4s coupled_pairs=0.09814236218778369 | MMDSYRTAKLAIGNVLSKSDPYYYYDPYYYDPYYYDPYYY
+[7/12] L=200 T=100 reparam_confidence tau=0.3 nfe=152+0 12.1s coupled_pairs=None | MITRRRSLLTIIVISTITNTTQRTMIMRTRTRITRTSRRM
+[8/12] L=200 T=100 reparam_contact tau=0.3 nfe=153+0 32.8s coupled_pairs=0.0988784159342639 | MMESTRMSMMITMMLMMLLLLAAHYYYFKSTTIPVDYPTT
+[9/12] L=200 T=100 reparam_contact_shuffled tau=0.3 nfe=149+0 32.6s coupled_pairs=0.09884850789482395 | MTTRYGRRSRRALRRGRRRRRLIEAAARVFARRGLRRATV
+[10/12] L=200 T=200 reparam_confidence tau=0.3 nfe=297+0 23.6s coupled_pairs=None | MREFTSHAGNDAERRRPGRPRSPEVDAAVLRATRRLVEAQ
+[11/12] L=200 T=200 reparam_contact tau=0.3 nfe=300+0 64.4s coupled_pairs=0.09884459868049116 | MVKVFFRFKIEGKENVPQEGAVIIASNHVSNFDPILIGTT
+[12/12] L=200 T=200 reparam_contact_shuffled tau=0.3 nfe=255+0 61.2s coupled_pairs=0.09940854319693898 | LKGHLRIHTGEKPYKCDTCDKSFGQKSNLKGHLRIHTGEK
+ALL DONE 285s -> results/C_reparam_w0.75.json
+12 cells, 576 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 16s
+  fold [1/13] reparam_confidence T=25 plddt 62.03 CI(56.93, 67.37) (103s)
+  fold [2/13] reparam_contact T=25 plddt 55.38 CI(49.74, 61.32) (104s)
+  fold [3/13] reparam_contact_shuffled T=25 plddt 59.47 CI(54.66, 64.26) (104s)
+  fold [4/13] reparam_confidence T=50 plddt 70.74 CI(65.86, 75.61) (104s)
+  fold [5/13] reparam_contact T=50 plddt 68.01 CI(62.09, 73.77) (104s)
+  fold [6/13] reparam_contact_shuffled T=50 plddt 65.54 CI(60.02, 71.08) (104s)
+  fold [7/13] reparam_confidence T=100 plddt 75.45 CI(69.73, 80.61) (104s)
+  fold [8/13] reparam_contact T=100 plddt 73.48 CI(67.63, 79.18) (104s)
+  fold [9/13] reparam_contact_shuffled T=100 plddt 72.57 CI(66.47, 78.51) (104s)
+  fold [10/13] reparam_confidence T=200 plddt 80.75 CI(76.38, 84.8) (104s)
+  fold [11/13] reparam_contact T=200 plddt 80.27 CI(74.56, 85.52) (104s)
+  fold [12/13] reparam_contact_shuffled T=200 plddt 86.35 CI(82.7, 89.54) (104s)
+  fold [13/13] natural T=None plddt 90.10 CI(87.37, 92.22) (104s)
+esm2 650M loaded
+  pppl [1/13] reparam_confidence T=25 9.707
+  pppl [2/13] reparam_contact T=25 10.484
+  pppl [3/13] reparam_contact_shuffled T=25 9.347
+  pppl [4/13] reparam_confidence T=50 6.356
+  pppl [5/13] reparam_contact T=50 8.163
+  pppl [6/13] reparam_contact_shuffled T=50 6.676
+  pppl [7/13] reparam_confidence T=100 3.933
+  pppl [8/13] reparam_contact T=100 5.802
+  pppl [9/13] reparam_contact_shuffled T=100 5.786
+  pppl [10/13] reparam_confidence T=200 3.933
+  pppl [11/13] reparam_contact T=200 5.936
+  pppl [12/13] reparam_contact_shuffled T=200 3.940
+  pppl [13/13] natural T=None 3.499
+WROTE results/C_reparam_w0.75_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+reparam_confidence    25   62.03    9.71  0.150  0.935  0.995   6.0
+reparam_confidence    50   70.74    6.36  0.153  0.936  0.988   6.8
+reparam_confidence   100   75.45    3.93  0.152  0.940  0.986   8.9
+reparam_confidence   200   80.75    3.93  0.155  0.936  0.992   7.5
+reparam_contact       25   55.38   10.48  0.141  0.936  0.998   4.2
+reparam_contact       50   68.01    8.16  0.152  0.935  0.990   5.5
+reparam_contact      100   73.48    5.80  0.169  0.938  0.993   6.1
+reparam_contact      200   80.27    5.94  0.157  0.936  0.990   7.6
+reparam_contact_shuffled    25   59.47    9.35  0.151  0.934  0.998   3.9
+reparam_contact_shuffled    50   65.54    6.68  0.165  0.936  0.995   6.1
+reparam_contact_shuffled   100   72.57    5.79  0.164  0.937  0.990   6.5
+reparam_contact_shuffled   200   86.35    3.94  0.168  0.938  0.988   5.2
+DONE

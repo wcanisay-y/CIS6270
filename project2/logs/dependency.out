@@ -1,0 +1,60 @@
+### smoke ###
+### Part A: true contact map vs the model's own dependency ###
+  reveal 0.50  n=8  AUROC(dep | true contact)=0.620  dep in-contact 0.0112 vs non-contact 0.0210  AUROC(seqdist)=0.719
+### Part B: factorization error by selection rule ###
+  reveal 0.50 group 8
+     confidence     TV 0.0123 (+0.0% vs confidence)  flip 0.000  conf 0.983
+     pair_dep       TV 0.0123 (+0.0% vs confidence)  flip 0.000  conf 0.983
+     dpp_dep        TV 0.0123 (+0.0% vs confidence)  flip 0.000  conf 0.983
+     pair_shuffled  TV 0.0136 (+10.3% vs confidence)  flip 0.000  conf 0.981
+     dpp_contact    TV 0.0265 (+114.5% vs confidence)  flip 0.000  conf 0.951
+     pair_contact   TV 0.0452 (+266.5% vs confidence)  flip 0.000  conf 0.946
+done in 0.1 min -> results/E_dep_smoke.json
+### full ###
+### Part A: true contact map vs the model's own dependency ###
+  reveal 0.25  n=48  AUROC(dep | true contact)=0.549  dep in-contact 0.0686 vs non-contact 0.0558  AUROC(seqdist)=0.690
+### Part B: factorization error by selection rule ###
+  reveal 0.25 group 8
+     dpp_dep        TV 0.1963 (-60.7% vs confidence)  flip 0.406  conf 0.347
+     pair_dep       TV 0.3589 (-28.1% vs confidence)  flip 0.208  conf 0.381
+     dpp_contact    TV 0.4718 (-5.5% vs confidence)  flip 0.062  conf 0.399
+     confidence     TV 0.4992 (+0.0% vs confidence)  flip 0.062  conf 0.403
+     pair_contact   TV 0.5240 (+5.0% vs confidence)  flip 0.042  conf 0.379
+     pair_shuffled  TV 0.5263 (+5.4% vs confidence)  flip 0.044  conf 0.385
+  reveal 0.25 group 16
+     dpp_dep        TV 0.3884 (-40.8% vs confidence)  flip 0.276  conf 0.254
+     pair_dep       TV 0.5043 (-23.2% vs confidence)  flip 0.193  conf 0.256
+     pair_contact   TV 0.5994 (-8.7% vs confidence)  flip 0.057  conf 0.267
+     pair_shuffled  TV 0.5998 (-8.6% vs confidence)  flip 0.087  conf 0.277
+     dpp_contact    TV 0.6389 (-2.6% vs confidence)  flip 0.026  conf 0.295
+     confidence     TV 0.6562 (+0.0% vs confidence)  flip 0.036  conf 0.296
+  reveal 0.50 group 8
+     confidence     TV 0.0086 (+0.0% vs confidence)  flip 0.000  conf 0.986
+     pair_dep       TV 0.0086 (+0.0% vs confidence)  flip 0.000  conf 0.986
+     dpp_dep        TV 0.0102 (+18.4% vs confidence)  flip 0.000  conf 0.983
+     pair_shuffled  TV 0.0103 (+19.8% vs confidence)  flip 0.000  conf 0.984
+     pair_contact   TV 0.0176 (+105.2% vs confidence)  flip 0.000  conf 0.976
+     dpp_contact    TV 0.0494 (+475.1% vs confidence)  flip 0.031  conf 0.959
+  reveal 0.50 group 16
+     confidence     TV 0.0252 (+0.0% vs confidence)  flip 0.000  conf 0.970
+     pair_dep       TV 0.0252 (+0.0% vs confidence)  flip 0.000  conf 0.970
+     dpp_dep        TV 0.0257 (+2.0% vs confidence)  flip 0.000  conf 0.968
+     pair_shuffled  TV 0.0427 (+69.3% vs confidence)  flip 0.000  conf 0.952
+     dpp_contact    TV 0.0437 (+73.1% vs confidence)  flip 0.021  conf 0.958
+     pair_contact   TV 0.0962 (+281.3% vs confidence)  flip 0.010  conf 0.902
+  reveal 0.75 group 8
+     dpp_dep        TV 0.0086 (-10.9% vs confidence)  flip 0.000  conf 0.983
+     confidence     TV 0.0096 (+0.0% vs confidence)  flip 0.000  conf 0.984
+     pair_dep       TV 0.0096 (+0.0% vs confidence)  flip 0.000  conf 0.984
+     pair_shuffled  TV 0.0099 (+2.8% vs confidence)  flip 0.000  conf 0.984
+     pair_contact   TV 0.0225 (+132.9% vs confidence)  flip 0.010  conf 0.978
+     dpp_contact    TV 0.1000 (+937.5% vs confidence)  flip 0.094  conf 0.978
+  reveal 0.75 group 16
+     pair_dep       TV 0.0288 (-60.3% vs confidence)  flip 0.000  conf 0.965
+     dpp_dep        TV 0.0288 (-60.3% vs confidence)  flip 0.000  conf 0.965
+     pair_shuffled  TV 0.0695 (-4.3% vs confidence)  flip 0.050  conf 0.963
+     confidence     TV 0.0726 (+0.0% vs confidence)  flip 0.068  conf 0.966
+     dpp_contact    TV 0.0768 (+5.9% vs confidence)  flip 0.052  conf 0.962
+     pair_contact   TV 0.1236 (+70.3% vs confidence)  flip 0.047  conf 0.914
+done in 8.7 min -> results/E_dependency.json
+DONE
