@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -J p2_split
 #SBATCH -p defq
-#SBATCH -c 16
+#SBATCH -c 4
 #SBATCH --mem=32G
-#SBATCH -t 8:00:00
+#SBATCH -t 12:00:00
 #SBATCH -o /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/logs/clustered_split.out
 #SBATCH -e /mnt/isilon/tan_lab/pany3/CIS6270-both-modalities/project2/logs/clustered_split.err
 set -euo pipefail
@@ -49,7 +49,7 @@ tail -3 $D/makeblastdb.log
 echo "########## round 1: held-out sources vs training ##########"
 time blastp -query $D/h.fasta -db $D/traindb \
     -outfmt "6 qseqid sseqid pident evalue bitscore qcovhsp scovhsp" \
-    -evalue 1 -max_target_seqs 5000 -num_threads 16 -seg yes \
+    -evalue 1 -max_target_seqs 5000 -num_threads 4 -seg yes \
     -out $D/h_vs_train.tsv
 wc -l $D/h_vs_train.tsv
 
@@ -58,16 +58,16 @@ $PY -m tools.build_clustered_split expand --dir $D --evalue 1e-3
 NP=$(grep -c "^>" $D/purge.fasta || true)
 echo "purge.fasta has $NP sequences"
 
-if [ "$NP" -gt 0 ] && [ "$NP" -le 20000 ]; then
+if [ "$NP" -gt 0 ] && [ "$NP" -le 8000 ]; then
   echo "########## round 2: those relatives vs training ##########"
   time blastp -query $D/purge.fasta -db $D/traindb \
       -outfmt "6 qseqid sseqid pident evalue bitscore qcovhsp scovhsp" \
-      -evalue 1 -max_target_seqs 5000 -num_threads 16 -seg yes \
+      -evalue 1 -max_target_seqs 5000 -num_threads 4 -seg yes \
       -out $D/purge_vs_train.tsv
   wc -l $D/purge_vs_train.tsv
   DEPTH=2
 else
-  echo "skipping round 2: $NP sequences is outside the 1..20000 budget"
+  echo "skipping round 2: $NP sequences is outside the 1..8000 budget"
   DEPTH=1
 fi
 

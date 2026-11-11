@@ -168,7 +168,23 @@ def loss_flat(model, aa, pad_mask=None, eps=1e-3, gen=None):
 
 
 def loss_hier(model, aa, fam_lut, n_fam, pad_mask=None, gamma=2.0,
-              soft_xi=1.0, eps=1e-3, bind=True, gen=None):
+              soft_xi=1.0, eps=1e-3, bind=True, gen=None,
+              fam_weight_clip=None):
+    """Two-level loss.
+
+    `fam_weight_clip` caps the 1/p_fam weight. Why it exists: with gamma=2 the
+    family channel is masked with probability p_fam = t**2, and the matching
+    weight is 1/t**2, which reaches 1e6 at the eps=1e-3 end of the t range.
+    The estimator is unbiased -- the expected weighted contribution is L at
+    every t -- but its variance grows as 1/t**2, because at small t only a
+    handful of positions are family-masked and each is multiplied by a huge
+    weight. Measured consequence on ckpt/dms6.pt: fam_head's argmax accuracy
+    is 0.3634 against a majority-class floor of 0.3633 at every reveal level,
+    and its cross-entropy is 1.5716 nats against a marginal entropy of 1.662,
+    so the head learned the marginal and 5 % more. Clipping the weight trades
+    a little bias for bounded variance; `None` keeps the original behaviour so
+    every published number reproduces.
+    """
     B = aa.shape[0]
     t = torch.rand(B, device=aa.device, generator=gen) * (1 - eps) + eps
     ids, fam, idm, fm = corrupt_hier(aa, fam_lut, n_fam, t, gamma, soft_xi,
@@ -185,8 +201,11 @@ def loss_hier(model, aa, fam_lut, n_fam, pad_mask=None, gamma=2.0,
     p_fam = p_id ** gamma
     n_id = idm.sum().clamp_min(1)
     n_fam_m = fm.sum().clamp_min(1)
+    w_fam = 1.0 / p_fam
+    if fam_weight_clip is not None:
+        w_fam = w_fam.clamp(max=float(fam_weight_clip))
     l_id = (ce_id * idm / p_id).sum() / n_id
-    l_fam = (ce_fam * fm / p_fam).sum() / n_fam_m
+    l_fam = (ce_fam * fm * w_fam).sum() / n_fam_m
     return l_id + l_fam, {"ce_id": float((ce_id * idm).sum().item()
                                          / n_id.item()),
                           "ce_fam": float((ce_fam * fm).sum().item()

@@ -178,6 +178,10 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", required=True)
     ap.add_argument("--diag-out", default=None)
+    ap.add_argument("--diag-only", action="store_true",
+                    help="skip generation and report only fam_head accuracy "
+                         "and pattern realism; used to compare training "
+                         "variants of the family channel cheaply")
     a = ap.parse_args()
 
     dev = "cuda" if torch.cuda.is_available() else "cpu"
@@ -201,7 +205,7 @@ def main():
     rng = np.random.default_rng(a.seed)
 
     # ---- 1. the degradation curve
-    for fi, f in enumerate(a.fracs):
+    for fi, f in enumerate([] if a.diag_only else a.fracs):
         pat = corrupt_pattern(real, f, n_fam, rng)
         err = float((pat != real).mean())
         seqs, t0 = [], time.time()
@@ -228,23 +232,23 @@ def main():
         selfpat.append(generate_family_pattern(
             m, B, a.length, a.steps, device=dev, seed=777 + b0))
     selfpat = np.concatenate(selfpat)[:len(nat)]
-    seqs, t0 = [], time.time()
-    for b0 in range(0, len(nat), a.batch):
-        B = min(a.batch, len(nat) - b0)
-        seqs.extend(sample_hier_conditioned(
-            m, selfpat[b0:b0 + B], a.steps, t_id=1.0, device=dev,
-            seed=5000 + b0))
-    out["cells"].append(dict(
-        arm=ck["args"]["arm"], tag=tag, selector="%s|selfpattern" % tag,
-        L=a.length, T=a.steps, nfe=a.steps, temp=1.0, kind="selfpattern",
-        seqs=seqs, family_compliance=family_compliance(seqs, selfpat, lut),
-        seconds=time.time() - t0, best_val=ck["best_val"],
-        params=ck["params"]))
-    print("  selfpattern  %.0fs  %s" % (time.time() - t0, seqs[0][:40]),
-          flush=True)
-
-    json.dump(out, open(a.out, "w"))
-    print("WROTE %s" % a.out, flush=True)
+    if not a.diag_only:
+        seqs, t0 = [], time.time()
+        for b0 in range(0, len(nat), a.batch):
+            B = min(a.batch, len(nat) - b0)
+            seqs.extend(sample_hier_conditioned(
+                m, selfpat[b0:b0 + B], a.steps, t_id=1.0, device=dev,
+                seed=5000 + b0))
+        out["cells"].append(dict(
+            arm=ck["args"]["arm"], tag=tag, selector="%s|selfpattern" % tag,
+            L=a.length, T=a.steps, nfe=a.steps, temp=1.0, kind="selfpattern",
+            seqs=seqs, family_compliance=family_compliance(seqs, selfpat, lut),
+            seconds=time.time() - t0, best_val=ck["best_val"],
+            params=ck["params"]))
+        print("  selfpattern  %.0fs  %s" % (time.time() - t0, seqs[0][:40]),
+              flush=True)
+        json.dump(out, open(a.out, "w"))
+        print("WROTE %s" % a.out, flush=True)
 
     # ---- 3. diagnostics: prediction accuracy and pattern realism
     diag = dict(

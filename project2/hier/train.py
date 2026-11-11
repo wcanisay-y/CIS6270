@@ -57,6 +57,12 @@ def main():
     ap.add_argument("--partition-seed", type=int, default=0)
     ap.add_argument("--soft-xi", type=float, default=1.0)
     ap.add_argument("--gamma", type=float, default=2.0)
+    ap.add_argument("--fam-weight-clip", type=float, default=None,
+                    help="cap the 1/p_fam weight in the family loss. The "
+                         "unclipped weight reaches 1e6 at eps=1e-3, and the "
+                         "measured consequence is a family head stuck at the "
+                         "majority-class floor. None reproduces the original "
+                         "runs.")
     ap.add_argument("--no-bind", action="store_true")
     ap.add_argument("--d", type=int, default=512)
     ap.add_argument("--layers", type=int, default=12)
@@ -130,7 +136,8 @@ def main():
         if args.arm == "hier":
             return loss_hier(model, x, fam_lut, n_fam, pad,
                              gamma=args.gamma, soft_xi=args.soft_xi,
-                             bind=not args.no_bind, gen=gen)
+                             bind=not args.no_bind, gen=gen,
+                             fam_weight_clip=args.fam_weight_clip)
         bos = torch.full((x.shape[0], 1), N_AA, dtype=torch.long, device=dev)
         inp = torch.cat([bos, x[:, :-1]], 1)
         logits = model(inp)
