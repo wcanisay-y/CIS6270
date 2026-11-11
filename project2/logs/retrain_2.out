@@ -1,0 +1,127 @@
+purged corpus: 145585 lines
+=== clustered retrain 2 : rand6 : --arm hier --partition dms6 --random-partition ===
+NVIDIA A100 80GB PCIe
+[rand6_clustered] train 145586 val 2000 tokens/epoch 21702380
+[rand6_clustered] partition dms6 RANDOMISED k=6 sizes=[6, 4, 4, 2, 2, 2]
+[rand6_clustered] params 37.99M
+[rand6_clustered] step 200/20000 loss 9.9333 {'ce_id': 2.223968888011516, 'ce_fam': 1.689335000110688} lr 1.20e-04 44s
+[rand6_clustered] step 400/20000 loss 8.4344 {'ce_id': 2.2774971774193546, 'ce_fam': 1.6757071053946053} lr 2.40e-04 89s
+[rand6_clustered] step 600/20000 loss 9.3188 {'ce_id': 2.2631815879316086, 'ce_fam': 1.6791607125876933} lr 3.00e-04 133s
+[rand6_clustered] step 800/20000 loss 8.6922 {'ce_id': 2.2657802861549006, 'ce_fam': 1.6836527764042721} lr 3.00e-04 178s
+[rand6_clustered] step 1000/20000 loss 9.4253 {'ce_id': 2.2828526260829207, 'ce_fam': 1.686592630999746} lr 3.00e-04 223s
+[rand6_clustered] EVAL step 1000 val 9.1451 {'ce_id': 2.265633160224355, 'ce_fam': 1.6767955221494177}
+[rand6_clustered] step 1200/20000 loss 8.9666 {'ce_id': 2.280790741623536, 'ce_fam': 1.6751516978048584} lr 2.99e-04 268s
+[rand6_clustered] step 1400/20000 loss 8.6104 {'ce_id': 2.267018707052682, 'ce_fam': 1.6713053320546034} lr 2.98e-04 312s
+[rand6_clustered] step 1600/20000 loss 9.1903 {'ce_id': 2.28790477807971, 'ce_fam': 1.6809307136157952} lr 2.98e-04 357s
+[rand6_clustered] step 1800/20000 loss 9.3912 {'ce_id': 2.2344960173180097, 'ce_fam': 1.677728504518684} lr 2.97e-04 401s
+[rand6_clustered] step 2000/20000 loss 8.7340 {'ce_id': 2.2699149534485423, 'ce_fam': 1.6734177139293938} lr 2.96e-04 446s
+[rand6_clustered] EVAL step 2000 val 9.1104 {'ce_id': 2.2555068285636133, 'ce_fam': 1.672570185082429}
+[rand6_clustered] step 2200/20000 loss 8.4262 {'ce_id': 2.300441454991087, 'ce_fam': 1.6728144134314746} lr 2.94e-04 491s
+[rand6_clustered] step 2400/20000 loss 8.9084 {'ce_id': 2.266260976912654, 'ce_fam': 1.6733919692985924} lr 2.93e-04 536s
+[rand6_clustered] step 2600/20000 loss 8.5091 {'ce_id': 2.31520487591352, 'ce_fam': 1.6738064761799898} lr 2.91e-04 580s
+[rand6_clustered] step 2800/20000 loss 8.5101 {'ce_id': 2.300467597889652, 'ce_fam': 1.6755226011295348} lr 2.90e-04 625s
+[rand6_clustered] step 3000/20000 loss 9.2208 {'ce_id': 2.23883249109247, 'ce_fam': 1.6695530726256984} lr 2.88e-04 669s
+[rand6_clustered] EVAL step 3000 val 9.0872 {'ce_id': 2.251672873159973, 'ce_fam': 1.6716670158505846}
+[rand6_clustered] step 3200/20000 loss 9.2658 {'ce_id': 2.2249613401169235, 'ce_fam': 1.6691028660429421} lr 2.86e-04 714s
+[rand6_clustered] step 3400/20000 loss 8.9454 {'ce_id': 2.2499197217019, 'ce_fam': 1.6647209339517033} lr 2.84e-04 759s
+[rand6_clustered] step 3600/20000 loss 8.7501 {'ce_id': 2.2489986362340626, 'ce_fam': 1.6726239976783206} lr 2.82e-04 804s
+[rand6_clustered] step 3800/20000 loss 9.0029 {'ce_id': 2.2476216236064053, 'ce_fam': 1.666646138567891} lr 2.79e-04 848s
+[rand6_clustered] step 4000/20000 loss 8.0150 {'ce_id': 2.279999347645072, 'ce_fam': 1.6643981954466178} lr 2.77e-04 893s
+[rand6_clustered] EVAL step 4000 val 9.0194 {'ce_id': 2.2405290266869398, 'ce_fam': 1.6620410699197243}
+[rand6_clustered] step 4200/20000 loss 8.7059 {'ce_id': 2.1998205700095235, 'ce_fam': 1.655423990553334} lr 2.74e-04 938s
+[rand6_clustered] step 4400/20000 loss 8.4610 {'ce_id': 2.2394900538340337, 'ce_fam': 1.6439895772488318} lr 2.71e-04 983s
+[rand6_clustered] step 4600/20000 loss 9.3762 {'ce_id': 2.202727577259833, 'ce_fam': 1.6630120264340753} lr 2.68e-04 1027s
+[rand6_clustered] step 4800/20000 loss 8.3242 {'ce_id': 2.2607793932014077, 'ce_fam': 1.6527918164120994} lr 2.65e-04 1072s
+[rand6_clustered] step 5000/20000 loss 9.0464 {'ce_id': 2.229637274757231, 'ce_fam': 1.654968964378647} lr 2.62e-04 1116s
+[rand6_clustered] EVAL step 5000 val 8.9840 {'ce_id': 2.232987028408473, 'ce_fam': 1.6583815353644422}
+[rand6_clustered] step 5200/20000 loss 8.9187 {'ce_id': 2.2574725112015246, 'ce_fam': 1.6478453581264618} lr 2.59e-04 1161s
+[rand6_clustered] step 5400/20000 loss 8.2044 {'ce_id': 2.2417026104392583, 'ce_fam': 1.646440795265011} lr 2.56e-04 1206s
+[rand6_clustered] step 5600/20000 loss 8.9021 {'ce_id': 2.2175368867389897, 'ce_fam': 1.6453898395694828} lr 2.52e-04 1250s
+[rand6_clustered] step 5800/20000 loss 8.7689 {'ce_id': 2.2422235570619393, 'ce_fam': 1.6591774570272506} lr 2.49e-04 1295s
+[rand6_clustered] step 6000/20000 loss 9.0210 {'ce_id': 2.2290102394748033, 'ce_fam': 1.6361748398256042} lr 2.45e-04 1340s
+[rand6_clustered] EVAL step 6000 val 8.9390 {'ce_id': 2.22287788409549, 'ce_fam': 1.6522687746477327}
+[rand6_clustered] step 6200/20000 loss 9.1122 {'ce_id': 2.1577523179895994, 'ce_fam': 1.6200356704213508} lr 2.41e-04 1385s
+[rand6_clustered] step 6400/20000 loss 9.3600 {'ce_id': 2.192883453891106, 'ce_fam': 1.6486148529281865} lr 2.37e-04 1429s
+[rand6_clustered] step 6600/20000 loss 7.8294 {'ce_id': 2.23533005444197, 'ce_fam': 1.643617042528127} lr 2.33e-04 1474s
+[rand6_clustered] step 6800/20000 loss 8.5697 {'ce_id': 2.216203124167688, 'ce_fam': 1.6436472254649384} lr 2.29e-04 1519s
+[rand6_clustered] step 7000/20000 loss 8.0985 {'ce_id': 2.2412951040436835, 'ce_fam': 1.6476019839399652} lr 2.25e-04 1563s
+[rand6_clustered] EVAL step 7000 val 8.9069 {'ce_id': 2.2174352348957314, 'ce_fam': 1.6499749282430685}
+[rand6_clustered] step 7200/20000 loss 8.7838 {'ce_id': 2.188870924700859, 'ce_fam': 1.6498369137471747} lr 2.21e-04 1608s
+[rand6_clustered] step 7400/20000 loss 8.4382 {'ce_id': 2.2348917388508758, 'ce_fam': 1.6420633730058471} lr 2.16e-04 1653s
+[rand6_clustered] step 7600/20000 loss 8.1265 {'ce_id': 2.20245017524245, 'ce_fam': 1.6145311923856933} lr 2.12e-04 1697s
+[rand6_clustered] step 7800/20000 loss 8.1488 {'ce_id': 2.219465514278674, 'ce_fam': 1.6293797348484849} lr 2.08e-04 1742s
+[rand6_clustered] step 8000/20000 loss 8.3432 {'ce_id': 2.1826597293319683, 'ce_fam': 1.6189950038431975} lr 2.03e-04 1787s
+[rand6_clustered] EVAL step 8000 val 8.8738 {'ce_id': 2.2107086119159716, 'ce_fam': 1.6442516731270043}
+[rand6_clustered] step 8200/20000 loss 8.3580 {'ce_id': 2.2028154547501124, 'ce_fam': 1.6425313541982418} lr 1.99e-04 1832s
+[rand6_clustered] step 8400/20000 loss 8.8477 {'ce_id': 2.176188322802343, 'ce_fam': 1.6188384995240361} lr 1.94e-04 1876s
+[rand6_clustered] step 8600/20000 loss 8.2178 {'ce_id': 2.2144996408598843, 'ce_fam': 1.640067598609427} lr 1.89e-04 1921s
+[rand6_clustered] step 8800/20000 loss 8.8706 {'ce_id': 2.130032975251564, 'ce_fam': 1.6083903667355373} lr 1.85e-04 1965s
+[rand6_clustered] step 9000/20000 loss 8.3074 {'ce_id': 2.174564039517429, 'ce_fam': 1.61485969627928} lr 1.80e-04 2010s
+[rand6_clustered] EVAL step 9000 val 8.8568 {'ce_id': 2.2075416292387904, 'ce_fam': 1.6428803991678467}
+[rand6_clustered] step 9200/20000 loss 8.0976 {'ce_id': 2.186636044189318, 'ce_fam': 1.6133552798563586} lr 1.75e-04 2055s
+[rand6_clustered] step 9400/20000 loss 8.8249 {'ce_id': 2.153972645555121, 'ce_fam': 1.631572735538435} lr 1.70e-04 2100s
+[rand6_clustered] step 9600/20000 loss 9.7590 {'ce_id': 2.185421751202603, 'ce_fam': 1.6253077325030167} lr 1.66e-04 2144s
+[rand6_clustered] step 9800/20000 loss 8.8457 {'ce_id': 2.164300999716584, 'ce_fam': 1.6182309394362466} lr 1.61e-04 2189s
+[rand6_clustered] step 10000/20000 loss 9.4697 {'ce_id': 2.082660575196896, 'ce_fam': 1.6035243981611453} lr 1.56e-04 2233s
+[rand6_clustered] EVAL step 10000 val 8.8402 {'ce_id': 2.201768977234721, 'ce_fam': 1.6377370877047759}
+[rand6_clustered] step 10200/20000 loss 8.8339 {'ce_id': 2.1556084136519673, 'ce_fam': 1.623989526309339} lr 1.51e-04 2279s
+[rand6_clustered] step 10400/20000 loss 8.9015 {'ce_id': 2.172437001179933, 'ce_fam': 1.60987548245265} lr 1.46e-04 2323s
+[rand6_clustered] step 10600/20000 loss 9.2011 {'ce_id': 2.1876178663770123, 'ce_fam': 1.6352314515477249} lr 1.42e-04 2368s
+[rand6_clustered] step 10800/20000 loss 8.4447 {'ce_id': 2.185991430316754, 'ce_fam': 1.626958604465399} lr 1.37e-04 2413s
+[rand6_clustered] step 11000/20000 loss 8.4622 {'ce_id': 2.205494950457317, 'ce_fam': 1.6280762153199062} lr 1.32e-04 2457s
+[rand6_clustered] EVAL step 11000 val 8.8121 {'ce_id': 2.19536146457033, 'ce_fam': 1.635148757603039}
+[rand6_clustered] step 11200/20000 loss 9.0847 {'ce_id': 2.1952409819093286, 'ce_fam': 1.6389460686734778} lr 1.27e-04 2503s
+[rand6_clustered] step 11400/20000 loss 7.9717 {'ce_id': 2.2058045639432065, 'ce_fam': 1.6108326520938667} lr 1.22e-04 2547s
+[rand6_clustered] step 11600/20000 loss 8.2964 {'ce_id': 2.1589268808381723, 'ce_fam': 1.6098857053585005} lr 1.18e-04 2592s
+[rand6_clustered] step 11800/20000 loss 8.5038 {'ce_id': 2.212517596076154, 'ce_fam': 1.6255824905521632} lr 1.13e-04 2637s
+[rand6_clustered] step 12000/20000 loss 8.2577 {'ce_id': 2.221109202598261, 'ce_fam': 1.6116947745563541} lr 1.08e-04 2681s
+[rand6_clustered] EVAL step 12000 val 8.7957 {'ce_id': 2.190558040302606, 'ce_fam': 1.6322310286495885}
+[rand6_clustered] step 12200/20000 loss 8.7085 {'ce_id': 2.172474989894907, 'ce_fam': 1.6356942654639175} lr 1.04e-04 2727s
+[rand6_clustered] step 12400/20000 loss 9.3856 {'ce_id': 2.182249308860582, 'ce_fam': 1.6220682589999158} lr 9.91e-05 2771s
+[rand6_clustered] step 12600/20000 loss 8.5986 {'ce_id': 2.1720217486469275, 'ce_fam': 1.625582124734542} lr 9.46e-05 2816s
+[rand6_clustered] step 12800/20000 loss 7.9839 {'ce_id': 2.167940200794746, 'ce_fam': 1.607892434731759} lr 9.01e-05 2861s
+[rand6_clustered] step 13000/20000 loss 8.6311 {'ce_id': 2.1685517993299444, 'ce_fam': 1.6186430222237311} lr 8.57e-05 2906s
+[rand6_clustered] EVAL step 13000 val 8.7755 {'ce_id': 2.186426855527783, 'ce_fam': 1.6296431328940844}
+[rand6_clustered] step 13200/20000 loss 8.6605 {'ce_id': 2.181435691407113, 'ce_fam': 1.6257533111293405} lr 8.14e-05 2951s
+[rand6_clustered] step 13400/20000 loss 9.5234 {'ce_id': 2.0840957818109294, 'ce_fam': 1.5979238038181736} lr 7.71e-05 2996s
+[rand6_clustered] step 13600/20000 loss 8.3456 {'ce_id': 2.186687461687781, 'ce_fam': 1.6340236926142913} lr 7.29e-05 3040s
+[rand6_clustered] step 13800/20000 loss 9.0748 {'ce_id': 2.1646829362541307, 'ce_fam': 1.614602555763956} lr 6.88e-05 3085s
+[rand6_clustered] step 14000/20000 loss 8.4612 {'ce_id': 2.1970350135454106, 'ce_fam': 1.6321636678670086} lr 6.48e-05 3130s
+[rand6_clustered] EVAL step 14000 val 8.7538 {'ce_id': 2.181784522311533, 'ce_fam': 1.6268036202529697}
+[rand6_clustered] step 14200/20000 loss 8.0723 {'ce_id': 2.1975354128500393, 'ce_fam': 1.6186919120718464} lr 6.09e-05 3175s
+[rand6_clustered] step 14400/20000 loss 8.3772 {'ce_id': 2.159091176194058, 'ce_fam': 1.5969572188593353} lr 5.70e-05 3220s
+[rand6_clustered] step 14600/20000 loss 8.5137 {'ce_id': 2.1628422312668394, 'ce_fam': 1.5989264756479853} lr 5.33e-05 3264s
+[rand6_clustered] step 14800/20000 loss 7.9964 {'ce_id': 2.1792471664090676, 'ce_fam': 1.6290300957098884} lr 4.96e-05 3309s
+[rand6_clustered] step 15000/20000 loss 8.1921 {'ce_id': 2.155784917347361, 'ce_fam': 1.6155766190051217} lr 4.61e-05 3353s
+[rand6_clustered] EVAL step 15000 val 8.7343 {'ce_id': 2.1775132230137055, 'ce_fam': 1.6243896338354566}
+[rand6_clustered] step 15200/20000 loss 8.4359 {'ce_id': 2.1783409645117775, 'ce_fam': 1.6138973100224527} lr 4.27e-05 3399s
+[rand6_clustered] step 15400/20000 loss 8.2533 {'ce_id': 2.181433848421804, 'ce_fam': 1.6316489611511873} lr 3.93e-05 3443s
+[rand6_clustered] step 15600/20000 loss 8.4571 {'ce_id': 2.1578991281297903, 'ce_fam': 1.587142895924611} lr 3.61e-05 3488s
+[rand6_clustered] step 15800/20000 loss 9.1691 {'ce_id': 2.1087202907998215, 'ce_fam': 1.5895214784415415} lr 3.30e-05 3533s
+[rand6_clustered] step 16000/20000 loss 8.6623 {'ce_id': 2.168920565302144, 'ce_fam': 1.6196823866750176} lr 3.01e-05 3577s
+[rand6_clustered] EVAL step 16000 val 8.7204 {'ce_id': 2.1749493234699915, 'ce_fam': 1.6230619930076853}
+[rand6_clustered] step 16200/20000 loss 9.2842 {'ce_id': 2.1086686778504213, 'ce_fam': 1.599832674859431} lr 2.72e-05 3623s
+[rand6_clustered] step 16400/20000 loss 8.5672 {'ce_id': 2.149327658716631, 'ce_fam': 1.5949168820025248} lr 2.45e-05 3667s
+[rand6_clustered] step 16600/20000 loss 9.1182 {'ce_id': 2.1311570489183875, 'ce_fam': 1.597742193961952} lr 2.19e-05 3712s
+[rand6_clustered] step 16800/20000 loss 8.0983 {'ce_id': 2.2315738002628587, 'ce_fam': 1.6226601333753234} lr 1.95e-05 3756s
+[rand6_clustered] step 17000/20000 loss 9.7024 {'ce_id': 2.1726359470299657, 'ce_fam': 1.630241249698092} lr 1.72e-05 3801s
+[rand6_clustered] EVAL step 17000 val 8.7030 {'ce_id': 2.1709583470869025, 'ce_fam': 1.6201035204614183}
+[rand6_clustered] step 17200/20000 loss 7.9383 {'ce_id': 2.2082151319159835, 'ce_fam': 1.6034872311084052} lr 1.50e-05 3846s
+[rand6_clustered] step 17400/20000 loss 8.3267 {'ce_id': 2.09325782786143, 'ce_fam': 1.5637027178740623} lr 1.30e-05 3891s
+[rand6_clustered] step 17600/20000 loss 7.8532 {'ce_id': 2.237967358269138, 'ce_fam': 1.6175632921596617} lr 1.11e-05 3936s
+[rand6_clustered] step 17800/20000 loss 8.4358 {'ce_id': 2.1175895897985484, 'ce_fam': 1.5838366164412259} lr 9.32e-06 3980s
+[rand6_clustered] step 18000/20000 loss 8.0147 {'ce_id': 2.168244690351449, 'ce_fam': 1.6105383399431308} lr 7.72e-06 4025s
+[rand6_clustered] EVAL step 18000 val 8.7009 {'ce_id': 2.1699262853200993, 'ce_fam': 1.6194955303522942}
+[rand6_clustered] step 18200/20000 loss 8.3246 {'ce_id': 2.1252214938284912, 'ce_fam': 1.5850204053558328} lr 6.26e-06 4070s
+[rand6_clustered] step 18400/20000 loss 8.5532 {'ce_id': 2.1448676128936, 'ce_fam': 1.6298242306189774} lr 4.96e-06 4115s
+[rand6_clustered] step 18600/20000 loss 7.7445 {'ce_id': 2.1869080868159445, 'ce_fam': 1.6133906359113128} lr 3.80e-06 4159s
+[rand6_clustered] step 18800/20000 loss 7.7463 {'ce_id': 2.1695021919850412, 'ce_fam': 1.6006015163404728} lr 2.79e-06 4204s
+[rand6_clustered] step 19000/20000 loss 8.5396 {'ce_id': 2.139510124725363, 'ce_fam': 1.5977004062373839} lr 1.94e-06 4249s
+[rand6_clustered] EVAL step 19000 val 8.6975 {'ce_id': 2.169095964327662, 'ce_fam': 1.6188915929736176}
+[rand6_clustered] step 19200/20000 loss 8.2522 {'ce_id': 2.1412516267815627, 'ce_fam': 1.6071859621534161} lr 1.24e-06 4294s
+[rand6_clustered] step 19400/20000 loss 8.6309 {'ce_id': 2.0760476672560313, 'ce_fam': 1.581303184667202} lr 7.00e-07 4339s
+[rand6_clustered] step 19600/20000 loss 8.5569 {'ce_id': 2.146086401504972, 'ce_fam': 1.5983462743100387} lr 3.11e-07 4383s
+[rand6_clustered] step 19800/20000 loss 7.9081 {'ce_id': 2.141201916065652, 'ce_fam': 1.5971496591770384} lr 7.79e-08 4428s
+[rand6_clustered] step 20000/20000 loss 9.4249 {'ce_id': 2.0480429174821553, 'ce_fam': 1.5599007349645961} lr 0.00e+00 4472s
+[rand6_clustered] EVAL step 20000 val 8.6966 {'ce_id': 2.1690192413858265, 'ce_fam': 1.6188369188991605}
+[rand6_clustered] DONE best_val 8.6966 in 4474s

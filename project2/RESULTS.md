@@ -831,3 +831,99 @@ The chemical arm lands below the modal-residue floor, i.e. below the trivial pat
 **What this round's conditioning result does and does not rest on.** One corpus (SwissProt; the clean set is a re-selection within the same dev split, not an independent dataset), one model pair, one length, one budget, one structure predictor. pLDDT, pTM, pAE and foldability all come from a single ESMFold forward pass and per-sequence pTM correlates 0.909 with pLDDT, so they are one axis read four ways; their value is the qualitative form, namely that the conditioned chemical arm is the only generated arm with nonzero foldability. Of the metrics not read off ESMFold, pseudo-perplexity moves only 0.20 against its own unconditional arm while pLDDT moves 19.91, and hydrophobic patterning does not separate the chemical arm (0.021) from the random conditioned arm (0.020) at all — that part of the effect is conditioning per se, not chemistry. ESMFold's trunk is ESM-2, so pseudo-perplexity is not fully independent either. Not run: a hand-written or consensus pattern, the pattern-degradation curve, TM-score against the source fold, and any second structure predictor.
 
 One number not to read: the correlation between residual containment and the gain is +0.209, but containment now spans 0.0000 to 0.0262, so the predictor is degenerate and the figure is noise.
+
+
+---
+
+# Round 4, 2026-11-11: the clustered-split retrain and the pattern-accuracy budget
+
+Jobs 27442437 (BLAST purge), 27442438_[0-2] (retrain), 27442439 (2x2 conditioning), 27442330 (degradation curve), 27442486_[0-1] (family-signal variants). Notes in `results/J_clustered_split_note.md` and `results/I_pattern_curve_note.md`.
+
+### How much homology the 10-mer containment filter was missing
+
+128 held-out pattern sources sampled from the dev candidates with no homology criterion. blastp against the 165,231-sequence training corpus, E <= 1e-3 counts as a relative.
+
+| quantity | value |
+|---|---|
+| sources with at least one BLAST relative in training | **125 of 128 = 97.7 %** |
+| distinct training sequences that are relatives | 19,645 |
+| fraction of the corpus purged | **11.89 %** |
+| corpus after the purge | 145,586 (was 165,231) |
+| held-out length mean vs candidate pool | 223.1 vs 225.8 |
+
+### The purged-corpus retrain
+
+Identical hyperparameters to `run/train_all.sh` (20,000 steps, batch 256, same seed), differing only in the corpus.
+
+| arm | best val, purged | best val, original |
+|---|---|---|
+| flat | 4.7536 | 4.6328 |
+| dms6 (chemical) | 8.6251 | 8.5019 |
+| rand6 (random) | 8.6966 | 8.6741 |
+
+### The 2x2: identical patterns in every cell
+
+| corpus | chemical cond. | chemical uncond. | random cond. | random uncond. |
+|---|---|---|---|---|
+| original | 62.48 | 36.67 | 36.39 | 35.67 |
+| purged | 60.34 | 35.77 | 36.96 | 35.31 |
+
+| corpus | chemical - random, paired per source | own gains, chem / rand | chem fold / pTM | rand fold / pTM |
+|---|---|---|---|---|
+| original | **+26.09 [+22.89, +29.28]** | +25.81 / +0.72 | 0.156 / 0.546 | 0.008 / 0.203 |
+| purged | **+23.38 [+20.07, +26.68]** | +24.58 / +1.66 | 0.172 / 0.521 | 0.000 / 0.204 |
+
+| difference of differences, paired per source | value |
+|---|---|
+| what training homologs were worth | **+2.71 [+0.95, +4.55]** |
+
+10.4 % of the unpurged effect. The interval excludes zero, so the leak is real; it is not the effect. Foldability for the conditioned chemical arm is higher on the purged corpus, and it remains the only arm producing any foldable sequence.
+
+Scope: depth-1 single-linkage blastp neighbourhood, not an MMseqs2 clustering (neither MMseqs2 nor CD-HIT installed; a downloaded MMseqs2 binary was not permitted to run). 19,645 round-1 relatives exceeded the 8,000 budget for a second round, so relatives-of-relatives remain in training, as do fold-level homologs BLAST cannot see.
+
+### The pattern-accuracy degradation curve
+
+96 homology-clean patterns, 100 forward passes, paired per source. Corruption replaces a position with a *different* random family, so the fraction is the true error rate.
+
+| pattern error | chemical pLDDT | gain over uncond (36.58) | loss vs perfect | random pLDDT | gain over uncond (35.30) |
+|---|---|---|---|---|---|
+| 0.00 | 55.41 | **+18.83 [+15.15, +22.55]** | — | 36.32 | +1.02 [-0.21, +2.33] |
+| 0.05 | 49.65 | +13.07 [+9.83, +16.36] | -5.76 [-9.04, -2.48] | — | — |
+| 0.10 | 43.23 | +6.65 [+3.79, +9.65] | -12.18 [-15.50, -8.99] | — | — |
+| 0.20 | 35.51 | -1.08 [-2.66, +0.67] | -19.90 [-23.58, -16.28] | — | — |
+| 0.30 | 32.56 | -4.02 [-4.95, -3.02] | -22.85 | — | — |
+| 0.50 | 30.91 | -5.67 [-6.32, -4.96] | -24.50 | 34.35 | -0.96 [-2.08, +0.21] |
+| 0.75 | 31.05 | -5.53 [-6.14, -4.89] | -24.36 | — | — |
+| 1.00 | 30.20 | **-6.38 [-7.00, -5.70]** | -25.21 | 34.91 | -0.39 [-1.61, +0.91] |
+| **the model's own pattern** | **36.87** | **+0.29 [-1.09, +1.78]** | -18.54 | — | — |
+| natural proteins | 90.10 | — | — | 90.10 | — |
+
+| quantity | chemical | random |
+|---|---|---|
+| slope | **-1.15 pLDDT per 1 % error** | **-0.04** |
+| error that halves the gain | 0.078 | — (no gain to halve) |
+| error that erases the gain | 0.186 | — |
+
+Three readings. The random partition has no curve, so the chemical slope is chemical information being destroyed and not an alphabet restriction being relaxed. A fully wrong chemical pattern costs -6.38 while a fully wrong random one costs -0.39, so the harm is chemistry-specific too, and it is the mechanism behind the two-level arm's 6.5-point deficit against flat. And the model's own pattern retains 2 % of the gain -- but scores 5.8 pLDDT above uniform corruption at a matched error rate, so its errors are structured more benignly than uniform ones, and the idea fails with that advantage included.
+
+### Family prediction accuracy, and two attempts to fix it
+
+Teacher-forced, `fam_head`, 96 sources. The majority-class floor is the accuracy of always naming the most common family.
+
+| checkpoint | best val | ce_fam | nats past marginal (1.662) | accuracy, any reveal level | best top decile |
+|---|---|---|---|---|---|
+| dms6 (original, gamma=2) | 8.5019 | 1.5716 | 0.090 | **0.3634** | 0.423 |
+| famsig/g1 (gamma=1.0) | 7.4964 | 1.4299 | 0.232 | **0.363** | 0.457 |
+| famsig/clip50 (1/p_fam capped at 50) | 7.2478 | ~1.43 | ~0.23 | **0.363** | 0.411 |
+| majority-class floor | — | 1.662 | 0 | **0.3633** | — |
+| rand6 (random partition) | 8.6741 | — | — | 0.2696 (floor 0.2651) | 0.331 |
+
+Accuracy by reveal level on the original checkpoint, showing the head ignores context entirely:
+
+| identities revealed | 0.00 | 0.10 | 0.25 | 0.50 | 0.75 |
+|---|---|---|---|---|---|
+| accuracy | 0.3634 | 0.3634 | 0.3634 | 0.3633 | 0.3635 |
+
+Pattern composition, real against model-generated: real [0.363, 0.107, 0.189, 0.112, 0.113, 0.115], generated [0.432, 0.083, 0.165, 0.099, 0.107, 0.115] -- over-weighting the majority class, as a near-constant predictor does. Lag-3 autocorrelation of the hydrophobic family is 0.011 real and 0.001 generated, so neither carries local periodic structure at this granularity.
+
+Both loss corrections improve validation by 1.0 to 1.25 nats and carry 2.5x the information, and neither moves argmax accuracy off the floor. The failure is informational, not a training artefact; the earlier suspicion that it was an artefact is withdrawn.

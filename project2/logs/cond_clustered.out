@@ -1,0 +1,83 @@
+patterns: 128, purge 19645 (11.89%), sources with a relative 125
+########## row 1: ORIGINAL checkpoints, held-out patterns ##########
+patterns: 128 from data/clustered/heldout_patterns.json (max containment nan)
+=== dms6 (hier) params 37.99M best_val 8.5019
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 16s compl=None | MSSDSALVAGSEALRPRRRLEFLRGGVSAGVYNGIWALLG
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 15s compl=1.0 | MFAQKTESEFGVSNYTNDGRAFTAEWLTEVLRAPSTLAGV
+=== rand6 (hier) params 37.99M best_val 8.6741
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 16s compl=None | MGLLEQELLGPTLLLPKLLQLFFRLGPPALDSPSQDSAAS
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 16s compl=1.0 | MYNDEKEEFQGVEQQSSEILRFTVEFPYEINNLISHVAAI
+WROTE results/J_cond_orig.json
+########## row 2: PURGED checkpoints, same patterns ##########
+patterns: 128 from data/clustered/heldout_patterns.json (max containment nan)
+=== dms6 (hier) params 37.99M best_val 8.6251
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 16s compl=None | MSSESYAVTGSCAMRPRRRLEFLRSGASAGVGLGIAELCG
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 16s compl=1.0 | MFIQKTESEFGLSNYSNDGRAFSLEWATEALRLPSTLAGV
+=== rand6 (hier) params 37.99M best_val 8.6966
+  uncond       T=100 temp=1.0 famT=1.0 rho=0.3 nfe=100 16s compl=None | MARLEYEQLGDILTIPMQVDLFFRLGVIALFSGSHVSQAS
+  conditioned  T=100 temp=1.0 famT=None rho=None nfe=100 16s compl=1.0 | MYNDEKEEFQGVEYYSSEILRYTVEFGTEIKKLISHVIGI
+WROTE results/J_cond_purged.json
+########## score both rows ##########
+4 cells, 512 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 37s
+  fold [1/5] dms6|uncond T=100 plddt 36.67 CI(35.63, 37.72) (280s)
+  fold [2/5] dms6|conditioned T=100 plddt 62.48 CI(59.47, 65.41) (279s)
+  fold [3/5] rand6|uncond T=100 plddt 35.67 CI(34.74, 36.6) (279s)
+  fold [4/5] rand6|conditioned T=100 plddt 36.39 CI(35.19, 37.89) (279s)
+  fold [5/5] natural T=None plddt 90.10 CI(87.37, 92.22) (105s)
+esm2 650M loaded
+  pppl [1/5] dms6|uncond T=100 14.937
+  pppl [2/5] dms6|conditioned T=100 14.197
+  pppl [3/5] rand6|uncond T=100 16.586
+  pppl [4/5] rand6|conditioned T=100 15.572
+  pppl [5/5] natural T=None 3.499
+WROTE results/J_cond_orig_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|conditioned     100   62.48   14.20  0.156  0.930  0.997   2.9
+dms6|uncond          100   36.67   14.94  0.141  0.922  1.000   3.1
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+rand6|conditioned    100   36.39   15.57  0.144  0.926  0.998   2.9
+rand6|uncond         100   35.67   16.59  0.141  0.926  1.000   2.9
+4 cells, 512 sequences
+reference: 120000 seqs, 10105322 10-mers
+esmfold loaded 13s
+  fold [1/5] dms6|uncond T=100 plddt 35.77 CI(34.74, 36.91) (280s)
+  fold [2/5] dms6|conditioned T=100 plddt 60.34 CI(57.02, 63.49) (279s)
+  fold [3/5] rand6|uncond T=100 plddt 35.31 CI(34.39, 36.21) (279s)
+  fold [4/5] rand6|conditioned T=100 plddt 36.96 CI(35.85, 38.06) (279s)
+  fold [5/5] natural T=None plddt 90.10 CI(87.37, 92.22) (105s)
+esm2 650M loaded
+  pppl [1/5] dms6|uncond T=100 15.713
+  pppl [2/5] dms6|conditioned T=100 14.392
+  pppl [3/5] rand6|uncond T=100 16.730
+  pppl [4/5] rand6|conditioned T=100 15.758
+  pppl [5/5] natural T=None 3.499
+WROTE results/J_cond_purged_scored.json
+selector               T   pLDDT    pppl   amph    div    nov   rep
+-------------------------------------------------------------------
+dms6|conditioned     100   60.34   14.39  0.155  0.930  1.000   2.8
+dms6|uncond          100   35.77   15.71  0.137  0.923  1.000   3.0
+natural             None   90.10    3.50  0.150  0.929  0.476   2.9
+rand6|conditioned    100   36.96   15.76  0.143  0.924  1.000   3.0
+rand6|uncond         100   35.31   16.73  0.143  0.927  1.000   2.8
+########## the comparison ##########
+split: 128 patterns, 125 of them with a training relative, 19645 sequences purged (11.89 % of the corpus), depth 1, E <= 0.001
+corpus 165231 -> 145586
+
+=== chemical minus random, paired per source ===
+  original   n=128  chem 62.48  rand 36.39  chem-rand +26.09 [+22.89, +29.28]  own gains +25.81 / +0.72
+  purged     n=128  chem 60.34  rand 36.96  chem-rand +23.38 [+20.07, +26.68]  own gains +24.58 / +1.66
+
+=== difference of differences: what training homologs were worth ===
+  original +26.09  purged +23.38  difference +2.71 [+0.95, +4.55]
+  -> the interval excludes zero: homologs in training were worth +2.71 pLDDT of the gain
+
+=== foldability and pTM, for the record ===
+             chemical           random            
+  original   fold 0.156 pTM 0.546  fold 0.008 pTM 0.203
+  purged     fold 0.172 pTM 0.521  fold 0.000 pTM 0.204
+
+WROTE results/J_clustered_summary.json
+DONE

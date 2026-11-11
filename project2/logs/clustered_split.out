@@ -1,0 +1,33 @@
+blastp: /cm/shared/easybuild/software/BLAST+/2.14.0-gompi-2022b/bin/blastp
+blastp: 2.14.0+
+########## export the corpus the model actually trains on ##########
+train     165231 sequences -> train.fasta
+dev cand     560 sequences -> devcand.fasta (length >= 200)
+dev total   2000
+########## sample the held-out pattern sources ##########
+selected 128 of 560 dev candidates (seed 0) -> h.fasta
+########## build the BLAST database over training ##########
+Adding sequences from FASTA; added 165231 sequences in 2.0456 seconds.
+
+
+########## round 1: held-out sources vs training ##########
+32874 data/clustered/h_vs_train.tsv
+########## expand the removal set one step (single linkage) ##########
+  h_vs_train.tsv: 32874 HSP rows, 30253 kept at E <= 0.001, 125 queries with a hit
+round-1 relatives: 19645 -> purge.fasta (for depth-2 expansion)
+purge.fasta has 19645 sequences
+skipping round 2: 19645 sequences is outside the 1..8000 budget
+########## build the purged corpus (depth 1) ##########
+corpus: 165231 training, 560 dev candidates, 128 held-out sources
+
+round 1: pattern sources vs training
+  h_vs_train.tsv: 32874 HSP rows, 30253 kept at E <= 0.001, 125 queries with a hit
+  125 of 128 sources have >= 1 relative; 19645 distinct training sequences are relatives
+
+purge set: 19645 sequences = 11.89 % of the corpus
+purged corpus: 145586 sequences (was 165231)
+wrote train_purged.txt and heldout_patterns.json
+
+held-out length mean 223.1 vs candidate pool 225.8
+fraction of sources WITH a training relative: 0.977 -- a high value means the set is representative and the purge does real work
+DONE

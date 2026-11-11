@@ -37,7 +37,15 @@ Three numbers from the 2026-11-06 text should never be quoted again:
 |---|---|
 | contact precision@L 0.305 unmasked, 0.027 at 25 % masked | 0.747 unmasked, and the collapse is repairable (below) |
 | oracle mean effect +0.12 pLDDT on the ad-hoc 48-chain set | +1.10 [-2.67, +4.82] n.s. on CATH S40 |
-| conditioning worth +26.4 pLDDT | +20.2 [+16.4, +24.1] on homology-clean patterns |
+| conditioning worth +26.4 pLDDT | **+23.4 [+20.1, +26.7] on a homology-purged corpus** (below) |
+
+**Round 4, 2026-11-11.** Two further experiments, both on the conditioning
+result, both reported in full in sections at the end of Idea B:
+
+| question | answer |
+|---|---|
+| Does the conditioning gain survive deleting the pattern sources' homologs from training? | **Yes.** +23.38 [+20.07, +26.68] after purging, against +26.09 unpurged. Memorised homologs are worth +2.71 [+0.95, +4.55], about 10 %. 125 of 128 sources had a BLAST relative in training, so the earlier "homology-clean" set was clean only of shared substrings. |
+| Can the model predict the family pattern itself, instead of being given one? | **No.** A perfect pattern is worth +18.83 pLDDT and the model's own is worth +0.29. The error budget is 8 % for half the gain; the family head's error is 64-78 %. Two corrected training variants improve the loss by 1.0-1.25 nats and leave accuracy pinned at the majority-class floor. |
 
 The verdict did not change in either round: neither proposal works as
 written. What changed is which evidence carries the verdict.
@@ -446,15 +454,103 @@ This supports the family channel as a CONTROL INTERFACE, where a person
 supplies the pattern. It does not support the two-level alphabet as a way to
 improve unconditional generation, which is what the proposal is mainly about.
 
-**Still unshown, and both are cheap.** That a *hand-written* or consensus
-pattern works — every pattern so far was read off a real protein, so this
-measures the capacity of the channel, not a design method. And whether the
-conditioned sequence adopts its *source protein's* fold or merely some
-confident fold, which a TM-score against the known source would settle. The
-next experiment is the degradation curve: corrupt a fraction f of pattern
-positions to a random family and plot pLDDT against f. If the gain collapses
-by f = 0.1 no hand-written pattern will ever work; if it degrades gently the
-interface claim is live.
+**Still unshown.** That a *hand-written* or consensus pattern works — every
+pattern so far was read off a real protein, so this measures the capacity of
+the channel, not a design method. And whether the conditioned sequence adopts
+its *source protein's* fold or merely some confident fold, which a TM-score
+against the known source would settle.
+
+### The gain survives a homology purge: memorisation is worth 10 % of it
+
+Added 2026-11-11, full detail in `results/J_clustered_split_note.md`. The
++20.22 above was measured on sources selected by 10-mer containment, a
+substring test that cannot see remote homology. Tested properly: 128 sources
+sampled with **no** homology criterion, every BLAST relative at E ≤ 1e-3
+deleted from training, and all three arms retrained with every hyperparameter
+unchanged.
+
+First, how much homology the containment filter was missing:
+
+| | |
+|---|---|
+| sources with a BLAST relative in training | **125 of 128 = 97.7 %** |
+| training sequences deleted | 19,645 = **11.89 % of the corpus** |
+
+So the earlier "homology-clean" set was clean only of shared substrings. The
+2×2, identical patterns in every cell:
+
+| corpus | chemical − random, paired per source | own gains, chem / rand |
+|---|---|---|
+| original | **+26.09 [+22.89, +29.28]** | +25.81 / +0.72 |
+| purged | **+23.38 [+20.07, +26.68]** | +24.58 / +1.66 |
+| **difference — what training homologs were worth** | **+2.71 [+0.95, +4.55]** | |
+
+The effect is not memorisation. The leak is real, excludes zero, and accounts
+for 10.4 % of the unpurged figure. Foldability for the conditioned chemical
+arm is if anything higher on the purged corpus (0.172 against 0.156), and the
+random conditioned arm stays at 0.000 — so the only arm producing foldable
+sequences does so on a model that has never seen a relative of any pattern it
+is handed.
+
+Quote **+23.4 [+20.1, +26.7]**. Scope: a depth-1 single-linkage blastp
+neighbourhood, not an MMseqs2 clustering (neither MMseqs2 nor CD-HIT is
+installed), so relatives-of-relatives and fold-level homologs undetectable by
+BLAST remain in training.
+
+### The model cannot supply the pattern itself
+
+Added 2026-11-11, full detail in `results/I_pattern_curve_note.md`. The
+obvious next move is to have the model predict the family pattern and then
+fill identities under it — which is the two-level arm, already trained. It
+does not work, and now there is a number for why.
+
+| pattern given | pLDDT | gain over unconditional |
+|---|---|---|
+| perfect (a real protein) | 55.41 | **+18.83 [+15.15, +22.55]** |
+| 5 % error | 49.65 | +13.07 |
+| 10 % error | 43.23 | +6.65 |
+| **the model's own prediction** | **36.87** | **+0.29 [−1.09, +1.78]** |
+| none | 36.58 | — |
+| fully wrong | 30.20 | **−6.38 [−7.00, −5.70]** |
+
+The slope is −1.15 pLDDT per 1 % of pattern error: 7.8 % error halves the
+gain, 18.6 % erases it. The family head's error is 63.7 % by argmax and
+78.2 % for a sampled pattern — three to four times the budget — and its
+accuracy is 0.3634 against a majority-class floor of 0.3633 at *every*
+identity-reveal level from 0 to 0.75.
+
+Three things follow, and two of them were not predictable in advance.
+
+**The curve is chemical, not a constraint effect.** The bit-matched random
+partition has slope −0.04 against −1.11, and a perfect random pattern is
+worth +1.02 [−0.21, +2.33]. There is no curve to degrade, so the steep slope
+is chemical information being destroyed rather than an alphabet restriction
+being relaxed.
+
+**A wrong pattern is actively harmful, which explains Idea B's whole
+deficit.** Binding makes a family error unrecoverable, so a fully wrong
+chemical pattern costs −6.38 against generating freely (a fully wrong
+*random* pattern costs only −0.39). The two-level arm's self-predicted
+families are near-random, which is the mechanism behind its 6.5-point gap
+below the flat baseline — a number reported above without an explanation
+until now.
+
+**It is not a training artefact.** The family loss weighting is genuinely
+pathological: with γ = 2 the channel is masked with probability t² and
+weighted 1/t², whose variance reaches 10⁶ at the ε = 1e-3 end, and the head's
+informative regime is the small-t regime where almost nothing is
+family-masked. Two corrected variants, γ = 1 and a clipped weight, improve
+validation by 1.0 and 1.25 nats and carry 2.5× the information — and leave
+argmax accuracy exactly at the floor. The extra information went into sharper
+probability mass, not a different mode.
+
+So staying inside the budget needs ≥ 92 % accuracy on a 6-way chemical class
+from sequence alone, with no structure, where structure-conditioned inverse
+folding reaches 35–50 % exact residue recovery *with* the backbone given. A
+predictor that good would be a stronger protein model than the one consuming
+its output. **The pattern is useful precisely because it is exact and comes
+from outside, which is what makes this a controllability result and why it
+cannot be bootstrapped.**
 
 ### The motivating diagnosis is wrong
 
@@ -494,13 +590,34 @@ original proposal.
    in these models comes from.
 
 4. **The chemical family pattern as a conditioning interface.** A pattern
-   over six chemical families is worth **+20.2 pLDDT [+16.4, +24.1]** to a
-   small model on homology-clean sources, a bit-matched random partition of
-   the same group sizes is worth +1.0, and the conditioned arm is the only
-   one of four that produces a foldable sequence at all. It is the one piece
-   of either proposal that survived its own control, a homology-clean
-   rebuild, and a retrieval check — on one corpus, one model and one
+   over six chemical families is worth **+23.4 pLDDT [+20.1, +26.7]** to a
+   small model whose training corpus contains no BLAST relative of any
+   pattern source, a bit-matched random partition of the same group sizes is
+   worth +1.7, and the conditioned arm is the only one of four that produces
+   a foldable sequence at all. It is the one piece of either proposal that
+   survived its own control, a retrieval check, and a homology purge that
+   removed 11.89 % of the corpus — on one corpus, one model and one
    predictor, as the scope section above states.
+
+   Two results make this more than a large number. **Memorisation accounts
+   for 10 %** of it and no more (+2.71 [+0.95, +4.55] of +26.09), measured by
+   retraining rather than argued. And the gain is **chemical rather than a
+   constraint effect**: the degradation slope is −1.15 pLDDT per 1 % pattern
+   error for the chemical partition against −0.04 for a bit-matched random
+   one, so there is no curve to degrade when the partition carries no
+   chemistry.
+
+8. **A coarse chemical pattern is only useful when it is nearly exact, and
+   nothing can predict it that well.** The error budget is 7.8 % for half the
+   gain and 18.6 % for any of it, while a properly trained family head sits
+   at 64 % error and at its majority-class floor regardless of how much
+   context it is given. A wrong pattern is worse than no pattern (−6.38),
+   because binding makes a family error unrecoverable. This is a general
+   statement about coarse-to-fine generation in masked diffusion, not a fact
+   about our checkpoint: two independent corrections to the loss improved it
+   by 1.0–1.25 nats and moved the accuracy not at all. It also explains the
+   unconditional two-level arm's 6.5-point deficit against a flat model,
+   which is otherwise an unexplained negative.
 
 5. **The independence assumption in parallel masked-diffusion decoding is
    empirically safe.** P2 states it and leaves it untested (App. C.4,
