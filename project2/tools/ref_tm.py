@@ -124,11 +124,21 @@ def main():
     if not args.skip_source_control:
         cells.append({"selector": "source", "seqs": nat})
 
+    # The permuted control. Aligning generated structure i to a DIFFERENT
+    # source answers the one alternative the paired number cannot: that the
+    # conditioned arm folds into some generically domain-like shape that
+    # scores well against anything. If that were so, the permuted mean would
+    # also be high. It must land at the unrelated-pair background instead.
+    perm = np.random.default_rng(1).permutation(len(refs))
+    for i in range(len(perm)):
+        if perm[i] == i:                      # no sequence against its own
+            perm[i] = (i + 1) % len(perm)
+
     out = {"scored": args.scored, "domains": args.domains,
            "n_with_structure": len(have), "cells": []}
     for c in cells:
         seqs = c["seqs"]
-        tms, rms, lens = [], [], []
+        tms, rms, lens, ptms = [], [], [], []
         for b0 in range(0, min(len(seqs), len(refs)), args.batch):
             chunk = [seqs[i] for i in range(b0, min(b0 + args.batch,
                                                     len(seqs), len(refs)))]
@@ -147,6 +157,14 @@ def main():
                 tms.append(float(r.tm_norm_chain1))
                 rms.append(float(r.rmsd))
                 lens.append(len(rca))
+                j = int(perm[i])
+                if refs[j] is not None:
+                    try:
+                        rp = tm_align(np.asarray(ca, float), refs[j][1],
+                                      seqs[i][:len(ca)], refs[j][2])
+                        ptms.append(float(rp.tm_norm_chain1))
+                    except Exception:                         # noqa: BLE001
+                        pass
         tms, rms = np.asarray(tms), np.asarray(rms)
         rng = np.random.default_rng(0)
         bs = np.array([rng.choice(tms, len(tms), True).mean()
@@ -159,12 +177,17 @@ def main():
                if len(tms) else float("nan"),
                "ref_tm_max": float(tms.max()) if len(tms) else float("nan"),
                "ref_rmsd": float(rms.mean()) if len(rms) else float("nan"),
-               "ref_len_mean": float(np.mean(lens)) if lens else float("nan")}
+               "ref_len_mean": float(np.mean(lens)) if lens else float("nan"),
+               "permuted_tm": float(np.mean(ptms)) if ptms else float("nan"),
+               "permuted_frac_ge_0.5": float((np.asarray(ptms) >= 0.5).mean())
+               if ptms else float("nan")}
         out["cells"].append(rec)
         print("  %-22s Ref-TM %.3f [%.3f, %.3f]  >=0.5 %.1f %%  RMSD %.1f A"
+              "  | permuted %.3f (>=0.5 %.1f %%)"
               % (rec["selector"], rec["ref_tm"], rec["ref_tm_lo"],
                  rec["ref_tm_hi"], 100 * rec["ref_tm_frac_ge_0.5"],
-                 rec["ref_rmsd"]), flush=True)
+                 rec["ref_rmsd"], rec["permuted_tm"],
+                 100 * rec["permuted_frac_ge_0.5"]), flush=True)
 
     with open(args.out, "w") as fh:
         json.dump(out, fh, indent=1)

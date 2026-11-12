@@ -60,6 +60,7 @@ instruments that share nothing with it (`results/L_extra_metrics_note.md`,
 | **NSR** against the source, read against its own floors | No retrieval: every conditioned arm is BELOW its modal-in-family floor. And NSR does not discriminate -- the random arm's higher raw NSR (0.401 vs 0.353) is entirely its higher modal floor; normalised, the two match to within 0.02 in all four cells. |
 | **pppl** | Retired as a discriminator: it favours chemical on SwissProt and random on CATH. |
 | **scTM / scRMSD** | Not run -- no inverse-folding model is available. Declared, not approximated. |
+| **Ref-TM** against the source's crystal structure | **The strongest result in the project.** On CATH S35, purged: the conditioned chemical arm reaches **0.596 [0.558, 0.635]** with **64.6 %** of sequences above the 0.5 same-fold threshold, against 0.299 for the bit-matched random partition and 0.288 for the unconditional arms -- the unrelated-pair background. The ceiling, the real sequence folded and aligned to its own structure, is 0.861. The conditioned sequences adopt the fold of the protein whose pattern they were given. |
 
 Figures for this round, added 2026-11-12 (`analysis/figures_cond.py`):
 `figures/fig7_conditioning` is the contrast with its control before and after
@@ -483,8 +484,21 @@ conditioned arm below its own modal-in-family floor, so retrieval is excluded
 on an alignment-free basis as well. Two of the three metrics in the table
 above that "do not support the chemistry claim" are now joined by two that
 do; pseudo-perplexity is retired as a discriminator because it contradicts
-itself across datasets. What remains genuinely open is the structural
-question, which Ref-TM addresses in `results/M_reftm_note.md`.
+itself across datasets.
+
+And the structural question, which this section called the honest weak point,
+is now answered rather than open. Folding each conditioned sequence and
+aligning it to the crystal structure of the domain whose pattern it was given
+gives **Ref-TM 0.596 [0.558, 0.635], with 64.6 % of sequences above the 0.5
+same-fold threshold**, against 0.299 for the bit-matched random partition,
+0.288 for the unconditional arms — the unrelated-pair background — and 0.861
+for the real sequence folded and aligned to its own structure. The conditioned
+sequences adopt the source's fold, and the random control rules out sequence
+identity as the explanation, because it recovers *more* native residues
+(0.393 against 0.348) and still lands at background. Full note in
+`results/M_reftm_note.md`. What stays open is that the generated structure is
+an ESMFold prediction and ESMFold's own training was not purged; only the
+reference is experimental.
 
 This supports the family channel as a CONTROL INTERFACE, where a person
 supplies the pattern. It does not support the two-level alphabet as a way to
@@ -698,6 +712,18 @@ original proposal.
    one, so there is no curve to degrade when the partition carries no
    chemistry.
 
+   **And as of 2026-11-12 it has a structural endpoint, not just a confidence
+   one.** Folded and aligned to the crystal structure of the domain whose
+   pattern it was given, the conditioned chemical arm scores Ref-TM 0.596
+   with 64.6 % of sequences above the 0.5 same-fold threshold, against 0.299
+   for the random partition and 0.288 for the unconditional arms; the ceiling
+   set by the real sequence is 0.861. Two independent instruments agree
+   besides: FPD/MMD in ESM-2 embedding space (the chemical pattern closes
+   ~60 % of the distance to natural, the random control ~0 %) and Max-ID,
+   which reproduces the purge result by alignment. The claim is no longer
+   "one predictor is more confident"; it is "the sequences are not copies and
+   they fold like the protein whose chemical blueprint they were handed".
+
 8. **A coarse chemical pattern is only useful when it is nearly exact, and
    nothing can predict it that well.** The error budget is 7.8 % for half the
    gain and 18.6 % for any of it, while a properly trained family head sits
@@ -738,8 +764,15 @@ closes a stated assumption in the closest prior work. Or a
 controllable-design paper built on item 4, which has the advantage of a
 positive result with a clean control, and which connects to a thirty-year-old
 line of protein design work on specifying binary hydrophobic patterns and
-leaving identities open — but which needs the degradation curve, a
-hand-written pattern and a second predictor before it is a paper.
+leaving identities open. When that was written it needed the degradation
+curve, a hand-written pattern and a second predictor. **Two of those three
+are now done** — the degradation curve and its error budget (Round 4b), and a
+structural endpoint stronger than the second predictor would have been
+(Ref-TM against deposited coordinates, Round 6). What it still needs is a
+hand-written or consensus pattern, and an independent structure predictor to
+remove ESMFold from the one place it still sits. On the evidence of
+2026-11-12 this is now the stronger of the two candidate papers, which
+reverses the balance this section reported on 2026-11-06.
 
 The question put back to the professor on 2026-11-10, in
 `ANSWERS_TO_FEEDBACK.md`, is which of those two to spend the remaining time

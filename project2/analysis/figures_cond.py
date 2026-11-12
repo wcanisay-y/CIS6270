@@ -314,7 +314,8 @@ def fig_independent_metrics():
                        label="SwissProt"),
          plt.Rectangle((0, 0), 1, 1, color=MUTED, alpha=0.5, hatch="///",
                        label="CATH S35")]
-    ax.legend(handles=h, loc="center right", fontsize=6.8)
+    ax.legend(handles=h, loc="upper right", fontsize=6.8)
+    ax.set_xlim(0, 34)
     ax.set_ylim(-0.75, len(ARMS) - 0.15)
 
     # -- B: NSR against its own floors ------------------------------------

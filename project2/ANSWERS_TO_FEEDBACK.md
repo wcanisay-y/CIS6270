@@ -397,6 +397,72 @@ against the source; a wider metric panel that is not ESMFold confidence
 distance such as FPD/MMD); a hand-written or consensus pattern; and an
 independent structure predictor. The first two are in progress.
 
+*Both of those were done the next day and the answer is in our favour — see
+"Round 6" below. The paragraph above stands as written because it is what we
+told you before we knew.*
+
+---
+
+# Round 6, 2026-11-12: your "independent folding" ask, answered
+
+§6 of this reply conceded that we could not run an independent check: ESMFold
+was the only predictor on disk and its trunk is ESM-2, so pLDDT, pTM, pAE and
+foldability were one instrument read four ways. We have now re-scored **the
+same stored sequences** on four axes that share nothing with it, and folded
+them against deposited crystal structures. Nothing was regenerated.
+
+## The answer: the conditioned sequences adopt the source protein's fold
+
+The CATH arm makes this answerable, because its pattern sources are
+structural domains with deposited coordinates (127 of 128 downloaded). Each
+generated sequence is folded and structurally aligned to the crystal
+structure of the domain whose chemical pattern it was given.
+
+| arm | Ref-TM | TM ≥ 0.5 | RMSD |
+|---|---|---|---|
+| the source's own slice — the ceiling | 0.861 | 95.3 % | 1.7 Å |
+| **chemical, conditioned** | **0.596 [0.558, 0.635]** | **64.6 %** | 3.8 Å |
+| random partition, conditioned | 0.299 | 0.8 % | 5.6 Å |
+| either unconditional arm | 0.288–0.289 | 0.0 % | 5.6 Å |
+
+0.5 is the conventional same-fold threshold and an unrelated pair from this
+set scores 0.29. **Two thirds of the conditioned sequences land in the source's
+fold**, covering 54 % of the distance from background to the ceiling, while
+every control sits at background.
+
+**It is not sequence identity being recognised.** The random-partition arm
+recovers *more* of the source's residues than the chemical arm — NSR 0.393
+against 0.348 — and still scores background. More identity, no fold. What
+carries the structural information is the chemical partition specifically.
+
+## The three sequence-level axes
+
+| metric | what it says |
+|---|---|
+| **FPD / MMD**, ESM-2 embedding space | The chemical pattern closes **64 %** (SwissProt) and **60 %** (CATH) of the distance from the unconditional model to natural proteins; the bit-matched random control closes 5 % and 0.3 %. Natural-against-natural calibrates at ~0. First metric sharing nothing with ESMFold to separate the arms. |
+| **Max-ID**, blastp against each arm's own training corpus | Round 4's purge confirmed by alignment instead of retraining: 32 % identity to the original corpus (tail to 85 %) → **11.5 %**, the unconditional value, after purging, while keeping +24.6 pLDDT. The natural control moves 83 → 42 %, confirming the purge bit. |
+| **NSR**, against its own floors | Every conditioned arm sits **below its modal-in-family floor**, so nothing is being copied. And NSR does not discriminate: normalised by each arm's own floor, chemical and random match to within 0.02 in all four cells. |
+| **pseudo-perplexity** | Retired as a discriminator — it favours chemical on SwissProt and random on CATH. |
+
+## What we still cannot claim
+
+The generated structure is an ESMFold *prediction*; only the reference is
+experimental. ESMFold's own training set was not purged, so it has seen these
+domains — the result shows the generated sequence carries enough signal for a
+predictor that knows the fold to recover it, which is weaker than independent
+physical evidence. The random control bounds how much of the effect that can
+explain, since ESMFold knows the source for those sequences too and they have
+higher identity to it.
+
+scTM and scRMSD are **not run**: both need an inverse-folding model, and
+neither ProteinMPNN nor ESM-IF1 is installable here (the only PyPI
+ProteinMPNN is an unvetted third-party wheel shipping weights; ESM-IF1 needs
+`torch_scatter`/`torch_sparse`, which have no wheel for torch 2.7.1+cu126).
+Declared rather than approximated.
+
+Notes: `results/{L_extra_metrics,M_reftm}_note.md`. Figure
+`figures/fig9_independent_metrics`. Jobs 27496304, 27496556, 27497977.
+
 ## Appendix: what was run for these two rounds
 
 | job | what | outputs |

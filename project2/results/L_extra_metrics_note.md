@@ -124,9 +124,25 @@ datasets while FPD, MMD and pLDDT all agree on both. With natural proteins at
 generated arm is better. Quote it as a declared null, not as evidence either
 way.
 
-## 5. Ref-TM and Ref-RMSD
+## 5. Ref-TM and Ref-RMSD: the conditioned sequences adopt the source fold
 
-Pending, job 27496556 (`run/ref_tm.sh`). See `results/M_reftm_note.md`.
+Full note in `results/M_reftm_note.md`. On CATH S35 with the homologs purged,
+aligning each generated sequence's ESMFold structure to the crystal structure
+of the domain whose pattern it was given:
+
+| arm | Ref-TM | TM >= 0.5 | RMSD |
+|---|---|---|---|
+| the source's own slice (ceiling) | 0.861 | 95.3 % | 1.7 Å |
+| **chemical, conditioned** | **0.596** | **64.6 %** | 3.8 Å |
+| random partition, conditioned | 0.299 | 0.8 % | 5.6 Å |
+| either unconditional arm | 0.288-0.289 | 0.0 % | 5.6-5.7 Å |
+
+Two thirds of the conditioned sequences land in the source's fold, and the
+mean is above the same-fold threshold, while every control sits at the
+unrelated-pair background of 0.29. And the random arm, which recovers MORE of
+the source's residues than the chemical arm (0.393 against 0.348, §2), gets
+the background score -- so this is the chemical partition carrying structural
+information, not sequence identity being recognised.
 
 ## 6. scTM and scRMSD: NOT RUN, and why
 
