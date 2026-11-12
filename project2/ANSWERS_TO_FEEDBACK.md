@@ -4,6 +4,11 @@ Group 4 (Yan Pan, Neha Peddinti, Anushka Sheoran), CIS 6270 Project 2.
 Feedback of 2026-11-10, answered point by point. Detail lives in
 `REPORT.md` and `REPORT_REVISED.md`; this file is the index.
 
+**Two rounds of work followed this reply, on 2026-11-11.** They do not change
+any answer below, but they do change two numbers quoted in it and they answer
+one of the two questions we put back. See "After this reply" at the end;
+the conditioning headline is now **+23.4**, not the +20.2 written in §9 below.
+
 **Read first.** The feedback is written against the outline, so it proposes
 experiments that would strengthen the contact-gating method. Most are now
 run, and the method does not work: a deposited X-ray contact map handed
@@ -237,6 +242,10 @@ noise, but the ask was whether the trigger earns its complexity: it does not.
    gained nothing. Rebuilt on 96 patterns with max containment 0.026, the
    chemical-minus-random contrast is **+20.22 [+16.37, +24.14]** against the
    previously quoted +26.58. See `results/G_clean_conditioning_note.md`.
+   *Superseded on 2026-11-11: 10-mer containment was the wrong instrument --
+   97.7 % of those "clean" sources turn out to have a BLAST relative in
+   training. The number to quote is now **+23.4**, measured by deleting the
+   relatives and retraining. See "After this reply".*
 
 ## What we would ask back
 
@@ -257,13 +266,15 @@ negative-result and diagnostics paper:
 
 Is that an acceptable Project 2, or would you rather we spend the remaining
 time on the conditioning interface? That is the one arm with a large effect
-surviving both its own control and a homology-clean rebuild: giving the
+surviving its own control, a homology purge and a second dataset: giving the
 model a real protein's six-class chemical pattern and letting it fill
-identities is worth **+19.9 pLDDT**, a size- and bit-matched random
-partition is worth **+1.0**, and the conditioned arm is the only one of four
-that produces any foldable sequence at all (0.083 vs 0.000). What it does
-not yet show is that a *hand-written* pattern works — that is the experiment
-we would run next.
+identities is worth **+23.4 pLDDT [+20.1, +26.7]** on SwissProt and
+**+19.9 [+16.6, +23.1]** on CATH S35, a size- and bit-matched random
+partition is worth **+1.7** and **−1.9**, and the conditioned arm is the only
+one of four that produces any foldable sequence at all (0.172 vs 0.000). What
+it does not yet show is that a *hand-written* pattern works — that is the
+experiment we would run next. Figures: `figures/fig7_conditioning` and
+`figures/fig8_pattern_budget`.
 
 ## Appendix: what was run for this reply
 
@@ -278,3 +289,123 @@ we would run next.
 New code: `parallel/argmax_contacts.py`, `tools/gate_off_check.py`,
 `tools/clean_patterns.py`, `analysis/{beta_effect,clean_cond,prof_tables,argmax_gate}.py`,
 and the `external_argmax` contact mode in `parallel/sample.py`.
+
+---
+
+# After this reply: Rounds 4 and 5, 2026-11-11
+
+Both rounds attack the one positive result, because it was the weakest-tested
+claim in the project and the §9 answer above rested on a filter we no longer
+trust. Neither round changes any Idea-A answer.
+
+## Round 4a. The "homology-clean" filter was measuring the wrong thing
+
+10-mer containment is a substring test. It controls memorised fragments; it
+does not control homology. Asked properly — does this pattern source have a
+BLAST relative in training? — the answer is **125 of 128 sources, 97.7 %**.
+The set we called clean was clean only of shared substrings.
+
+So we deleted the relatives instead of filtering the sources: 19,645 training
+sequences (11.89 % of the corpus) removed, all three arms retrained
+identically, and both checkpoints conditioned on the *same* 128 patterns.
+
+| corpus | chemical − random, paired per source |
+|---|---|
+| original | +26.09 [+22.89, +29.28] |
+| **homologs purged** | **+23.38 [+20.07, +26.68]** |
+| what training homologs were worth | +2.71 [+0.95, +4.55] |
+
+**Memorisation is worth 10 % of the effect, measured by retraining rather
+than argued.** Foldability is *higher* on the purged corpus (0.172 vs 0.156)
+with the random arm at 0.000. `results/J_clustered_split_note.md`.
+
+## Round 5. It replicates on CATH S35
+
+Same 2×2 with CATH S35 domains as pattern sources — classical, non-redundant
+at 35 %, structural domains rather than full-length UniProt records, matched
+on length (224.3 vs 225.8).
+
+| dataset | purged | memorisation |
+|---|---|---|
+| SwissProt dev | +23.38 [+20.07, +26.68] | +2.71 [+0.95, +4.55] |
+| **CATH S35** | **+19.85 [+16.62, +23.05]** | +1.21 [−0.68, +3.06] |
+
+The intervals overlap, so the effect is protein chemistry rather than a
+property of the SwissProt dev split, and the two datasets bound memorisation
+at **1–3 pLDDT of a 20–26 pLDDT effect**. The CATH purge is the better
+controlled of the two: 42 % of sources have a training relative rather than
+98 %, the depth-2 expansion ran, and only 4.02 % of the corpus went.
+
+New and corroborating: on CATH the **random control goes negative** (−1.80
+against its own unconditional baseline, where SwissProt gave +0.72). Binding
+to a meaningless partition costs more on compact domains.
+`results/K_cath_dataset_note.md`.
+
+## Round 4b. Your implicit question, answered: the model cannot supply the pattern
+
+If the pattern has to come from outside, the obvious objection is that the
+model should predict it. We tested that, because the architecture already
+existed.
+
+| | |
+|---|---|
+| gain from an exact pattern | +18.83 [+15.15, +22.55] |
+| cost per 1 % of pattern error | **−1.15 pLDDT** |
+| error that halves the gain / erases it | 7.8 % / 18.6 % |
+| the family head's own error | **63.7 % argmax, 78.2 % sampled** |
+| the model's own pattern through the identical path | **+0.29 [−1.09, +1.78]** |
+
+Three to four times the budget, and the direct test retains 2 % of the gain.
+A fully wrong pattern is worse than no pattern at all (−6.38), because
+binding makes a family error unrecoverable — which is also the mechanism
+behind the two-level arm's 6.5-point deficit, a negative we had reported
+without being able to explain.
+
+**And it is not a training artefact.** The family loss weighting *is*
+pathological (masked at t², weighted 1/t², variance to 1e6), so we fixed it
+two ways. Both improved validation by 1.0–1.25 nats and carried 2.5× the
+information; **both left argmax accuracy exactly at the majority-class floor,
+0.363.** The barrier is informational, not optimisational: staying inside the
+budget needs ≥ 92 % accuracy on a 6-way chemical class from sequence alone,
+where structure-conditioned inverse folding gets 35–50 % *with* the backbone.
+
+That is why we now describe the family channel as a **control interface**
+rather than a generative mechanism, and why coarse-to-fine cannot bootstrap
+itself here. `results/I_pattern_curve_note.md`.
+
+## What this does and does not establish
+
+Stated plainly, because the negatives in this project are far better cornered
+than this positive. The generator is SwissProt-trained in **every** experiment
+— the pattern *source* has now been varied, the training corpus has not, and
+CATH's 3,876 eligible domains are too few to train a 38M model on. Still one
+model pair, one length, one budget (T=100), one structure predictor.
+
+And the metric axis is narrow: pLDDT, pTM, pAE and foldability all come from
+one ESMFold pass, with per-sequence pTM correlating 0.909 with pLDDT, so that
+is one axis read four ways. The one quality metric not read off ESMFold —
+ESM-2 pseudo-perplexity — moves 0.20 against its own unconditional arm while
+pLDDT moves 19.91, and on CATH it mildly favours the *unconditional* arm
+(16.56 vs 14.94). Hydrophobic patterning does not discriminate the chemical
+arm from the random one at all (0.0207 vs 0.0203). We are measuring a
+predictor's confidence, not folding, and we have not shown that a conditioned
+sequence adopts its source protein's fold.
+
+**Open on our side, in priority order:** a reference-structure TM-score
+against the source; a wider metric panel that is not ESMFold confidence
+(NSR, Max-ID, edit distance, self-consistency RMSD, and a distributional
+distance such as FPD/MMD); a hand-written or consensus pattern; and an
+independent structure predictor. The first two are in progress.
+
+## Appendix: what was run for these two rounds
+
+| job | what | outputs |
+|---|---|---|
+| 27442330 | the pattern-degradation curve and the self-pattern test | `I_curve_{dms6,rand6}_scored.json` |
+| 27442486_[0-1] | two corrected family-loss variants | `I_famsig_{g1,clip50}_diag.json` |
+| 27442437 / 27442438_[0-2] / 27442439 | SwissProt BLAST purge, retrain, 2×2 | `J_cond_{orig,purged}_scored.json` |
+| 27447590 / 27447591_[0-2] / 27447592 | the same three steps on CATH S35 | `K_cath_{orig,purged}_scored.json` |
+
+New code: `tools/{export_fasta,build_clustered_split,cath_patterns}.py`,
+`run/{clustered_split,retrain_clustered,cond_clustered,pattern_curve,family_signal,cath_split,retrain_cath,cond_cath}.sh`,
+`analysis/{clustered,cross_dataset,pattern_curve,figures_cond}.py`.
