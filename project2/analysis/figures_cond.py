@@ -259,8 +259,164 @@ def fig_pattern_budget():
     print("fig8 written")
 
 
+# ---------------------------------------------------------------- figure 9
+
+ARMS = [("dms6|conditioned", "chemical,\nconditioned", CHEM),
+        ("rand6|conditioned", "random,\nconditioned", RAND),
+        ("dms6|uncond", "chemical,\nunconditional", CHEM),
+        ("rand6|uncond", "random,\nunconditional", RAND)]
+
+
+def _sel(name):
+    d = load(name)
+    return {c["selector"]: c for c in d["cells"]} if d else {}
+
+
+def fig_independent_metrics():
+    """What the metrics that are NOT ESMFold say about the same sequences."""
+    S = _sel("L_extra_J_purged.json")
+    K = _sel("L_extra_K_purged.json")
+    MS = _sel("L_maxid_J_purged.json")
+    MO = _sel("L_maxid_J_orig.json")
+    R = _sel("M_reftm_K_purged.json")
+    if not S:
+        print("fig9: nothing scored yet")
+        return
+
+    fig, axes = plt.subplots(2, 2, figsize=(8.8, 6.4))
+
+    # -- A: FPD, the distributional distance to natural -------------------
+    ax = axes[0][0]
+    y = np.arange(len(ARMS))[::-1]
+    for i, (sel, lab, col) in enumerate(ARMS):
+        for k, (D, hatch, nm) in enumerate(((S, None, "SwissProt"),
+                                            (K, "///", "CATH S35"))):
+            v = (D.get(sel) or {}).get("fpd_vs_sources")
+            if v is None:
+                continue
+            ax.barh(y[i] + (0.19 if k == 0 else -0.19), v, height=0.34,
+                    color=col, alpha=1.0 if k == 0 else 0.55,
+                    hatch=hatch, edgecolor="white", lw=0.8, zorder=3)
+            ax.annotate(f"{v:.1f}", (v, y[i] + (0.19 if k == 0 else -0.19)),
+                        textcoords="offset points", xytext=(4, 0),
+                        va="center", fontsize=6.8, color=INK2)
+    cal = (S.get("natural") or {}).get("fpd_vs_sources")
+    if cal:
+        ax.axvline(cal, color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=2)
+        ax.annotate(f"natural vs natural {cal:.1f}", (cal, y[0] + 0.52),
+                    textcoords="offset points", xytext=(5, 0), fontsize=6.6,
+                    color=MUTED, va="center")
+    ax.set_yticks(y)
+    ax.set_yticklabels([a[1] for a in ARMS], fontsize=7)
+    style(ax, "FPD to the pattern sources (lower = more natural)", "",
+          "ESM-2 embedding space, not ESMFold")
+    h = [plt.Rectangle((0, 0), 1, 1, color=MUTED, alpha=0.9,
+                       label="SwissProt"),
+         plt.Rectangle((0, 0), 1, 1, color=MUTED, alpha=0.5, hatch="///",
+                       label="CATH S35")]
+    ax.legend(handles=h, loc="center right", fontsize=6.8)
+    ax.set_ylim(-0.75, len(ARMS) - 0.15)
+
+    # -- B: NSR against its own floors ------------------------------------
+    ax = axes[0][1]
+    rows = [(S, "dms6|conditioned", "SwissProt\nchemical", CHEM),
+            (S, "rand6|conditioned", "SwissProt\nrandom", RAND),
+            (K, "dms6|conditioned", "CATH\nchemical", CHEM),
+            (K, "rand6|conditioned", "CATH\nrandom", RAND)]
+    rows = [r for r in rows if r[0].get(r[1])]
+    y = np.arange(len(rows))[::-1]
+    for i, (D, sel, lab, col) in enumerate(rows):
+        c = D[sel]
+        u = c.get("nsr_floor_uniform_in_family")
+        m = c.get("nsr_floor_modal_in_family")
+        if u and m:
+            ax.plot([u, m], [y[i]] * 2, color=GRID, lw=7,
+                    solid_capstyle="butt", zorder=2)
+            for v, nm in ((u, "uniform"), (m, "modal")):
+                ax.plot([v, v], [y[i] - 0.22, y[i] + 0.22], color=MUTED,
+                        lw=1.2, zorder=3)
+        ax.plot([c["nsr_lo"], c["nsr_hi"]], [y[i]] * 2, color=col, lw=2.0,
+                zorder=4)
+        ax.plot([c["nsr"]], [y[i]], "o", ms=6.5, color=col, mec="white",
+                mew=1.2, zorder=5)
+        ax.annotate(f"{c['nsr']:.3f}", (c["nsr"], y[i]),
+                    textcoords="offset points", xytext=(0, 9), ha="center",
+                    fontsize=7, color=INK2)
+    ax.set_yticks(y)
+    ax.set_yticklabels([r[2] for r in rows], fontsize=7)
+    ax.set_xlim(0.26, 0.50)
+    style(ax, "native sequence recovery against the source", "",
+          "Grey band = uniform-in-family to modal-in-family floor")
+
+    # -- C: Max-ID, before and after the purge ----------------------------
+    ax = axes[1][0]
+    sels = ["dms6|conditioned", "rand6|conditioned", "dms6|uncond", "natural"]
+    labs = ["chemical,\nconditioned", "random,\nconditioned",
+            "chemical,\nunconditional", "natural\nproteins"]
+    y = np.arange(len(sels))[::-1]
+    for i, sel in enumerate(sels):
+        a = (MO.get(sel) or {}).get("max_id_mean")
+        b = (MS.get(sel) or {}).get("max_id_mean")
+        if a is None or b is None:
+            continue
+        col = C[2] if sel == "natural" else (CHEM if "dms6" in sel else RAND)
+        ax.annotate("", xy=(b, y[i]), xytext=(a, y[i]),
+                    arrowprops=dict(arrowstyle="-|>", lw=2.0, color=col,
+                                    shrinkA=0, shrinkB=0, mutation_scale=11))
+        ax.plot([a], [y[i]], "o", ms=5, mfc="white", mec=col, mew=1.4,
+                zorder=4)
+        ax.annotate(f"{a:.0f} to {b:.0f} %", (min(a, b), y[i]),
+                    textcoords="offset points", xytext=(-8, 0), ha="right",
+                    va="center", fontsize=7, color=INK2)
+    ax.set_yticks(y)
+    ax.set_yticklabels(labs, fontsize=7)
+    ax.set_xlim(-14, 100)
+    style(ax, "Max-ID to the training corpus, %", "",
+          "Open circle = original corpus, arrow = after the purge")
+
+    # -- D: Ref-TM, the structural check ----------------------------------
+    ax = axes[1][1]
+    if R:
+        order = [("source", "the source slice\nitself (ceiling)", C[2]),
+                 ("dms6|conditioned", "chemical,\nconditioned", CHEM),
+                 ("rand6|conditioned", "random,\nconditioned", RAND),
+                 ("dms6|uncond", "chemical,\nunconditional", CHEM),
+                 ("rand6|uncond", "random,\nunconditional", RAND)]
+        order = [o for o in order if o[0] in R]
+        y = np.arange(len(order))[::-1]
+        for i, (sel, lab, col) in enumerate(order):
+            c = R[sel]
+            ax.plot([c["ref_tm_lo"], c["ref_tm_hi"]], [y[i]] * 2, color=col,
+                    lw=2.0, solid_capstyle="round", zorder=3)
+            ax.plot([c["ref_tm"]], [y[i]], "o", ms=6.5, color=col,
+                    mec="white", mew=1.2, zorder=4)
+            ax.annotate(f"{c['ref_tm']:.2f}", (c["ref_tm"], y[i]),
+                        textcoords="offset points", xytext=(0, 9),
+                        ha="center", fontsize=7, color=INK2)
+        ax.axvline(0.5, color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=2)
+        ax.annotate("same fold", (0.5, y[-1] - 0.4), textcoords="offset points",
+                    xytext=(4, 0), fontsize=6.8, color=MUTED, va="center")
+        ax.set_yticks(y)
+        ax.set_yticklabels([o[1] for o in order], fontsize=7)
+        ax.set_xlim(0, 1.0)
+        style(ax, "Ref-TM to the source domain's crystal structure", "",
+              "CATH S35, homologs purged")
+    else:
+        ax.axis("off")
+        ax.annotate("Ref-TM not scored yet", (0.5, 0.5), ha="center",
+                    fontsize=8, color=MUTED, xycoords="axes fraction")
+
+    fig.suptitle("The same sequences, measured by four instruments that are "
+                 "not ESMFold", x=0.005, ha="left", fontsize=10.5, color=INK)
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    fig.savefig(os.path.join(FIG, "fig9_independent_metrics.png"))
+    fig.savefig(os.path.join(FIG, "fig9_independent_metrics.pdf"))
+    plt.close(fig)
+    print("fig9 written")
+
+
 if __name__ == "__main__":
-    for f in (fig_conditioning, fig_pattern_budget):
+    for f in (fig_conditioning, fig_pattern_budget, fig_independent_metrics):
         try:
             f()
         except Exception as e:

@@ -1,0 +1,100 @@
+blastp: /cm/shared/easybuild/software/BLAST+/2.14.0-gompi-2022b/bin/blastp
+### building data/clustered/purgeddb
+
+
+### building data/clustered_cath/purgeddb
+
+
+########## J_orig ##########
+--- NSR, edit distance, FPD, MMD
+J_cond_orig_scored.json: length 200, n 128, 128 pattern sources
+  dms6|uncond            NSR 0.069  edit 168.0
+  dms6|conditioned       NSR 0.365  edit 125.8
+  rand6|uncond           NSR 0.069  edit 168.2
+  rand6|conditioned      NSR 0.405  edit 118.0
+  natural                NSR n/a     edit n/a
+  dms6|uncond            FPD(src)    26.22  MMD(src)  0.7605
+  dms6|conditioned       FPD(src)    10.82  MMD(src)  0.3130
+  rand6|uncond           FPD(src)    26.49  MMD(src)  0.7965
+  rand6|conditioned      FPD(src)    24.92  MMD(src)  0.7697
+  natural                FPD(src)     3.00  MMD(src) -0.0018
+wrote results/L_extra_J_orig.json
+--- Max-ID against data/clustered/traindb
+  dms6|uncond            mean 10.5 %  max 21.0 %  p95 18.3 %  no hit 10 %
+  dms6|conditioned       mean 32.2 %  max 79.5 %  p95 42.5 %  no hit 0 %
+  rand6|uncond           mean 10.8 %  max 22.5 %  p95 16.0 %  no hit 6 %
+  rand6|conditioned      mean 32.0 %  max 85.0 %  p95 46.0 %  no hit 0 %
+  natural                mean 83.0 %  max 100.0 %  p95 99.5 %  no hit 0 %
+wrote results/L_maxid_J_orig.json
+########## J_purged ##########
+--- NSR, edit distance, FPD, MMD
+J_cond_purged_scored.json: length 200, n 128, 128 pattern sources
+  dms6|uncond            NSR 0.068  edit 168.4
+  dms6|conditioned       NSR 0.353  edit 128.1
+  rand6|uncond           NSR 0.068  edit 168.6
+  rand6|conditioned      NSR 0.401  edit 118.8
+  natural                NSR n/a     edit n/a
+  dms6|uncond            FPD(src)    27.71  MMD(src)  0.7747
+  dms6|conditioned       FPD(src)    11.99  MMD(src)  0.3477
+  rand6|uncond           FPD(src)    27.33  MMD(src)  0.8179
+  rand6|conditioned      FPD(src)    26.12  MMD(src)  0.7796
+  natural                FPD(src)     3.00  MMD(src) -0.0018
+wrote results/L_extra_J_purged.json
+--- Max-ID against data/clustered/purgeddb
+  dms6|uncond            mean 10.5 %  max 25.5 %  p95 17.3 %  no hit 10 %
+  dms6|conditioned       mean 11.5 %  max 23.0 %  p95 20.5 %  no hit 5 %
+  rand6|uncond           mean 10.7 %  max 20.5 %  p95 17.2 %  no hit 6 %
+  rand6|conditioned      mean 10.4 %  max 20.0 %  p95 16.8 %  no hit 9 %
+  natural                mean 42.1 %  max 99.5 %  p95 99.0 %  no hit 0 %
+wrote results/L_maxid_J_purged.json
+########## K_orig ##########
+--- NSR, edit distance, FPD, MMD
+K_cath_orig_scored.json: length 200, n 128, 128 pattern sources
+  dms6|uncond            NSR 0.064  edit 169.4
+  dms6|conditioned       NSR 0.352  edit 128.4
+  rand6|uncond           NSR 0.066  edit 169.0
+  rand6|conditioned      NSR 0.392  edit 120.6
+  natural                NSR n/a     edit n/a
+  dms6|uncond            FPD(src)    24.09  MMD(src)  0.7177
+  dms6|conditioned       FPD(src)    12.18  MMD(src)  0.3541
+  rand6|uncond           FPD(src)    24.27  MMD(src)  0.7514
+  rand6|conditioned      FPD(src)    24.27  MMD(src)  0.7499
+  natural                FPD(src)     4.43  MMD(src)  0.0305
+wrote results/L_extra_K_orig.json
+--- Max-ID against data/clustered/traindb
+  dms6|uncond            mean 10.5 %  max 21.0 %  p95 18.3 %  no hit 10 %
+  dms6|conditioned       mean 16.0 %  max 41.5 %  p95 34.3 %  no hit 1 %
+  rand6|uncond           mean 10.8 %  max 22.5 %  p95 16.0 %  no hit 6 %
+  rand6|conditioned      mean 16.1 %  max 47.5 %  p95 38.8 %  no hit 2 %
+  natural                mean 83.0 %  max 100.0 %  p95 99.5 %  no hit 0 %
+wrote results/L_maxid_K_orig.json
+########## K_purged ##########
+--- NSR, edit distance, FPD, MMD
+K_cath_purged_scored.json: length 200, n 128, 128 pattern sources
+  dms6|uncond            NSR 0.066  edit 168.9
+  dms6|conditioned       NSR 0.348  edit 129.1
+  rand6|uncond           NSR 0.067  edit 168.5
+  rand6|conditioned      NSR 0.393  edit 120.4
+  natural                NSR n/a     edit n/a
+  dms6|uncond            FPD(src)    25.60  MMD(src)  0.7145
+  dms6|conditioned       FPD(src)    13.01  MMD(src)  0.3714
+  rand6|uncond           FPD(src)    24.56  MMD(src)  0.7436
+  rand6|conditioned      FPD(src)    24.50  MMD(src)  0.7380
+  natural                FPD(src)     4.43  MMD(src)  0.0305
+wrote results/L_extra_K_purged.json
+--- Max-ID against data/clustered_cath/purgeddb
+  dms6|uncond            mean 9.6 %  max 22.0 %  p95 16.0 %  no hit 12 %
+  dms6|conditioned       mean 12.0 %  max 22.5 %  p95 19.0 %  no hit 4 %
+  rand6|uncond           mean 11.3 %  max 20.5 %  p95 17.3 %  no hit 4 %
+  rand6|conditioned      mean 10.9 %  max 20.5 %  p95 18.3 %  no hit 4 %
+  natural                mean 77.9 %  max 100.0 %  p95 99.5 %  no hit 0 %
+wrote results/L_maxid_K_purged.json
+########## done ##########
+-rw-r--r-- 1 pany3 reslnusers 3295 Nov 12 16:33 results/L_extra_J_orig.json
+-rw-r--r-- 1 pany3 reslnusers 3292 Nov 12 16:35 results/L_extra_J_purged.json
+-rw-r--r-- 1 pany3 reslnusers 3303 Nov 12 16:37 results/L_extra_K_orig.json
+-rw-r--r-- 1 pany3 reslnusers 3319 Nov 12 16:39 results/L_extra_K_purged.json
+-rw-r--r-- 1 pany3 reslnusers 1119 Nov 12 16:34 results/L_maxid_J_orig.json
+-rw-r--r-- 1 pany3 reslnusers 1169 Nov 12 16:35 results/L_maxid_J_purged.json
+-rw-r--r-- 1 pany3 reslnusers 1130 Nov 12 16:37 results/L_maxid_K_orig.json
+-rw-r--r-- 1 pany3 reslnusers 1154 Nov 12 16:39 results/L_maxid_K_purged.json

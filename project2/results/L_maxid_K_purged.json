@@ -1,0 +1,51 @@
+{
+ "scored": "results/K_cath_purged_scored.json",
+ "db": "data/clustered_cath/purgeddb",
+ "cells": [
+  {
+   "selector": "dms6|uncond",
+   "n": 128,
+   "max_id_mean": 9.6132787890625,
+   "max_id_max": 21.9996,
+   "max_id_p95": 16.0001365,
+   "frac_no_hit": 0.1171875,
+   "aln_cov_mean": 0.314765625
+  },
+  {
+   "selector": "dms6|conditioned",
+   "n": 128,
+   "max_id_mean": 12.003892890625,
+   "max_id_max": 22.500240000000005,
+   "max_id_p95": 18.975076749999985,
+   "frac_no_hit": 0.0390625,
+   "aln_cov_mean": 0.4240625
+  },
+  {
+   "selector": "rand6|uncond",
+   "n": 128,
+   "max_id_mean": 11.2812466015625,
+   "max_id_max": 20.49975,
+   "max_id_p95": 17.325156499999995,
+   "frac_no_hit": 0.0390625,
+   "aln_cov_mean": 0.36976562500000004
+  },
+  {
+   "selector": "rand6|conditioned",
+   "n": 128,
+   "max_id_mean": 10.906250703125,
+   "max_id_max": 20.5,
+   "max_id_p95": 18.324768749999997,
+   "frac_no_hit": 0.0390625,
+   "aln_cov_mean": 0.3696875
+  },
+  {
+   "selector": "natural",
+   "n": 48,
+   "max_id_mean": 77.87501177083334,
+   "max_id_max": 100.0,
+   "max_id_p95": 99.5,
+   "frac_no_hit": 0.0,
+   "aln_cov_mean": 0.9433333333333334
+  }
+ ]
+}

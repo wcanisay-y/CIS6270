@@ -1,0 +1,51 @@
+{
+ "scored": "results/K_cath_orig_scored.json",
+ "db": "data/clustered/traindb",
+ "cells": [
+  {
+   "selector": "dms6|uncond",
+   "n": 128,
+   "max_id_mean": 10.531262187500001,
+   "max_id_max": 21.000325000000004,
+   "max_id_p95": 18.324932999999994,
+   "frac_no_hit": 0.1015625,
+   "aln_cov_mean": 0.3519921875
+  },
+  {
+   "selector": "dms6|conditioned",
+   "n": 128,
+   "max_id_mean": 16.04687421875,
+   "max_id_max": 41.5,
+   "max_id_p95": 34.3248135,
+   "frac_no_hit": 0.0078125,
+   "aln_cov_mean": 0.5557421875
+  },
+  {
+   "selector": "rand6|uncond",
+   "n": 128,
+   "max_id_mean": 10.8281317578125,
+   "max_id_max": 22.50038,
+   "max_id_p95": 16.00010025,
+   "frac_no_hit": 0.0625,
+   "aln_cov_mean": 0.364140625
+  },
+  {
+   "selector": "rand6|conditioned",
+   "n": 128,
+   "max_id_mean": 16.0703009765625,
+   "max_id_max": 47.500305,
+   "max_id_p95": 38.824957,
+   "frac_no_hit": 0.0234375,
+   "aln_cov_mean": 0.507734375
+  },
+  {
+   "selector": "natural",
+   "n": 48,
+   "max_id_mean": 83.02083145833333,
+   "max_id_max": 100.0,
+   "max_id_p95": 99.5,
+   "frac_no_hit": 0.0,
+   "aln_cov_mean": 0.9796875000000002
+  }
+ ]
+}
