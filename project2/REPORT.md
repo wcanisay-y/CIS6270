@@ -48,6 +48,19 @@ result, both reported in full in sections at the end of Idea B:
 | Does it replicate on a second, classical dataset? | **Yes.** CATH S35 domains, same 2×2: **+19.85 [+16.62, +23.05]** purged, overlapping the SwissProt interval. Memorisation there is +1.21 [-0.68, +3.06], smaller as the lower homology (42 % of sources vs 98 %) predicts. |
 | Can the model predict the family pattern itself, instead of being given one? | **No.** A perfect pattern is worth +18.83 pLDDT and the model's own is worth +0.29. The error budget is 8 % for half the gain; the family head's error is 64-78 %. Two corrected training variants improve the loss by 1.0-1.25 nats and leave accuracy pinned at the majority-class floor. |
 
+**Round 6, 2026-11-12.** The asymmetry Round 5 declared -- one ESMFold pass
+read four ways -- is addressed by re-scoring the SAME stored sequences on
+instruments that share nothing with it (`results/L_extra_metrics_note.md`,
+`figures/fig9_independent_metrics`):
+
+| metric | what it says |
+|---|---|
+| **FPD / MMD** in ESM-2 embedding space | **The corroboration that was missing.** The chemical pattern closes 64 % (SwissProt) and 60 % (CATH) of the distance from the unconditional model to natural proteins; the bit-matched random control closes 5 % and 0.3 %. Natural against natural calibrates at 3.0 and -0.002. |
+| **Max-ID** (blastp, vs the corpus each arm trained on) | Round 4's purge confirmed by alignment rather than by retraining: a conditioned sequence sits at 32 % identity to the original corpus (tail to 85 %) and at 11.5 %, the unconditional value, once the relatives are deleted -- while keeping +24.6 pLDDT. |
+| **NSR** against the source, read against its own floors | No retrieval: every conditioned arm is BELOW its modal-in-family floor. And NSR does not discriminate -- the random arm's higher raw NSR (0.401 vs 0.353) is entirely its higher modal floor; normalised, the two match to within 0.02 in all four cells. |
+| **pppl** | Retired as a discriminator: it favours chemical on SwissProt and random on CATH. |
+| **scTM / scRMSD** | Not run -- no inverse-folding model is available. Declared, not approximated. |
+
 Figures for this round, added 2026-11-12 (`analysis/figures_cond.py`):
 `figures/fig7_conditioning` is the contrast with its control before and after
 the purge on both datasets, and `figures/fig8_pattern_budget` is the accuracy
@@ -456,6 +469,22 @@ pattern is worth about 20 pLDDT of ESMFold confidence, crosses a foldability
 threshold nothing else crosses, is not retrieval, and is worth almost nothing
 in sequence likelihood.** An independent predictor such as OmegaFold or a
 Boltz-class model would settle it; none is on disk.
+
+**UPDATED 2026-11-12 (Round 6).** The paragraph above was written when pLDDT
+was the only axis that moved. It no longer is. Re-scoring the same stored
+sequences in ESM-2 embedding space gives a second instrument that separates
+the arms the same way: Fréchet distance from the generated to the natural
+distribution falls from 27.7 (unconditional) to 12.0 with a chemical pattern
+and to 26.1 with a bit-matched random one, which is 64 % of the distance to
+natural against 5 %; CATH gives 60 % against 0.3 %; MMD agrees without a
+Gaussian assumption, and natural-against-natural calibrates at ~0. Max-ID by
+blastp independently reproduces Round 4's purge result, and NSR places every
+conditioned arm below its own modal-in-family floor, so retrieval is excluded
+on an alignment-free basis as well. Two of the three metrics in the table
+above that "do not support the chemistry claim" are now joined by two that
+do; pseudo-perplexity is retired as a discriminator because it contradicts
+itself across datasets. What remains genuinely open is the structural
+question, which Ref-TM addresses in `results/M_reftm_note.md`.
 
 This supports the family channel as a CONTROL INTERFACE, where a person
 supplies the pattern. It does not support the two-level alphabet as a way to

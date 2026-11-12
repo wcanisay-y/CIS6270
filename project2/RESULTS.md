@@ -999,3 +999,53 @@ The purged intervals overlap, so the effect does not depend on which dataset sup
 Three readings to carry forward. The random control is **negative** on CATH (-1.80 against its own unconditional baseline, where SwissProt gave +0.72), which independently corroborates the degradation-curve finding that a chemically meaningless pattern costs something because binding makes a family error unrecoverable, and costs more on compact structural domains. Foldability for the conditioned chemical arm is 0.047-0.055 on CATH against 0.156-0.172 on SwissProt, so the "only arm that folds at all" claim holds in form on both datasets but its magnitude is a SwissProt number. And ESM-2 pseudo-perplexity does not favour the conditioned arm on CATH either (16.56 against 14.94 unconditional), leaving the Round 3 caveat about the one non-ESMFold metric unchanged.
 
 Scope: the generator is SwissProt-trained in both experiments, so this establishes that the pattern source can be independent of training, not that the effect survives a model trained on a different corpus. Training on CATH is not feasible here -- 3,876 eligible domains is far too small for a 38M model from scratch.
+
+---
+
+# Round 6, 2026-11-12: metrics that are not ESMFold
+
+Job 27496304 (`run/extra_metrics.sh`), note in `results/L_extra_metrics_note.md`, figure `figures/fig9_independent_metrics`. Nothing was generated or re-folded: these are the sequences already stored in the Round 4 and Round 5 scored files, asked a different question. The motivation is the asymmetry declared at the end of Round 5 -- pLDDT, pTM, pAE and foldability are one ESMFold pass read four ways, and ESM-2 pseudo-perplexity, the only metric from another model, moved 0.20 where pLDDT moved 19.91.
+
+### The four arms on the purged corpora (SwissProt / CATH S35)
+
+| arm | pLDDT | pppl | NSR | Max-ID % | FPD | MMD |
+|---|---|---|---|---|---|---|
+| chemical, conditioned | **60.3 / 53.5** | 14.39 / 17.33 | 0.353 / 0.348 | 11.5 / 12.0 | **12.0 / 13.0** | **0.348 / 0.371** |
+| random, conditioned | 37.0 / 33.6 | 15.76 / 16.21 | 0.401 / 0.393 | 10.4 / 10.9 | 26.1 / 24.5 | 0.780 / 0.738 |
+| chemical, unconditional | 35.8 / 35.4 | 15.71 / 14.91 | 0.068 / 0.066 | 10.5 / 9.6 | 27.7 / 25.6 | 0.775 / 0.715 |
+| random, unconditional | 35.3 / 35.5 | 16.73 / 16.56 | 0.068 / 0.067 | 10.7 / 11.3 | 27.3 / 24.6 | 0.818 / 0.744 |
+| natural proteins | 90.1 | 3.50 | -- | 42.1 / 77.9 | 3.0 / 4.4 | -0.002 / 0.031 |
+
+### FPD and MMD: an independent axis that agrees
+
+Fréchet distance and kernel MMD between generated and natural distributions in ESM-2 embedding space. They score a set rather than a sequence, so they see what no per-sequence mean can. Measured against each arm's own unconditional baseline, the chemical pattern closes **64 %** (SwissProt) and **60 %** (CATH) of the distance to natural proteins; the bit-matched random partition closes **5 %** and **0.3 %**. MMD agrees (0.348 vs 0.780, 0.371 vs 0.738) without assuming anything Gaussian, and natural-against-natural calibrates at 3.0 / -0.002 and 4.4 / 0.031. This is the first metric sharing no component with ESMFold's structure module to confirm the chemical-versus-random separation; hydrophobic patterning and pseudo-perplexity both failed to.
+
+### NSR: no retrieval, and no discrimination either
+
+| arm | NSR | uniform-in-family floor | modal-in-family floor | NSR / modal |
+|---|---|---|---|---|
+| SwissProt chemical | 0.353 [0.346, 0.360] | 0.306 | 0.391 | 0.90 |
+| SwissProt random | 0.401 [0.394, 0.408] | 0.308 | 0.441 | 0.91 |
+| CATH chemical | 0.348 | 0.307 | 0.389 | 0.89 |
+| CATH random | 0.393 | 0.306 | 0.442 | 0.89 |
+
+Every conditioned arm sits BELOW its own modal floor, which is an alignment-free confirmation that nothing is being retrieved. And the random arm's higher raw NSR is entirely its higher modal floor: normalised by each arm's own floor the two are identical to within 0.02 in all four cells, so **NSR does not discriminate chemistry**. The chemical gain is not more native residues in the right places.
+
+### Max-ID: Round 4's purge confirmed by alignment
+
+| arm | original corpus | after the purge |
+|---|---|---|
+| chemical, conditioned | 32.2 % (max 79.5) | **11.5 %** |
+| random, conditioned | 32.0 % (max 85.0) | 10.4 % |
+| chemical, unconditional | 10.5 % | 10.5 % |
+| natural dev proteins | 83.0 % | 42.1 % |
+
+blastp against the corpus each arm actually trained on, scored over the query. After the purge a conditioned sequence is no closer to training than an unconditional one, while keeping its +24.6 pLDDT. Round 4 established this by retraining and comparing pLDDT; this establishes it by aligning the sequences themselves, and the natural control moving 83 → 42 % is the check that the purge removed what it was meant to.
+
+### Pseudo-perplexity is retired as a discriminator
+
+It favours the chemical arm on SwissProt (14.39 vs 15.76) and the random arm on CATH (17.33 vs 16.21), contradicting itself where FPD, MMD and pLDDT agree on both datasets. With natural at 3.50 and every generated arm between 14 and 17, it is dominated by "this is not a real protein" and has little resolution left. Report it as a declared null.
+
+### Not run: scTM and scRMSD
+
+Both need an inverse-folding model. ProteinMPNN is not on disk and the only PyPI package of that name is an unvetted third-party wheel shipping its own weights; ESM-IF1 (`fair-esm`, installed) needs `torch_scatter`/`torch_sparse`, which have no wheel for torch 2.7.1+cu126. Declared missing rather than approximated. Ref-TM asks the stronger question for these sequences anyway, because they have a real reference structure.
