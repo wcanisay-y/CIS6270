@@ -48,6 +48,40 @@ same-fold threshold. The controls are at the unrelated-pair background, and
 0.8 % of the random-partition arm crosses 0.5 against 64.6 % of the chemical
 arm.
 
+## The permuted-pairing control: the effect is source-specific
+
+One alternative survives the table above. If conditioning simply produced
+generically domain-like shapes, a generated structure might score well against
+*any* reference and the pairing would be irrelevant. Aligning each generated
+structure to a DIFFERENT source settles it (job 27497977,
+`results/M_reftm_K_purged_perm.json`):
+
+| arm | against its own source | against a different source |
+|---|---|---|
+| **chemical, conditioned** | **0.596** (64.6 % >= 0.5) | **0.303** (0.8 % >= 0.5) |
+| random partition, conditioned | 0.299 (0.8 %) | 0.288 (0.8 %) |
+
+**The chemical arm loses the entire effect when the pairing is broken**, and
+lands on the unrelated-pair background. The structure it produces is the
+structure of the protein whose pattern it was given, not a generic compact
+domain.
+
+## Memorisation, measured structurally
+
+Running the same comparison on the model trained with the sources' homologs
+still in the corpus:
+
+| corpus | chemical, conditioned | random, conditioned |
+|---|---|---|
+| original | 0.607 [0.568, 0.645], 67.7 % >= 0.5 | 0.304 |
+| homologs purged | 0.596 [0.558, 0.635], 64.6 % >= 0.5 | 0.299 |
+| what the homologs were worth | **0.011 TM** | 0.005 |
+
+Deleting every BLAST relative of every pattern source costs **0.011 of a
+0.308 effect over background, under 4 %**. Round 4 bounded memorisation at
+10 % of the pLDDT gain and Round 5 at 1-3 pLDDT; the structural endpoint puts
+it lower still. Three instruments, three ways of asking, same answer.
+
 ## Why this is not sequence identity in disguise
 
 The obvious objection is that a conditioned sequence retains ~35 % identity to

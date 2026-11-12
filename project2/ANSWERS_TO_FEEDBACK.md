@@ -430,10 +430,22 @@ set scores 0.29. **Two thirds of the conditioned sequences land in the source's
 fold**, covering 54 % of the distance from background to the ceiling, while
 every control sits at background.
 
-**It is not sequence identity being recognised.** The random-partition arm
-recovers *more* of the source's residues than the chemical arm — NSR 0.393
-against 0.348 — and still scores background. More identity, no fold. What
-carries the structural information is the chemical partition specifically.
+Three controls, and it survives all of them.
+
+1. **The bit-matched random partition is at background** (0.299, 0.8 %).
+2. **The permuted pairing.** Aligning the same generated structures to a
+   *different* source collapses the chemical arm from 0.596 to **0.303**. So
+   what it produces is the fold of the protein it was given, not a generically
+   domain-like shape that would score well against anything.
+3. **It is not sequence identity being recognised.** The random-partition arm
+   recovers *more* of the source's residues than the chemical arm — NSR 0.393
+   against 0.348 — and still scores background. More identity, no fold.
+
+**Memorisation, measured a third way.** On the unpurged corpus the chemical
+arm scores 0.607; purged, 0.596. Deleting every BLAST relative of every
+pattern source costs **0.011 TM of a 0.308 effect over background, under
+4 %** — consistent with, and tighter than, the 10 % and 1–3 pLDDT bounds from
+Rounds 4 and 5.
 
 ## The three sequence-level axes
 

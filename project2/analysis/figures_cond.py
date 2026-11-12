@@ -279,6 +279,7 @@ def fig_independent_metrics():
     MS = _sel("L_maxid_J_purged.json")
     MO = _sel("L_maxid_J_orig.json")
     R = _sel("M_reftm_K_purged.json")
+    RP = _sel("M_reftm_K_purged_perm.json")
     if not S:
         print("fig9: nothing scored yet")
         return
@@ -394,6 +395,16 @@ def fig_independent_metrics():
             ax.annotate(f"{c['ref_tm']:.2f}", (c["ref_tm"], y[i]),
                         textcoords="offset points", xytext=(0, 9),
                         ha="center", fontsize=7, color=INK2)
+            p = (RP.get(sel) or {}).get("permuted_tm")
+            if p and np.isfinite(p):
+                ax.plot([p], [y[i]], "o", ms=6, mfc="white", mec=col,
+                        mew=1.4, zorder=4)
+        ax.set_ylim(-0.6, len(order) - 0.35)
+        if any((RP.get(o[0]) or {}).get("permuted_tm") for o in order):
+            ax.annotate("open circle = aligned to a DIFFERENT source",
+                        (0.015, len(order) - 0.55),
+                        xycoords=("axes fraction", "data"), va="center",
+                        ha="left", fontsize=6.6, color=MUTED)
         ax.axvline(0.5, color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=2)
         ax.annotate("same fold", (0.5, y[-1] - 0.4), textcoords="offset points",
                     xytext=(4, 0), fontsize=6.8, color=MUTED, va="center")

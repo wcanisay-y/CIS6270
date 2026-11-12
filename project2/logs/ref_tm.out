@@ -9,3 +9,12 @@ tmtools ok
 wrote results/M_reftm_K_purged.json
 ########## K_cath_orig ##########
 127 of 128 sources have a usable structure
+  dms6|uncond            Ref-TM 0.286 [0.280, 0.293]  >=0.5 0.0 %  RMSD 5.6 A
+  dms6|conditioned       Ref-TM 0.607 [0.568, 0.645]  >=0.5 67.7 %  RMSD 3.8 A
+  rand6|uncond           Ref-TM 0.290 [0.284, 0.296]  >=0.5 0.0 %  RMSD 5.6 A
+  rand6|conditioned      Ref-TM 0.304 [0.293, 0.316]  >=0.5 2.4 %  RMSD 5.6 A
+wrote results/M_reftm_K_orig.json
+########## done ##########
+-rw-r--r-- 1 pany3 reslnusers 1350 Nov 12 17:22 results/M_reftm_K_orig.json
+-rw-r--r-- 1 pany3 reslnusers 1660 Nov 12 17:02 results/M_reftm_K_purged.json
+-rw-r--r-- 1 pany3 reslnusers  935 Nov 12 17:15 results/M_reftm_K_purged_perm.json

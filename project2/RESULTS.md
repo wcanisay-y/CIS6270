@@ -1049,3 +1049,23 @@ It favours the chemical arm on SwissProt (14.39 vs 15.76) and the random arm on 
 ### Not run: scTM and scRMSD
 
 Both need an inverse-folding model. ProteinMPNN is not on disk and the only PyPI package of that name is an unvetted third-party wheel shipping its own weights; ESM-IF1 (`fair-esm`, installed) needs `torch_scatter`/`torch_sparse`, which have no wheel for torch 2.7.1+cu126. Declared missing rather than approximated. Ref-TM asks the stronger question for these sequences anyway, because they have a real reference structure.
+
+### Ref-TM: the conditioned sequences adopt the source protein's fold
+
+Jobs 27496556 and 27497977 (`run/ref_tm.sh`, `run/ref_tm_perm.sh`), note in `results/M_reftm_note.md`, figure panel D. The CATH arm's pattern sources are structural domains with deposited coordinates (127 of 128 downloaded by `tools/fetch_cath_domains.py`), so each generated sequence can be folded and structurally aligned to the crystal structure of the domain whose chemical pattern it was given, TM normalised by the generated chain.
+
+| arm | Ref-TM, purged | TM >= 0.5 | RMSD | aligned to a DIFFERENT source |
+|---|---|---|---|---|
+| the source's own slice (ceiling) | 0.861 [0.835, 0.884] | 95.3 % | 1.7 Å | -- |
+| **chemical, conditioned** | **0.596 [0.558, 0.635]** | **64.6 %** | 3.8 Å | **0.303** |
+| random partition, conditioned | 0.299 [0.290, 0.309] | 0.8 % | 5.6 Å | 0.288 |
+| chemical, unconditional | 0.288 [0.281, 0.294] | 0.0 % | 5.6 Å | -- |
+| random partition, unconditional | 0.289 [0.282, 0.295] | 0.0 % | 5.7 Å | -- |
+
+0.5 is the conventional same-fold threshold; an unrelated pair of domains from this set scores 0.29, which is where all three control arms sit. The chemical arm covers 54 % of the distance from that background to the ceiling, the random partition 2 %.
+
+**Three controls, and the effect survives all of them.** (i) The bit-matched random partition is at background. (ii) The permuted pairing — the same generated structures aligned to a *different* source — collapses the chemical arm from 0.596 to 0.303, so what it produces is the source's fold and not a generically domain-like shape. (iii) It is not identity being recognised: the random arm recovers MORE of the source's residues (NSR 0.393 against 0.348) and still scores background.
+
+**Memorisation, measured structurally.** On the unpurged corpus the chemical arm scores 0.607 [0.568, 0.645] with 67.7 % above threshold, against 0.596 and 64.6 % purged, so deleting every BLAST relative of every pattern source costs **0.011 TM of a 0.308 effect over background, under 4 %**. Round 4 bounded memorisation at 10 % of the pLDDT gain, Round 5 at 1-3 pLDDT, and the structural endpoint puts it lower still.
+
+**Declared.** The generated structure is an ESMFold prediction; only the reference is experimental. ESMFold's own training set was not purged and has seen these domains, so this shows the generated sequence carries enough signal for a predictor that knows the fold to recover it, which is weaker than independent physical evidence. The random control bounds how much of the result that can explain, since ESMFold knows the source for those sequences too and they have higher identity to it. Note also that the conditioned arm's pLDDT is only 53.5 while its topology is right, so on this task pLDDT and the foldability flag (0.047) both understate how much structural information the conditioning carries.
