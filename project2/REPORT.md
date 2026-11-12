@@ -48,6 +48,12 @@ result, both reported in full in sections at the end of Idea B:
 | Does it replicate on a second, classical dataset? | **Yes.** CATH S35 domains, same 2×2: **+19.85 [+16.62, +23.05]** purged, overlapping the SwissProt interval. Memorisation there is +1.21 [-0.68, +3.06], smaller as the lower homology (42 % of sources vs 98 %) predicts. |
 | Can the model predict the family pattern itself, instead of being given one? | **No.** A perfect pattern is worth +18.83 pLDDT and the model's own is worth +0.29. The error budget is 8 % for half the gain; the family head's error is 64-78 %. Two corrected training variants improve the loss by 1.0-1.25 nats and leave accuracy pinned at the majority-class floor. |
 
+Figures for this round, added 2026-11-12 (`analysis/figures_cond.py`):
+`figures/fig7_conditioning` is the contrast with its control before and after
+the purge on both datasets, and `figures/fig8_pattern_budget` is the accuracy
+budget against what the family head achieves. Nothing in `fig1`-`fig6` plots
+conditioning, and `fig1`/`fig5` rest on retired numbers.
+
 The verdict did not change in either round: neither proposal works as
 written. What changed is which evidence carries the verdict.
 

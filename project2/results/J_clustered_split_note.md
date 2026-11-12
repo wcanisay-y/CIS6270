@@ -11,6 +11,8 @@ Jobs 27442437 (BLAST purge), 27442438_[0-2] (retrain), 27442439 (the 2x2).
 Scripts `tools/{export_fasta,build_clustered_split}.py`,
 `run/{clustered_split,retrain_clustered,cond_clustered}.sh`, analysis
 `analysis/clustered.py`, data `results/J_cond_{orig,purged}_scored.json`.
+Figure `figures/fig7_conditioning.{png,pdf}`, left panel (the contrast before
+and after the purge) and right panel (what moves in absolute pLDDT).
 
 ## How much homology was there? Almost total
 

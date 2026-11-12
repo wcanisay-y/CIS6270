@@ -47,8 +47,27 @@ sbatch run/ideaA_reparam.sh   # the same rule inside DPLM's own decoder
 sbatch run/scorecheck.sh      # the commit-ranking ablation
 sbatch run/ideaB.sh           # Idea B generation and scoring
 ./venv2/bin/python -m analysis.final     # writes RESULTS.md
-./venv2/bin/python -m analysis.figures   # writes figures/
+./venv2/bin/python -m analysis.figures   # writes figures/fig1-fig6
+./venv2/bin/python -m analysis.figures_cond   # writes figures/fig7-fig8
 ```
+
+## Figures
+
+| figure | what it shows |
+|---|---|
+| `fig1_contact_quality` | SUPERSEDED (atom14 bug, 2026-11-06 numbers): contact precision against mask rate |
+| `fig2_plddt_vs_nfe` | pLDDT against forward passes, all Idea-A selectors |
+| `fig3_contrasts` | the Idea-A paired contrasts against confidence |
+| `fig4_ideaB`, `fig6_ideaB` | Idea B UNCONDITIONAL: the quality-diversity frontier, and two-level against flat |
+| `fig5_oracle` | SUPERSEDED (ad-hoc chain set): the oracle contact-map test |
+| **`fig7_conditioning`** | **the positive: chemical minus random before and after the homology purge, on both datasets, and what moves in absolute pLDDT** |
+| **`fig8_pattern_budget`** | **the accuracy budget: the gain is gone by 19 % pattern error, against 64-78 % achieved** |
+
+`fig1` and `fig5` predate the 2026-11-09 metric fixes and are kept only so no
+analysis silently reuses them; every pTM- or foldability-derived value in
+`fig1`-`fig6` predates the batch-maximum fix. `fig7` and `fig8` are drawn from
+the summary JSONs the analysis scripts write, so they cannot disagree with the
+notes beside them.
 
 ## Findings index
 
@@ -64,6 +83,9 @@ sbatch run/ideaB.sh           # Idea B generation and scoring
 | `results/B_conditioning_note.md` | the one positive, and the correction block showing its pattern sources were homology-contaminated |
 | `results/G_clean_conditioning_note.md` | the positive re-measured on homology-clean patterns: +20.22 [+16.37, +24.14] against the bit-matched random control, and the only arm with nonzero foldability |
 | `results/G_beta_effect_note.md` | the fold-class positive, WITHDRAWN: the mechanism it claimed is absent when tested against per-chain contact density |
+| `results/I_pattern_curve_note.md` | the accuracy budget: -1.15 pLDDT per 1 % pattern error against -0.04 for a random partition, the family head pinned at its majority-class floor, and the model's own pattern worth +0.29 (`fig8`) |
+| `results/J_clustered_split_note.md` | the gain survives deleting every BLAST relative of every pattern source: +23.38 [+20.07, +26.68], memorisation worth +2.71 (`fig7`) |
+| `results/K_cath_dataset_note.md` | it replicates on CATH S35: +19.85 [+16.62, +23.05], memorisation +1.21 n.s., and the random control goes negative on compact domains (`fig7`) |
 | `results/EXTERNAL_BASELINES.md` | published numbers and prior art, with provenance |
 
 Two implementation bugs invalidated whole columns of the first study and are

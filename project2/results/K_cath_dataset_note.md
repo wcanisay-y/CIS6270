@@ -15,7 +15,8 @@ is UniProt-derived like SwissProt and so would not test distribution shift.
 
 Jobs 27447590 (purge), 27447591_[0-2] (retrain), 27447592 (the 2x2). Scripts
 `tools/cath_patterns.py`, `run/{cath_split,retrain_cath,cond_cath}.sh`,
-analysis `analysis/{clustered,cross_dataset}.py`.
+analysis `analysis/{clustered,cross_dataset}.py`. Figure
+`figures/fig7_conditioning.{png,pdf}`, the two CATH S35 rows in each panel.
 
 ## The CATH run is better controlled than the SwissProt one
 

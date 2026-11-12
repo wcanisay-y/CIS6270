@@ -11,7 +11,9 @@ predicted pattern be, and how accurate is the one the model produces?
 Jobs 27442330 (`run/pattern_curve.sh`), analysis `analysis/pattern_curve.py`,
 data `results/I_curve_{dms6,rand6}_scored.json` and `*_diag.json`. 96
 homology-clean patterns, length 200, 100 forward passes, 96 sequences per
-cell, paired per source protein.
+cell, paired per source protein. Figure
+`figures/fig8_pattern_budget.{png,pdf}`: the degradation curve against its
+random-partition control, and the budget against the achieved error rate.
 
 ## 1. The budget: the gain is gone by 19 % pattern error
 
